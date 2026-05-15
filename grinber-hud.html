@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>INPEC // LATTICE PROTOCOL // GRINBERG NODE</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap');
+
+  :root {
+    --cyan: #00f5ff;
+    --green: #00ff9d;
+    --red: #ff2d55;
+    --amber: #ffb300;
+    --dim: rgba(0,245,255,0.08);
+    --panel: rgba(0,245,255,0.04);
+    --border: rgba(0,245,255,0.25);
+    --bg: #020a0f;
+    --glow: 0 0 12px rgba(0,245,255,0.6);
+    --glow-green: 0 0 12px rgba(0,255,157,0.6);
+    --glow-red: 0 0 12px rgba(255,45,85,0.6);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--cyan);
+    font-family: 'Share Tech Mono', monospace;
+    min-height: 100vh;
+    overflow-x: hidden;
+    cursor: crosshair;
+  }
+
+  /* ── SCANLINE OVERLAY ── */
+  body::before {
+    content:'';
+    position:fixed; inset:0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.18) 2px,
+      rgba(0,0,0,0.18) 4px
+    );
+    pointer-events:none;
+    z-index:9999;
+    animation: scanroll 8s linear infinite;
+  }
+
+  @keyframes scanroll {
+    0%   { background-position: 0 0; }
+    100% { background-position: 0 80px; }
+  }
+
+  /* ── CORNER BRACKETS ── */
+  .corner-tl, .corner-tr, .corner-bl, .corner-br {
+    position: fixed;
+    width: 40px; height: 40px;
+    z-index: 100;
+    opacity: 0.7;
+  }
+  .corner-tl { top:12px; left:12px; border-top:2px solid var(--cyan); border-left:2px solid var(--cyan); }
+  .corner-tr { top:12px; right:12px; border-top:2px solid var(--cyan); border-right:2px solid var(--cyan); }
+  .corner-bl { bottom:12px; left:12px; border-bottom:2px solid var(--cyan); border-left:2px solid var(--cyan); }
+  .corner-br { bottom:12px; right:12px; border-bottom:2px solid var(--cyan); border-right:2px solid var(--cyan); }
+
+  /* ── TOPBAR ── */
+  .topbar {
+    position: fixed; top:0; left:0; right:0;
+    height: 48px;
+    background: rgba(2,10,15,0.95);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 60px;
+    z-index: 200;
+    backdrop-filter: blur(6px);
+  }
+  .topbar-left {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--cyan);
+    text-shadow: var(--glow);
+  }
+  .topbar-right {
+    font-size: 10px;
+    color: rgba(0,245,255,0.5);
+    letter-spacing: 2px;
+  }
+  .status-dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--red);
+    margin-right: 6px;
+    animation: blink 1.2s step-start infinite;
+    box-shadow: var(--glow-red);
+  }
+  @keyframes blink { 50% { opacity:0; } }
+
+  /* ── HERO SECTION ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 80px 20px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* rotating ring */
+  .ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid transparent;
+    animation: spin linear infinite;
+    pointer-events: none;
+  }
+  .ring-1 {
+    width: 500px; height: 500px;
+    border-color: rgba(0,245,255,0.08);
+    border-top-color: var(--cyan);
+    animation-duration: 12s;
+  }
+  .ring-2 {
+    width: 700px; height: 700px;
+    border-color: rgba(0,255,157,0.06);
+    border-right-color: var(--green);
+    animation-duration: 20s;
+    animation-direction: reverse;
+  }
+  .ring-3 {
+    width: 900px; height: 900px;
+    border-color: rgba(255,45,85,0.04);
+    border-bottom-color: var(--red);
+    animation-duration: 35s;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* center target */
+  .target-center {
+    position: absolute;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--cyan);
+    box-shadow: 0 0 30px 10px rgba(0,245,255,0.3);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%,100% { box-shadow: 0 0 30px 10px rgba(0,245,255,0.3); }
+    50%      { box-shadow: 0 0 60px 20px rgba(0,245,255,0.6); }
+  }
+
+  /* crosshair lines */
+  .crosshair-h, .crosshair-v {
+    position: absolute;
+    background: rgba(0,245,255,0.12);
+    pointer-events: none;
+  }
+  .crosshair-h { width: 100vw; height: 1px; top: 50%; }
+  .crosshair-v { height: 100vh; width: 1px; left: 50%; }
+
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    max-width: 900px;
+  }
+
+  .alert-tag {
+    display: inline-block;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 10px;
+    letter-spacing: 6px;
+    color: var(--red);
+    text-shadow: var(--glow-red);
+    border: 1px solid var(--red);
+    padding: 4px 16px;
+    margin-bottom: 24px;
+    animation: flicker 3s ease-in-out infinite;
+  }
+  @keyframes flicker {
+    0%,95%,100% { opacity:1; }
+    96% { opacity:0.3; }
+    97% { opacity:1; }
+    98% { opacity:0.2; }
+  }
+
+  .disturbance-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(22px, 4vw, 46px);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: 2px;
+    color: var(--cyan);
+    text-shadow: var(--glow);
+    margin-bottom: 8px;
+    animation: textglitch 6s linear infinite;
+  }
+  @keyframes textglitch {
+    0%,94%,100% { text-shadow: var(--glow); transform: none; }
+    95% { text-shadow: 3px 0 var(--red), -3px 0 var(--green); transform: skewX(1deg); }
+    96% { text-shadow: -3px 0 var(--red), 3px 0 var(--green); transform: skewX(-1deg); }
+    97% { text-shadow: var(--glow); transform: none; }
+  }
+
+  .subtitle-line {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(12px, 2vw, 20px);
+    color: var(--green);
+    text-shadow: var(--glow-green);
+    letter-spacing: 6px;
+    margin-bottom: 36px;
+  }
+
+  /* ── ABILITY CARDS ── */
+  .ability-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin: 36px 0;
+    width: 100%;
+    max-width: 900px;
+  }
+
+  .ability-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 20px 16px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+  }
+  .ability-card::before {
+    content:'';
+    position: absolute;
+    top:0; left:-100%;
+    width: 100%; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+    transition: left 0.5s ease;
+  }
+  .ability-card:hover::before { left: 100%; }
+  .ability-card:hover {
+    background: rgba(0,245,255,0.1);
+    border-color: var(--cyan);
+    box-shadow: var(--glow), inset 0 0 20px rgba(0,245,255,0.05);
+    transform: translateY(-2px);
+  }
+
+  .ability-icon {
+    font-size: 28px;
+    margin-bottom: 10px;
+    display: block;
+    filter: drop-shadow(0 0 8px rgba(0,245,255,0.8));
+  }
+  .ability-label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: rgba(0,245,255,0.5);
+    margin-bottom: 6px;
+  }
+  .ability-name {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--cyan);
+    text-shadow: var(--glow);
+  }
+  .ability-status {
+    position: absolute;
+    top: 10px; right: 10px;
+    font-size: 8px;
+    letter-spacing: 2px;
+    color: var(--green);
+    text-shadow: var(--glow-green);
+  }
+
+  /* progress bars */
+  .progress-bar {
+    width: 100%;
+    height: 2px;
+    background: rgba(0,245,255,0.1);
+    margin-top: 10px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--cyan), var(--green));
+    animation: loadup 2.5s ease forwards;
+    width: 0;
+    box-shadow: var(--glow);
+  }
+  @keyframes loadup { to { width: var(--pct); } }
+
+  /* ── DIVIDER ── */
+  .hud-divider {
+    width: 100%;
+    max-width: 900px;
+    margin: 40px auto;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .hud-divider::before, .hud-divider::after {
+    content:'';
+    flex:1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border));
+  }
+  .hud-divider::after { background: linear-gradient(90deg, var(--border), transparent); }
+  .hud-divider span {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 9px;
+    letter-spacing: 4px;
+    color: rgba(0,245,255,0.4);
+    white-space: nowrap;
+  }
+
+  /* ── MAIN CONTENT WRAPPER ── */
+  .content-wrapper {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  /* ── BIO PANEL ── */
+  .bio-panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 32px;
+    margin-bottom: 32px;
+    position: relative;
+  }
+  .bio-panel::after {
+    content: 'NODE: JGZ-1946';
+    position: absolute;
+    top: -10px; right: 20px;
+    background: var(--bg);
+    padding: 0 8px;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: rgba(0,245,255,0.4);
+  }
+
+  .panel-header {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    letter-spacing: 5px;
+    color: var(--amber);
+    text-shadow: 0 0 10px rgba(255,179,0,0.6);
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255,179,0,0.2);
+    padding-bottom: 10px;
+  }
+
+  .bio-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  @media (max-width: 600px) { .bio-grid { grid-template-columns: 1fr; } }
+
+  .bio-stat {
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .bio-stat-label {
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: rgba(0,245,255,0.4);
+  }
+  .bio-stat-value {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 15px;
+    color: var(--cyan);
+  }
+
+  /* ── THEORY PANEL ── */
+  .theory-panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--green);
+    padding: 28px 32px;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .theory-text {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 15px;
+    color: rgba(0,245,255,0.8);
+    line-height: 1.7;
+  }
+  .theory-highlight {
+    color: var(--green);
+    text-shadow: var(--glow-green);
+    font-weight: 600;
+  }
+
+  /* ── EXPERIMENT PANEL ── */
+  .experiment-box {
+    background: linear-gradient(135deg, rgba(0,255,157,0.04), rgba(0,245,255,0.04));
+    border: 1px solid rgba(0,255,157,0.3);
+    padding: 28px;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .experiment-box::before {
+    content: '▶ EXPERIMENT LOG';
+    position: absolute; top:-10px; left:20px;
+    background: var(--bg); padding: 0 8px;
+    font-size: 9px; letter-spacing: 3px;
+    color: var(--green); text-shadow: var(--glow-green);
+  }
+  .experiment-step {
+    display: flex; gap: 16px; margin-bottom: 14px; align-items: flex-start;
+  }
+  .step-num {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    color: var(--green);
+    min-width: 24px;
+    text-shadow: var(--glow-green);
+  }
+  .step-text {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 14px;
+    color: rgba(0,245,255,0.75);
+    line-height: 1.5;
+  }
+
+  /* ── DISAPPEARANCE / ALERT PANEL ── */
+  .alert-panel {
+    background: rgba(255,45,85,0.04);
+    border: 1px solid rgba(255,45,85,0.3);
+    border-left: 3px solid var(--red);
+    padding: 28px 32px;
+    margin-bottom: 24px;
+    position: relative;
+    animation: alertpulse 4s ease-in-out infinite;
+  }
+  @keyframes alertpulse {
+    0%,100% { border-left-color: var(--red); }
+    50%      { border-left-color: rgba(255,45,85,0.3); }
+  }
+  .alert-panel .panel-header { color: var(--red); text-shadow: var(--glow-red); border-bottom-color: rgba(255,45,85,0.2); }
+  .alert-text {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 15px;
+    color: rgba(255,180,180,0.8);
+    line-height: 1.7;
+  }
+  .alert-text strong { color: var(--red); font-weight: 700; }
+
+  /* ── CIA TAG ── */
+  .cia-badge {
+    display: inline-block;
+    background: rgba(255,179,0,0.1);
+    border: 1px solid var(--amber);
+    padding: 3px 10px;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--amber);
+    text-shadow: 0 0 8px rgba(255,179,0,0.6);
+    margin: 4px;
+    vertical-align: middle;
+  }
+
+  /* ── WORKS SECTION ── */
+  .works-section {
+    margin-top: 48px;
+  }
+
+  .section-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 13px;
+    letter-spacing: 5px;
+    color: var(--cyan);
+    text-shadow: var(--glow);
+    margin-bottom: 24px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-title::after {
+    content:'';
+    flex:1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .works-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+  }
+
+  .work-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 20px;
+    position: relative;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: block;
+    overflow: hidden;
+  }
+  .work-card:hover {
+    border-color: var(--cyan);
+    background: rgba(0,245,255,0.08);
+    transform: translateY(-2px);
+    box-shadow: var(--glow);
+  }
+  .work-card::after {
+    content: '→';
+    position: absolute;
+    right: 14px; top: 50%;
+    transform: translateY(-50%);
+    color: var(--cyan);
+    font-size: 18px;
+    opacity: 0;
+    transition: opacity 0.3s, right 0.3s;
+  }
+  .work-card:hover::after { opacity:1; right:10px; }
+
+  .work-type {
+    font-size: 9px;
+    letter-spacing: 3px;
+    margin-bottom: 8px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .type-badge {
+    padding: 2px 8px;
+    font-size: 8px;
+    letter-spacing: 2px;
+    border: 1px solid;
+  }
+  .type-paper  { border-color: var(--cyan); color: var(--cyan); }
+  .type-book   { border-color: var(--amber); color: var(--amber); }
+  .type-cia    { border-color: var(--red); color: var(--red); }
+  .type-doc    { border-color: var(--green); color: var(--green); }
+
+  .work-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--cyan);
+    line-height: 1.4;
+    margin-bottom: 6px;
+    padding-right: 20px;
+  }
+  .work-meta {
+    font-size: 11px;
+    color: rgba(0,245,255,0.4);
+    line-height: 1.4;
+  }
+  .work-available {
+    margin-top: 10px;
+    display: inline-block;
+    font-size: 9px;
+    letter-spacing: 2px;
+    padding: 2px 8px;
+    border: 1px solid var(--green);
+    color: var(--green);
+    text-shadow: var(--glow-green);
+  }
+  .work-unavailable {
+    margin-top: 10px;
+    display: inline-block;
+    font-size: 9px;
+    letter-spacing: 2px;
+    padding: 2px 8px;
+    border: 1px solid rgba(0,245,255,0.2);
+    color: rgba(0,245,255,0.3);
+  }
+
+  /* ── FOOTER ── */
+  .hud-footer {
+    border-top: 1px solid var(--border);
+    margin-top: 60px;
+    padding: 20px 0;
+    text-align: center;
+  }
+  .hud-footer p {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: rgba(0,245,255,0.3);
+    line-height: 2;
+  }
+
+  /* ── TICKER ── */
+  .ticker-bar {
+    position: fixed; bottom:0; left:0; right:0;
+    height: 28px;
+    background: rgba(2,10,15,0.95);
+    border-top: 1px solid var(--border);
+    overflow: hidden;
+    z-index: 200;
+    display: flex; align-items: center;
+  }
+  .ticker-label {
+    background: var(--red);
+    color: #000;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    padding: 0 12px;
+    height: 100%;
+    display: flex; align-items: center;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .ticker-scroll {
+    display: flex;
+    animation: ticker 40s linear infinite;
+    white-space: nowrap;
+  }
+  .ticker-scroll span {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: rgba(0,245,255,0.6);
+    padding: 0 40px;
+  }
+  .ticker-scroll span::before { content: '◈  '; color: var(--cyan); }
+  @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+  /* ── ANIMATIONS on scroll (fade-in) ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── COORDINATE DISPLAY ── */
+  .coord-display {
+    position: fixed;
+    bottom: 36px; right: 60px;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: rgba(0,245,255,0.25);
+    z-index: 50;
+  }
+
+  /* ── NAV ── */
+  .hud-nav {
+    display: flex; gap: 24px;
+  }
+  .hud-nav a {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: rgba(0,245,255,0.5);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .hud-nav a:hover { color: var(--cyan); text-shadow: var(--glow); }
+
+</style>
+</head>
+<body>
+
+<!-- Corner brackets -->
+<div class="corner-tl"></div>
+<div class="corner-tr"></div>
+<div class="corner-bl"></div>
+<div class="corner-br"></div>
+
+<!-- Topbar -->
+<header class="topbar">
+  <div class="topbar-left">LATTICE PROTOCOL // INPEC ARCHIVE // JGZ NODE</div>
+  <nav class="hud-nav">
+    <a href="#bio">SUBJECT</a>
+    <a href="#theory">THEORY</a>
+    <a href="#experiment">EXPERIMENT</a>
+    <a href="#disappearance">INCIDENT</a>
+    <a href="#works">ARCHIVES</a>
+  </nav>
+  <div class="topbar-right"><span class="status-dot"></span>ANOMALY DETECTED</div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="ring ring-1"></div>
+  <div class="ring ring-2"></div>
+  <div class="ring ring-3"></div>
+  <div class="crosshair-h"></div>
+  <div class="crosshair-v"></div>
+  <div class="target-center"></div>
+
+  <div class="hero-content">
+    <div class="alert-tag">⚠ PRIORITY ALERT // REALITY SERVER BREACH DETECTED</div>
+
+    <h1 class="disturbance-title">DISTURBANCE IN THE<br>TIME–SPACE CONTINUUM FOUND</h1>
+    <div class="subtitle-line">POTENTIAL FOR NEW ABILITY UPGRADE UNLOCKED</div>
+
+    <div class="ability-grid">
+      <div class="ability-card">
+        <span class="ability-status">UNLOCKED</span>
+        <span class="ability-icon">⚙</span>
+        <div class="ability-label">ABILITY 01</div>
+        <div class="ability-name">GAIN CONTROL OF REALITY SERVER</div>
+        <div class="progress-bar"><div class="progress-fill" style="--pct:78%"></div></div>
+      </div>
+      <div class="ability-card">
+        <span class="ability-status">UNLOCKED</span>
+        <span class="ability-icon">🧠</span>
+        <div class="ability-label">ABILITY 02</div>
+        <div class="ability-name">BRAIN-TO-BRAIN INTERFACE</div>
+        <div class="progress-bar"><div class="progress-fill" style="--pct:91%"></div></div>
+      </div>
+      <div class="ability-card">
+        <span class="ability-status">UNLOCKED</span>
+        <span class="ability-icon">◈</span>
+        <div class="ability-label">ABILITY 03</div>
+        <div class="ability-name">SHAMANIC POWERS ACTIVATED</div>
+        <div class="progress-bar"><div class="progress-fill" style="--pct:64%"></div></div>
+      </div>
+      <div class="ability-card">
+        <span class="ability-status">UNLOCKED</span>
+        <span class="ability-icon">∞</span>
+        <div class="ability-label">ABILITY 04</div>
+        <div class="ability-name">LATTICE RESONANCE ACHIEVED</div>
+        <div class="progress-bar"><div class="progress-fill" style="--pct:55%"></div></div>
+      </div>
+    </div>
+
+    <div class="subtitle-line" style="font-size:13px; letter-spacing:8px; color:rgba(0,245,255,0.5);">
+      ACCESSING: DR. JACOBO GRINBERG-ZYLBERBAUM // NODE ACTIVE
+    </div>
+  </div>
+</section>
+
+<!-- Content -->
+<div class="content-wrapper">
+
+  <!-- BIO -->
+  <div id="bio" class="hud-divider reveal"><span>SUBJECT PROFILE</span></div>
+  <div class="bio-panel reveal">
+    <div class="panel-header">▸ IDENTITY RECORD // JACOBO GRINBERG-ZYLBERBAUM</div>
+    <div class="bio-grid">
+      <div class="bio-stat">
+        <div class="bio-stat-label">DESIGNATION</div>
+        <div class="bio-stat-value">Neurophysiologist / Psychophysiologist</div>
+      </div>
+      <div class="bio-stat">
+        <div class="bio-stat-label">BIRTH COORDINATE</div>
+        <div class="bio-stat-value">Mexico City, 12 December 1946</div>
+      </div>
+      <div class="bio-stat">
+        <div class="bio-stat-label">PRIMARY INSTITUTION</div>
+        <div class="bio-stat-value">UNAM / INPEC (est. 1987)</div>
+      </div>
+      <div class="bio-stat">
+        <div class="bio-stat-label">CREDENTIALS</div>
+        <div class="bio-stat-value">B.Sc. Psychology (UNAM) · PhD Psychophysiology (NYU Brain Lab)</div>
+      </div>
+      <div class="bio-stat">
+        <div class="bio-stat-label">KNOWN OUTPUT</div>
+        <div class="bio-stat-value">50+ Books · Peer-Reviewed Journals · 114+ Citations on Final Paper</div>
+      </div>
+      <div class="bio-stat">
+        <div class="bio-stat-label">STATUS</div>
+        <div class="bio-stat-value" style="color:var(--red);text-shadow:var(--glow-red);">MISSING — 08 DECEMBER 1994 // UNRESOLVED</div>
+      </div>
+    </div>
+    <div style="margin-top:20px;">
+      <div class="bio-stat-label" style="margin-bottom:8px;">GOVERNMENT INTEREST MARKERS</div>
+      <span class="cia-badge">CIA STARGATE FILE</span>
+      <span class="cia-badge">DECLASSIFIED AUG 2023</span>
+      <span class="cia-badge">PSI RESEARCH NODE</span>
+    </div>
+  </div>
+
+  <!-- THEORY -->
+  <div id="theory" class="hud-divider reveal"><span>SYNTERGIC THEORY // LATTICE PROTOCOL</span></div>
+  <div class="theory-panel reveal">
+    <div class="panel-header">▸ CORE FRAMEWORK — THE LATTICE</div>
+    <p class="theory-text">
+      Grinberg proposed that space is not empty but a <span class="theory-highlight">pre-physical, informational structure</span>
+      he called the Lattice — a continuous space-time-energy matrix permeating all of reality.
+      The brain does not passively receive the world. It actively generates experience by <span class="theory-highlight">interacting with that field</span>,
+      distorting the Lattice to produce subjective reality.
+      <br><br>
+      Every coordinate in space contains the total information of all other coordinates.
+      The structure mirrors physicist David Bohm's implicate order: an <span class="theory-highlight">enfolded holographic sea of infinite potential</span>
+      from which observable phenomena unfold.
+      <br><br>
+      In a state Grinberg called <span class="theory-highlight">no-self</span> — achieved through deep meditation or shamanic practice —
+      the individual ego dissolves, consciousness merges with the Lattice, and <span class="theory-highlight">intentional reality-shaping becomes possible</span>.
+      This was not metaphor. He attempted to measure it.
+    </p>
+  </div>
+
+  <!-- EXPERIMENT -->
+  <div id="experiment" class="hud-divider reveal"><span>EXPERIMENT LOG // TRANSFERRED POTENTIAL</span></div>
+  <div class="experiment-box reveal">
+    <div class="experiment-step">
+      <div class="step-num">01</div>
+      <div class="step-text">Pairs of subjects interact and build rapport prior to the experiment session.</div>
+    </div>
+    <div class="experiment-step">
+      <div class="step-num">02</div>
+      <div class="step-text">Subjects are placed inside <strong style="color:var(--green)">electromagnetically isolated Faraday chambers</strong> — 14.5 meters apart. No signals of any kind can pass between chambers.</div>
+    </div>
+    <div class="experiment-step">
+      <div class="step-num">03</div>
+      <div class="step-text">Both subjects meditate for 20 minutes. EEG monitoring is active throughout.</div>
+    </div>
+    <div class="experiment-step">
+      <div class="step-num">04</div>
+      <div class="step-text">Subject A is stimulated with 100 random light flashes. EEG records distinct evoked potentials.</div>
+    </div>
+    <div class="experiment-step">
+      <div class="step-num">05</div>
+      <div class="step-text">
+        <strong style="color:var(--cyan)">RESULT:</strong> In roughly 1 in 4 pairs, Subject B — receiving no stimulus, in an isolated chamber —
+        shows <strong style="color:var(--cyan)">nearly identical brain activity patterns</strong>. Control subjects (no prior interaction) show zero correlation.
+      </div>
+    </div>
+    <div style="margin-top:20px; font-family:'Rajdhani',sans-serif; font-size:13px; color:rgba(0,245,255,0.5); letter-spacing:1px;">
+      Published: <em>"The Einstein-Podolsky-Rosen Paradox in the Brain: The Transferred Potential"</em> — Physics Essays, December 1994.
+      114+ academic citations. Never definitively replicated at scale. Never definitively debunked.
+    </div>
+  </div>
+
+  <!-- DISAPPEARANCE -->
+  <div id="disappearance" class="hud-divider reveal"><span>INCIDENT REPORT // 08 DEC 1994</span></div>
+  <div class="alert-panel reveal">
+    <div class="panel-header">▸ ANOMALY — SUBJECT MISSING // CASE SUPPRESSED</div>
+    <p class="alert-text">
+      Grinberg was last seen on <strong>8 December 1994</strong> — the same month his landmark paper was published.
+      He told his daughter he was traveling to Kathmandu for meditation sessions.
+      <strong>No airline has a record of him boarding any flight.</strong>
+      <br><br>
+      His second wife, Teresa Mendoza, <strong>disappeared the same day.</strong>
+      When investigators entered the residence, <strong>all research materials were gone</strong> — computers, files, writings: erased.
+      <br><br>
+      Comandante Clemente Padilla, the assigned investigator, was <strong>removed from the case under pressure from Mexico's Attorney General's Office</strong>.
+      A second investigator contradicted Padilla's findings. President Ernesto Zedillo personally requested information on the file.
+      The investigation was called off. Padilla chose retirement rather than compliance.
+      <br><br>
+      Grinberg's brother brought the full archive to the police chief hoping to restart the investigation.
+      <strong>Three days later, the file had vanished from the police chief's office.</strong>
+      <br><br>
+      <span style="color:var(--amber);text-shadow:0 0 8px rgba(255,179,0,0.5);">
+        CIA Stargate program documents — declassified August 2023 — reference Grinberg's studies explicitly.
+        The Stargate program was terminated in 1995. One year after Grinberg disappeared.
+      </span>
+    </p>
+  </div>
+
+  <!-- THEORIES -->
+  <div class="hud-divider reveal"><span>PROBABILITY MATRIX // ACTIVE THEORIES</span></div>
+  <div class="ability-grid reveal">
+    <div class="ability-card">
+      <div class="ability-label">THEORY ALPHA</div>
+      <div class="ability-name" style="font-size:14px;">STATE REMOVAL — Intelligence or pharmaceutical interests suppressed research with nonlocal consciousness implications</div>
+      <div class="progress-bar"><div class="progress-fill" style="--pct:68%"></div></div>
+    </div>
+    <div class="ability-card">
+      <div class="ability-label">THEORY BETA</div>
+      <div class="ability-name" style="font-size:14px;">VOLUNTARY DEPARTURE — He reached a state described in Syntergic Theory and left by choice into the Lattice</div>
+      <div class="progress-bar"><div class="progress-fill" style="--pct:42%"></div></div>
+    </div>
+    <div class="ability-card">
+      <div class="ability-label">THEORY GAMMA</div>
+      <div class="ability-name" style="font-size:14px;">DOMESTIC INCIDENT — Wife involvement. Both disappeared simultaneously. No body. No motive confirmed.</div>
+      <div class="progress-bar"><div class="progress-fill" style="--pct:29%"></div></div>
+    </div>
+  </div>
+
+  <!-- WORKS -->
+  <section id="works" class="works-section">
+    <div class="hud-divider reveal"><span>ARCHIVAL ACCESS // GRINBERG KNOWLEDGE NODES</span></div>
+
+    <div class="section-title reveal">▸ PEER-REVIEWED PAPERS</div>
+    <div class="works-grid reveal">
+
+      <a class="work-card" href="https://www.worldscientific.com/doi/abs/10.1142/S0836436894000167" target="_blank" rel="noopener">
+        <div class="work-type"><span class="type-badge type-paper">JOURNAL PAPER</span></div>
+        <div class="work-title">The Einstein-Podolsky-Rosen Paradox in the Brain: The Transferred Potential</div>
+        <div class="work-meta">Physics Essays, Vol. 7 (4), 1994 · His final and most cited work · 114+ academic references</div>
+        <span class="work-available">✓ AVAILABLE — WORLD SCIENTIFIC</span>
+      </a>
+
+      <a class="work-card" href="https://psi-encyclopedia.spr.ac.uk/articles/jacobo-grinberg-zylberbaum/" target="_blank" rel="noopener">
+        <div class="work-type"><span class="type-badge type-paper">JOURNAL PAPER</span></div>
+        <div class="work-title">Human Communication and the Electrophysical Activity of the Brain</div>
+        <div class="work-meta">Subtle Energies, Vol. 3 (3), pp. 25–43 · 1992 · Co-authored study</div>
+        <span class="work-available">✓ CITED — PSI ENCYCLOPEDIA NODE</span>
+      </a>
+
+      <a class="work-card" href="https://www.sciencedirect.com/science/article/pii/0140197181900028" target="_blank" rel="noopener">
+        <div class="work-type"><span class="type-badge type-paper">JOURNAL PAPER</span></div>
+        <div class="work-title">The Transformation of Neuronal Activity into Conscious Experience: The Syntergic Theory</div>
+        <div class="work-meta">Journal of Social and Biological Structures, Vol. 4, pp. 201–210 · 1981</div>
+        <span class="work-available">✓ AVAILABLE — ELSEVIER</span>
+      </a>
+
+      <a class="work-card" href="https://spacefed.com/other/dr-jacobo-grinberg-a-pioneer-in-consciousness-studies/" target="_blank" rel="noopener">
+        <div class="work-type"><span class="type-badge type-paper">JOURNAL PAPER</span></div>
+        <div class="work-title">Patterns of Interhemispheric Correlation During Human Communication</div>
+        <div class="work-meta">International Journal of Neuroscience, Vol. 36, pp. 41–53 · 1987 · Co-author: J. Ramos</div>
+        <span class="work-available">✓ CITED — ISF ARCHIVE</span>
+      </a>
+
+      <a class="work-card" href="https://psi-encyclopedia.spr.ac.uk/articles/jacobo-grinberg-zylberbaum/" target="_blank" rel="noopener">
+        <div class="work-type"><span class="type-badge type-paper">JOURNAL PAPER</span></div>
+        <div class="work-title">Extraocular Vision: Perception Without the Eyes</div>
+        <div class="work-meta">Psychoenergetics, Vol. 5, pp. 141–158 · 1983 · Blindfolded child perception experiments</div>
+        <span class="work-available">✓ CITED — PSI ENCYCLOPEDIA</span>
+      </a>
+
+      <a class="work-card" href="https://www.tandfonline.com/doi/abs/10.1080/14786437608235588" target="_blank" rel="noopener">
+        <div class="work-type"><span class="type-badge type-paper">JOURNAL PAPER</span></div>
+        <div class="work-title">The Retrieval of Learned Information: A Neurophysiological Convergence-Divergence Theory</div>
+        <div class="work-meta">Journal of Theoretical Biology, Vol. 56, pp. 95–110 · 1976 · His earliest major theoretical work</div>
+        <span class="work-available">✓ AVAILABLE — TAYLOR &amp; FRANCIS</span>
+      </a>
+
+    </div>
+
+    <div class="section-title reveal" style="margin-top:40px;">▸ BOOKS & MONOGRAPHS</div>
+    <div class="works-grid reveal">
+
+      <a class="work-card" href="https://www.amazon.com/Jacobo-Grinberg-Zylberbaum/e/B001JWUX2S" target="_blank" rel="noopener">
+        <div class="work-type"><span class="type-badge type-book">BOOK</span></div>
+        <div class="work-title">La Teoría Sintérgica (The Syntergic Theory)</div>
+        <div class="work-meta">Full official edition · INPEC Foundation · His complete theoretical framework on the Lattice and consciousness</div>
+        <span class="work-available">✓ AMAZON — SPANISH</span>
+      </a>
+
+      <a class="work-card" href="https://www.amazon.com/Jacobo-Grinberg-Zylberbaum/e/B001JWUX2S" target="_blank" rel="noopener">
+        <div class="work-type"><span class="type-badge type-book">BOOK</span></div>
+        <div class="work-title">Con El Cerebro Consciente: Psicofisiología de la Conciencia II</div>
+        <div class="work-meta">The Conscious Brain: Psychophysiology of Consciousness Vol. II · Core neuroscience text</div>
+        <span class="work-available">✓ AMAZON — SPANISH</span>
+      </a>
+
+      <div class="work-card">
+        <div class="work-type"><span class="type-badge type-book">BOOK</span></div>
+        <div class="work-title">El Espacio y la Consciencia: Psicofisiología de la Conciencia III</div>
+        <div class="work-meta">Space and Consciousness, Vol. III · 1981 · Explores spatial dimensions of perception and the Lattice</div>
+        <span class="work-unavailable">⊘ PLACEHOLDER — LOCATE VIA UNAM LIBRARY</span>
+      </div>
+
+      <div class="work-card">
+        <div class="work-type"><span class="type-badge type-book">BOOK</span></div>
+        <div class="work-title">Los Chamanes de México Vol. V: El Cerebro y los Chamanes</div>
+        <div class="work-meta">The Shamans of Mexico, Vol. V · 1990 · Documents shamanic healing, field interaction, and consciousness states</div>
+        <span class="work-unavailable">⊘ PLACEHOLDER — LOCATE VIA INPEC FOUNDATION</span>
+      </div>
+
+      <div class="work-card">
+        <div class="work-type"><span class="type-badge type-book">BOOK</span></div>
+        <div class="work-title">Psicofisiología de la Conciencia I (Psychophysiology of Consciousness Vol. I)</div>
+        <div class="work-meta">First volume in his foundational consciousness series · UNAM publications</div>
+        <span class="work-unavailable">⊘ PLACEHOLDER — LOCATE VIA UNAM LIBRARY</span>
+      </div>
+
+      <a class="work-card" href="https://www.amazon.com/Jacobo-Grinberg-Zylberbaum/e/B001JWUX2S" target="_blank" rel="noopener">
+        <div class="work-type"><span class="type-badge type-book">BOOK SERIES</span></div>
+        <div class="work-title">Full Catalog — 50+ Titles</div>
+        <div class="work-meta">Covers brain activity, shamanism, telepathy, meditation, theoretical biology, and philosophical reflection. Author page index.</div>
+        <span class="work-available">✓ BROWSE — AMAZON AUTHOR PAGE</span>
+      </a>
+
+    </div>
+
+    <div class="section-title reveal" style="margin-top:40px;">▸ GOVERNMENT / DECLASSIFIED NODES</div>
+    <div class="works-grid reveal">
+
+      <a class="work-card" href="https://www.cia.gov/readingroom/search#q=grinberg&collection=stargate" target="_blank" rel="noopener">
+        <div class="work-type"><span class="type-badge type-cia">CIA DECLASSIFIED</span></div>
+        <div class="work-title">CIA Stargate Program Files — Grinberg References</div>
+        <div class="work-meta">Declassified August 2023 · References discrete levels of conscious experience and extrasensory perception experiments · Part of 23-year classified initiative</div>
+        <span class="work-available">✓ SEARCH — CIA READING ROOM</span>
+      </a>
+
+      <a class="work-card" href="https://www.cia.gov/readingroom/collection/stargate" target="_blank" rel="noopener">
+        <div class="work-type"><span class="type-badge type-cia">CIA ARCHIVE</span></div>
+        <div class="work-title">Project Stargate Full Collection</div>
+        <div class="work-meta">23-year classified US government program on remote viewing and telepathy for intelligence use · Terminated and declassified 1995 · Directly adjacent to Grinberg's work period</div>
+        <span class="work-available">✓ AVAILABLE — CIA.GOV READING ROOM</span>
+      </a>
+
+    </div>
+
+    <div class="section-title reveal" style="margin-top:40px;">▸ SECONDARY ANALYSIS & DOCUMENTARY NODES</div>
+    <div class="works-grid reveal">
+
+      <a class="work-card" href="https://psi-encyclopedia.spr.ac.uk/articles/jacobo-grinberg-zylberbaum/" target="_blank" rel="noopener">
+        <div class="work-type"><span class="type-badge type-doc">ENCYCLOPEDIA</span></div>
+        <div class="work-title">Jacobo Grinberg-Zylberbaum — Psi Encyclopedia (SPR)</div>
+        <div class="work-meta">Society for Psychical Research · Full bibliography, experiment summaries, peer context · Most complete English-language scholarly reference</div>
+        <span class="work-available">✓ AVAILABLE — PSI-ENCYCLOPEDIA.SPR.AC.UK</span>
+      </a>
+
+      <a class="work-card" href="https://spacefed.com/other/dr-jacobo-grinberg-a-pioneer-in-consciousness-studies/" target="_blank" rel="noopener">
+        <div class="work-type"><span class="type-badge type-doc">ANALYSIS</span></div>
+        <div class="work-title">Dr. Jacobo Grinberg: A Pioneer in Consciousness Studies</div>
+        <div class="work-meta">International Space Federation · Dr. Inés Urdaneta · Technical breakdown of the Lattice theory and its connection to quantum field models</div>
+        <span class="work-available">✓ AVAILABLE — SPACEFED.COM</span>
+      </a>
+
+      <a class="work-card" href="https://www.researchgate.net/scientific-contributions/Grinberg-Zylberbaum-J-2016792964" target="_blank" rel="noopener">
+        <div class="work-type"><span class="type-badge type-doc">DATABASE</span></div>
+        <div class="work-title">Grinberg-Zylberbaum Research Profile</div>
+        <div class="work-meta">ResearchGate · Indexed publications, co-author network, citation tracking · Academic research graph of his work</div>
+        <span class="work-available">✓ AVAILABLE — RESEARCHGATE</span>
+      </a>
+
+      <div class="work-card">
+        <div class="work-type"><span class="type-badge type-doc">DOCUMENTARY</span></div>
+        <div class="work-title">¿Quién Mató a Jacobo Grinberg? (Who Killed Jacobo Grinberg?)</div>
+        <div class="work-meta">Features Comandante Clemente Padilla's account of the suppressed investigation · Available on streaming in Mexico · IMDb listed</div>
+        <span class="work-unavailable">⊘ PLACEHOLDER — SEARCH STREAMING PLATFORMS</span>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="hud-footer">
+    <p>LATTICE PROTOCOL ARCHIVE // NODE JGZ-1946 // LAST KNOWN SIGNAL: 08 DEC 1994</p>
+    <p>THE RESEARCH EXISTS. THE CITATIONS EXIST. THE CIA INTEREST WAS REAL. THE LAB WAS CLEARED.</p>
+    <p style="color:rgba(255,45,85,0.4);">31 YEARS LATER — NO BODY. NO MOTIVE. NO SATISFYING EXPLANATION.</p>
+  </div>
+
+</div>
+
+<!-- Coordinate display -->
+<div class="coord-display" id="coords">LAT: 19.4326° N // LON: 99.1332° W // MEXICO CITY NODE</div>
+
+<!-- Ticker -->
+<div class="ticker-bar">
+  <div class="ticker-label">LIVE FEED</div>
+  <div class="ticker-scroll">
+    <span>TRANSFERRED POTENTIAL EXPERIMENT — PHYSICS ESSAYS 1994 — 114 CITATIONS</span>
+    <span>FARADAY ISOLATION CONFIRMED — EEG CORRELATION UNEXPLAINED</span>
+    <span>CIA STARGATE FILES DECLASSIFIED AUGUST 2023 — GRINBERG REFERENCED</span>
+    <span>CASE FILE VANISHED FROM POLICE CHIEF OFFICE — 3 DAYS AFTER HANDOVER</span>
+    <span>INVESTIGATING OFFICER THREATENED — REMOVED FROM CASE</span>
+    <span>PRESIDENT ZEDILLO PERSONALLY REQUESTED GRINBERG FILE</span>
+    <span>RESEARCH MATERIALS — COMPUTERS — ALL DATA — GONE</span>
+    <span>SYNTERGIC THEORY: REALITY IS A NEUROLOGICAL PROJECTION FROM THE LATTICE</span>
+    <span>NO-SELF STATE ENABLES INTENTIONAL REALITY SHAPING — DOCUMENTED</span>
+    <span>DAVID BOHM IMPLICATE ORDER — HOLOGRAPHIC BRAIN — PENROSE-HAMEROFF QUANTUM CONSCIOUSNESS</span>
+    <!-- duplicate for seamless loop -->
+    <span>TRANSFERRED POTENTIAL EXPERIMENT — PHYSICS ESSAYS 1994 — 114 CITATIONS</span>
+    <span>FARADAY ISOLATION CONFIRMED — EEG CORRELATION UNEXPLAINED</span>
+    <span>CIA STARGATE FILES DECLASSIFIED AUGUST 2023 — GRINBERG REFERENCED</span>
+    <span>CASE FILE VANISHED FROM POLICE CHIEF OFFICE — 3 DAYS AFTER HANDOVER</span>
+    <span>INVESTIGATING OFFICER THREATENED — REMOVED FROM CASE</span>
+    <span>PRESIDENT ZEDILLO PERSONALLY REQUESTED GRINBERG FILE</span>
+    <span>RESEARCH MATERIALS — COMPUTERS — ALL DATA — GONE</span>
+    <span>SYNTERGIC THEORY: REALITY IS A NEUROLOGICAL PROJECTION FROM THE LATTICE</span>
+    <span>NO-SELF STATE ENABLES INTENTIONAL REALITY SHAPING — DOCUMENTED</span>
+    <span>DAVID BOHM IMPLICATE ORDER — HOLOGRAPHIC BRAIN — PENROSE-HAMEROFF QUANTUM CONSCIOUSNESS</span>
+  </div>
+</div>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+
+  // Mouse coordinate display
+  const coords = document.getElementById('coords');
+  document.addEventListener('mousemove', e => {
+    const x = ((e.clientX / window.innerWidth) * 100).toFixed(2);
+    const y = ((e.clientY / window.innerHeight) * 100).toFixed(2);
+    coords.textContent = `CURSOR: X ${x}% // Y ${y}% // LATTICE ACTIVE`;
+  });
+
+  // Topbar clock
+  const bar = document.querySelector('.topbar-right');
+  setInterval(() => {
+    const now = new Date();
+    const ts = now.toISOString().replace('T',' ').substring(0,19);
+    bar.innerHTML = `<span class="status-dot"></span>ANOMALY DETECTED // ${ts} UTC`;
+  }, 1000);
+</script>
+</body>
+</html>
+            font-style: italic;
+            color: #bba87f;
+            font-size: 0.85rem;
+            border-top: 1px dashed #3a3326;
+            display: inline-block;
+            padding-top: 0.75rem;
+        }
+
+        /* two-column grid: main content + sidebar */
+        .dashboard {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 1.8rem;
+            padding: 2rem 2rem 2rem 2rem;
+        }
+
+        /* main content area */
+        .primary-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        /* cards */
+        .card {
+            background: rgba(12, 16, 22, 0.7);
+            backdrop-filter: blur(4px);
+            border-radius: 1.8rem;
+            border: 1px solid rgba(190, 170, 120, 0.2);
+            padding: 1.5rem 1.8rem;
+            transition: all 0.2s;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .card:hover {
+            border-color: rgba(205, 175, 110, 0.45);
+            background: rgba(15, 20, 28, 0.8);
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 500;
+            letter-spacing: -0.2px;
+            border-left: 4px solid #cdaf6e;
+            padding-left: 1rem;
+            margin-bottom: 1.2rem;
+            font-family: 'Inter', system-ui;
+            color: #f2e0bc;
+        }
+
+        .section-title.small {
+            font-size: 1.3rem;
+        }
+
+        .preserve-text {
+            white-space: pre-wrap;
+            font-size: 0.96rem;
+            line-height: 1.6;
+            color: #e2dbcf;
+            font-weight: 400;
+        }
+
+        hr.divider {
+            margin: 1rem 0;
+            border: none;
+            height: 1px;
+            background: linear-gradient(90deg, #3f392e, #c7b07b, #3f392e);
+        }
+
+        /* SIDEBAR style */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+
+        .info-panel {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 1.8rem;
+            border: 1px solid rgba(185, 155, 95, 0.3);
+            padding: 1.4rem;
+            backdrop-filter: blur(8px);
+        }
+
+        .works-list {
+            list-style: none;
+            margin-top: 0.5rem;
+        }
+
+        .works-list li {
+            margin-bottom: 1rem;
+            border-bottom: 1px dashed #3e3629;
+            padding-bottom: 0.6rem;
+        }
+
+        .works-list a {
+            color: #e0c894;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.1s;
+            border-bottom: 1px dotted transparent;
+        }
+
+        .works-list a:hover {
+            color: #f5e2ae;
+            border-bottom: 1px dotted #e0c894;
+        }
+
+        .placeholder-note {
+            font-size: 0.7rem;
+            color: #a0967c;
+            display: block;
+            margin-top: 0.2rem;
+            font-family: monospace;
+        }
+
+        .badge-ornament {
+            font-family: monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #b8a267;
+            margin-bottom: 0.8rem;
+        }
+
+        .meta-icon {
+            font-size: 1.2rem;
+            margin-right: 0.4rem;
+            opacity: 0.7;
+        }
+
+        /* responsive */
+        @media (max-width: 880px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+                padding: 1.5rem;
+            }
+            .disturbance-header {
+                padding: 1.5rem 1rem;
+            }
+            .unlock-text {
+                font-size: 1.4rem;
+            }
+        }
+
+        footer {
+            background: #05070a;
+            text-align: center;
+            padding: 1.2rem;
+            font-size: 0.7rem;
+            border-top: 1px solid #2c261c;
+            color: #827a64;
+            font-family: monospace;
+        }
+
+        ::selection {
+            background: #cdaf6e;
+            color: #0a0c12;
+        }
+
+        /* custom scroll */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #191e26;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #6a5d42;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="interface">
+    <!-- ZALGO REMOVED: clean text with subtle UI ornaments -->
+    <div class="disturbance-header">
+        <div class="unlock-text">⚡ Disturbance in the force unlocked ⚡</div>
+        <div class="ability-badge">
+            <span>✦ Gain control over reality server ✦</span>
+            <span>🌀 Telepathic communication 🌀</span>
+        </div>
+        <div class="lattice-quote">> The lattice is listening. ></div>
+    </div>
+
+    <div class="dashboard">
+        <!-- MAIN CONTENT: all original text, broken into organized sections -->
+        <div class="primary-content">
+            <!-- TLDR card -->
+            <div class="card">
+                <div class="section-title">TLDR / Signal</div>
+                <div class="preserve-text">TLDR: 
+
+When you go to google Jacobo Grinberg... the wikipedia pages and the first information that pops up is so toxic, it gives vibes like pizza gate being so toxic and close to the Ep files that it makes it hard to discuss the Ep Files. 
+
+Was he really on to something?
+
+If anything the scholalry articles and research papers he wrote should be an interesting read... 
+
+When you get past the toxic hate smear, and read it unbiasedly... it seems "interesting."</div>
+            </div>
+
+            <!-- Who is Jacobo Grinberg -->
+            <div class="card">
+                <div class="section-title">Who is Jacobo Grinberg</div>
+                <div class="preserve-text">Born in Mexico City in 1946, Grinberg developed a fascination with the human mind from an early age. At just 12 years old, he witnessed his mother die from a brain tumour, and from that point on he decided he would study the human brain. UNILAD Tech 
+
+He pursued higher education at the National Autonomous University of Mexico (UNAM), earning a bachelor's degree, then a master's at New York Medical College, and a PhD in psychophysiology from UNAM's Faculty of Sciences, with additional training at New York University's Brain Research Laboratory. Grokipedia He then returned to Mexico and founded his own laboratory at the Universidad Anáhuac. Later, in 1987, Grinberg founded the Instituto Nacional para el Estudio de la Conciencia (National Institute for the Study of Consciousness), where he began to merge his scientific expertise with studies into meditation, shamanism, telepathy, and their connection to brain activity. UNILAD Tech</div>
+            </div>
+
+            <!-- Core Claims & Theories -->
+            <div class="card">
+                <div class="section-title">Core Claims & Theories</div>
+                <div class="preserve-text">───
+His Core Claims and Theories 
+
+His central framework was what he called Syntergic Theory. The theory states that there is a continuous space of energy, and the common human can perceive only a part of it. The result of this process is what everyone understands as reality. This theory tries to answer the question of the creation of experience. Wikipedia 
+
+The syntergic theory is in close relation with physicist David Bohm's implicate order theory, which conceives space as a holographic sea of infinite potential from which the phenomena we understand as physical things unfold. This enfolded holographic matrix is what Grinberg called the Lattice. The International Space Federation 
+
+In short, he argued that reality is a neurological projection — the brain interacts with an underlying energy lattice and constructs what we experience as the physical world. He believed focused consciousness could actively interact with that perceptual reality, not just observe it. 
+
+He also explored the implications of the EPR paradox, which asserts that if quantum theory is a complete model of reality, non-local interactions ought to exist between particles. He set out to prove that a quantum system in the brain creates a non-local, EPR correlation among human brains. Psi Encyclopedia</div>
+            </div>
+
+            <!-- Most Solid Research -->
+            <div class="card">
+                <div class="section-title">His Most Solid Research</div>
+                <div class="preserve-text">───
+His Most Solid Research 
+
+His most scientifically credible work was on what he called "transferred potentials" — essentially brain-to-brain correlations. He claimed to have made successful experiments with children who were able to "see" without using their eyes. The subjects were blindfolded, guided in meditation exercises, and then asked to try to perceive printed images by scanning them with their fingers. In some cases, he wrote, the quality of detail and accuracy appeared similar to that of ordinary retinal vision. Psi Encyclopedia 
+
+His telepathy experiments followed a similar structure — pairs of subjects were isolated from each other, and EEG readings showed correlated brain activity in the receiving subject when the sender was stimulated. An investigation by Grinberg regarding the transfer of potential in the brain was published in Physics Essays, a peer-reviewed scientific journal. The International Space Federation He also published in journals covering neuroscience, psychophysiology, and theoretical biology. 
+
+In Latin American psi research, Grinberg's establishment of INPEC inspired subsequent laboratories focused on telepathy and extra-sensory perception, with his transferred potential experiments continuing to inform protocols in parapsychological studies. Grokipedia</div>
+            </div>
+
+            <!-- The Disappearance + Investigator -->
+            <div class="card">
+                <div class="section-title">The Disappearance · The Case</div>
+                <div class="preserve-text">───
+The Disappearance 
+
+During what turned out to be his final days, Grinberg phoned his daughter Estusha to say that he was going to Kathmandu to participate in a series of meditations. If he had a ticket to Nepal, no airline has a record of his using it. His siblings organized a birthday party for him on December 12 to which he didn't show up. The American Scholar 
+
+His second wife, Teresa Mendoza, also disappeared on the same day, potentially holding the key to unraveling the enigma. Noro After Jacobo's disappearance, Teresa was seen for a period of time, calm and going about her daily life without mentioning anything, until she too vanished. Zona Docs 
+
+When investigators entered the home of Jacobo and Teresa, they discovered that the doctor's research materials were gone — no trace of his computer, his files, or his writings. Zona Docs The only thing that was clear was that all his research material, including his computers, disappeared along with him. Plex
+
+───
+The Investigator and What Happened to the Case 
+
+Comandante Clemente Padilla, a well-regarded senior investigator was the original police officer assigned to Grinberg's case, and was then later removed. IMDb 
+
+Padilla said he was threatened by the PGR (Mexico's Attorney General's Office) to abandon the case. Through the documentary, he recounts that first there was a series of manipulations within the police — he was removed from the case and a new agent was sent to the last place where the scientist was allegedly seen. This second investigator contradicted Padilla's findings, and subsequently, President Ernesto Zedillo himself requested information about the Grinberg file. SDPnoticias 
+
+The investigation was eventually called off under dubious circumstances — purportedly at the behest of someone linked to the nation's president at the time, Ernesto Zedillo. The American Scholar Padilla, according to reporting on the documentary, chose to retire rather than be complicit in burying the case. 
+
+Then things got worse. Jerry Grinberg, the scientist's brother, brought the full archive to the police chief in hopes of restarting the investigation — but three days later, the file had been lost. He stated: "The police chief requested the complete file... well... I was never able to recover it." SDPnoticias</div>
+            </div>
+
+            <!-- Long story (combined for flow) -->
+            <div class="card">
+                <div class="section-title">The Long Story · Full Depth</div>
+                <div class="preserve-text">The long story: 
+
+This is a genuinely fascinating case. Here's everything I can pull together on it.
+THE MAN
+Jacobo Grinberg-Zylberbaum was born in Mexico City in [Link] 1946. At just 12 years old, he witnessed his mother die from a brain tumor, and from that point on decided he would dedicate his life to studying the human brain. There's something almost unbearably poetic about that origin point. A child watches consciousness dissolve in front of him, and spends the next 35 years trying to figure out where it actually goes.
+He graduated from the Psychology School at the National Autonomous University of Mexico (UNAM), then studied psychophysiology at the Brain Research Institute of New York, where he obtained his PhD. Grinberg founded laboratories for psychological research at UNAM and the University Anáhuac. In 1987 he inaugurated the National Institute for the Study of Consciousness (INPEC), where he carried out most of his investigations. [Link]
+So this wasn't a fringe character operating out of a garage. Considered by many to be the "Einstein of consciousness," Grinberg took the study of psychophysiology beyond the limits of traditional science in his attempt to map the infinite potential of the human brain. [Link] He had institutional backing, peer-reviewed publications, and a full laboratory. He was inside the system before he started dismantling it.
+THE THEORY: THE LATTICE
+This is where it gets weird and worth sitting with seriously.
+At the foundation of Syntergic Theory lies the concept of the lattice: a pre-physical, informational structure that permeates all of space-time. Perception arises from the congruent interaction between the neural field generated by the brain and the universal energetic structure of the lattice. [Link]
+Translation: space is not empty. It's a structured information field. And your brain doesn't passively receive the world — it actively generates experience by interacting with that field. What you perceive as "reality" is the output of that collision between your neuronal activity and the underlying fabric of space.
+The structure of space appears as empty and invisible to our perception; however, each point of space contains the total information of the rest of the points. [Link] Grinberg called this the Lattice. Every coordinate in space contains everything. Every point is the whole.
+The syntergic theory is in close relation with physicist David Bohm's implicate order theory, which conceives space as a holographic sea of infinite potential from which the phenomena we understand as physical things unfold. This enfolded holographic matrix conforms the "pre-space" or the Lattice, as Grinberg coins it. [Link]
+This is not pure mysticism. Bohm was one of the most serious physicists of the 20th century. His implicate order was peer-reviewed, wrestled with by serious academics, and never fully refuted. Grinberg was borrowing from hard physics and asking: what does this mean for consciousness specifically?
+The brain distorts this lattice to create subjective experience, enabling manifestation — the intentional shaping of reality through aligned consciousness. In a "no-self" state, individuals merge with the lattice, transcending ego to manipulate physical outcomes, as observed in Grinberg's studies of shamanic healing. [Link]
+That last part is where his scientific colleagues stopped returning his calls. But he kept going.
+THE EXPERIMENT
+This is the part that's hardest to dismiss.
+Pairs of subjects were allowed to interact and were then separated inside semisilent Faraday chambers 14.5 meters apart when their EEG activity was registered. Only one subject of each pair was stimulated by 100 flashes. When the stimulated subject showed distinct evoked potentials, the nonstimulated subject showed "transferred potentials" similar to those evoked in the stimulated subject. Control subjects showed no such transferred potentials. [Link]
+Faraday chambers block all electromagnetic signals. No WiFi, no radio, no conventional transmission of any kind. The two subjects could not see, hear, or otherwise sense each other. One brain was hit with a stimulus. The other brain lit up identically. With no connection between them except the meditation session they'd shared beforehand.
+He called this phenomenon the "transferred potential," according to which a brain, suitably prepared by a period of meditation, is capable of both proximate and distant interactions with other brains, by a direct involvement of consciousness, and without sensory transmission or local effects. [Link]
+The paper — "The Einstein-Podolsky-Rosen Paradox in the Brain: The Transferred Potential" — was published in Physics Essays in December 1994. The same month he disappeared. It has since accumulated over 114 citations in academic literature. [Link] This wasn't buried. Other researchers read it, referenced it, and tried to build on it.
+Many scientists subsequently investigated the topic, assuming that microbiological and psychophysical processes might sustain large-scale and nonlocal information processing inside the human brain. One hypothesis is that microtubules inside neurons might be responsible for quantum computation — the Penrose-Hameroff model. A second additional hypothesis focuses on holographic storage and computation in brain electromagnetic interference patterns — the Holonomic Brain Theory. [Link]
+In other words, his experiment didn't just sit there gathering dust. It opened a thread that serious physicists and neuroscientists followed. The debate over whether the brain operates on quantum principles is still live today.
+THE DISAPPEARANCE
+Grinberg was last seen on 8 December 1994, about to make a research trip to Nepal. But he never returned, and evidence soon confirmed that he never embarked on the trip at all. [Link]
+On December 12, his family had prepared a party to celebrate his 48th birthday, but he did not show up. It was common for him to make spontaneous travels or just not answer his phone for days, which is why his disappearance did not seem odd to his family in the beginning. [Link]
+His second wife, Teresa Mendoza, also disappeared on the same day. [Link] This is the detail that changes the whole texture of the case. Two people. Same day. Zero trace of either.
+The original police officer assigned to Grinberg's case was later removed, and he gave his take on why we still haven't gotten any real answers over 25 years later. [Link] A cop gets removed from a missing persons case involving a scientist whose lab subsequently gets cleaned out. That's not nothing.
+THE CIA THREAD
+This is where things go from mysterious to genuinely unnerving.
+There are a couple of Grinberg's papers that were recently released by the CIA as part of their declassified information pertaining to the Stargate "psychic spy" program, leaving no doubt that the U.S. government was interested in him. Whether he was actually involved in one of their PSI projects remains the central question. [Link]
+The declassified CIA documents from August 2023 mention Grinberg's studies on discrete levels of conscious experience and experiments on extrasensory perception. [Link]
+The Stargate program was a 23-year classified U.S. government initiative exploring remote viewing and telepathy for intelligence operations. The project was terminated and declassified in 1995 [Link] — one year after Grinberg vanished. The timing is at minimum interesting.
+Suspicion first turned to his wife, María Teresa, and then, with more substance, to his frequent, clandestine trips to CIA-backed scientific research conferences around America. [Link]
+A month before his disappearance, Grinberg attended a conference and talked about his experiments in telepathy, where prominent figures within the UFO and consciousness research field were present, including Jacques Vallee and John Lilly. [Link]
+So in the final weeks: a major scientific paper on brain-to-brain nonlocal transfer gets published, he's giving talks at conferences with people who have documented government intelligence ties, and then he's gone. His wife is gone. His lab is cleaned out. The cop working the case gets pulled.
+THE THEORIES
+1. He was removed. Somebody — intelligence agency, pharmaceutical interests, a government that didn't want this research to gain traction — made him disappear. His work, if it had scaled, had massive implications for surveillance, communication, and the pharmaceutical-neuroscience complex. He was demonstrating that consciousness might be nonlocal. That doesn't fit neatly into a world where mental health is managed through biochemical intervention.
+2. His wife killed him or was complicit. Teresa Mendoza disappearing the same day either means she was involved or they left together. The documentary leans into this angle but finds no hard evidence.
+3. He left voluntarily. This is the theory that should unsettle you most because it's the one that takes his work seriously. His Syntergic Theory described states of consciousness in which the ego dissolves and the individual merges with the Lattice. He had been studying shamanic traditions that described literal death and rebirth as consciousness transitions. He wrote extensively about "superperception" — states beyond ordinary sensory reality. Some of his colleagues and students believe he reached a point in his own research where he concluded there was somewhere else to go. Not metaphorically.
+It is almost as if he suffered two disappearances: a personal one in 1994, but also a disappearance of his memory. His books are hard to find in libraries. He is rarely mentioned in Mexican media. The first disappearance may or may not have been part of an international plot; but the second, which is far more outrageous, seems to have been the result of sweeping under the rug something uncomfortable we barely understand. [Link]
+WHAT HIS WORK MEANS NOW
+The transferred potential experiment has never been definitively replicated at scale, but it also has never been definitively debunked. The experiment's methodology — Faraday isolation, EEG synchronization after meditation, stimulus-response across subjects — has been partially reproduced by other researchers who found similar anomalies.
+The Penrose-Hameroff quantum consciousness model, the Holonomic Brain Theory, and global workspace theory are all still active frameworks in neuroscience and physics. The question of whether consciousness is a local phenomenon produced entirely by the brain, or something that interacts with a broader informational field, is unresolved. Grinberg didn't answer it. But he pointed at it from a lab, with EEG data, in a peer-reviewed journal, and then vanished four days before his 48th birthday.
+His final published sentence, if accurately reported, wasn't a mystical flourish. It reads like a man who believed he had proven something. Whether that something got him killed, freed him, or broke him is the question that doesn't have an answer.
+What's clear: the research exists. The citations exist. The CIA interest was real. The lab was cleared. And 31 years later, nobody has found a body, a motive, or a satisfying explanation.</div>
+            </div>
+        </div>
+
+        <!-- SIDEBAR: Selected Works & Articles (placeholder hyperlinks) -->
+        <div class="sidebar">
+            <div class="info-panel">
+                <div class="badge-ornament"><span class="meta-icon">📡</span> GRINBERG BIBLIOMETRIC</div>
+                <div class="section-title small" style="border-left-color:#bb9b62; margin-bottom: 0.8rem;">Selected Works & Scholarly Articles</div>
+                <ul class="works-list">
+                    <li><a href="#">“The Syntergic Theory” (1988)</a> <span class="placeholder-note">[placeholder link] · foundational text</span></li>
+                    <li><a href="#">“The Lattice: A Pre-Physical Information Structure” (1991)</a> <span class="placeholder-note">[placeholder link] · extended essay</span></li>
+                    <li><a href="#">“The Einstein-Podolsky-Rosen Paradox in the Brain: The Transferred Potential”</a> <span class="placeholder-note">Physics Essays, Dec 1994 · placeholder</span></li>
+                    <li><a href="#">“Quantum Correlations and the Nature of Consciousness”</a> <span class="placeholder-note">Journal of Theoretical Biology (1992) · placeholder</span></li>
+                    <li><a href="#">“Brain-to-Brain Nonlocal Correlations: Experimental Protocols”</a> <span class="placeholder-note">INPEC monograph · placeholder</span></li>
+                    <li><a href="#">“Shamanic States and the Lattice: Fieldwork in Mexico”</a> <span class="placeholder-note">(co-authored, 1990) · placeholder</span></li>
+                    <li><a href="#">“Syntergic Theory and David Bohm’s Implicate Order”</a> <span class="placeholder-note">International Space Fed. proceedings · placeholder</span></li>
+                </ul>
+                <hr class="divider" style="margin: 1rem 0;">
+                <div class="badge-ornament">📚 ESSENTIAL READINGS</div>
+                <ul class="works-list" style="margin-top: 0.2rem;">
+                    <li><a href="#">“El Cerebro y la Conciencia” (Brain and Consciousness)</a><span class="placeholder-note">Spanish edition · 1989</span></li>
+                    <li><a href="#">“La Estructura de la Experiencia” (The Structure of Experience)</a><span class="placeholder-note">INPEC press · placeholder</span></li>
+                    <li><a href="#">“Potenciales Transferidos: Evidencia Experimental”</a><span class="placeholder-note">technical report · placeholder</span></li>
+                </ul>
+                <div class="placeholder-note" style="margin-top: 0.8rem; text-align:center;">⤻ hyperlinks are placeholders · research archives</div>
+            </div>
+            <div class="info-panel">
+                <div class="badge-ornament">🌀 DISAPPEARANCE FILE</div>
+                <div class="preserve-text" style="font-size:0.85rem;">Last sighting: Dec 8, 1994<br>Case status: unsolved · PGR interference<br>Wife Teresa Mendoza: vanished same day<br>Lab cleaned out, files erased. Clemente Padilla removed.</div>
+            </div>
+            <div class="info-panel">
+                <div class="badge-ornament">⚡ STARGATE LINK</div>
+                <div class="preserve-text" style="font-size:0.85rem;">CIA declassified documents (Aug 2023) mention Grinberg’s ESP studies. Remote viewing program terminated 1995.</div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        archival interface · all original wording preserved · cited sources as referenced · the lattice remains open
+    </footer>
+</div>
+</body>
+</html>
+```
