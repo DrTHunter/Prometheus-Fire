@@ -311,6 +311,129 @@
     text-shadow: var(--glow-green);
   }
 
+  /* ── ABILITY MODAL ── */
+  .ability-modal {
+    position: fixed; inset: 0;
+    background: rgba(2,10,15,0.85);
+    backdrop-filter: blur(6px);
+    display: none;
+    align-items: center; justify-content: center;
+    z-index: 10000;
+    padding: 24px;
+    animation: modalFade 0.25s ease;
+  }
+  .ability-modal.open { display: flex; }
+  @keyframes modalFade {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  .ability-modal__panel {
+    position: relative;
+    background: linear-gradient(180deg, rgba(0,20,30,0.97), rgba(2,10,15,0.97));
+    border: 1px solid var(--cyan);
+    box-shadow: 0 0 40px rgba(0,245,255,0.35), inset 0 0 30px rgba(0,245,255,0.05);
+    max-width: 640px;
+    width: 100%;
+    max-height: 86vh;
+    overflow-y: auto;
+    padding: 32px 28px 28px;
+    font-family: 'Rajdhani', sans-serif;
+    color: rgba(220,250,255,0.92);
+    animation: modalSlide 0.35s ease;
+  }
+  @keyframes modalSlide {
+    from { transform: translateY(20px); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
+  }
+  .ability-modal__panel::before {
+    content:'';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+    animation: scanroll 2.5s linear infinite;
+  }
+  .ability-modal__close {
+    position: absolute;
+    top: 10px; right: 12px;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--cyan);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 12px;
+    width: 32px; height: 32px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .ability-modal__close:hover {
+    background: rgba(0,245,255,0.1);
+    border-color: var(--cyan);
+    box-shadow: var(--glow);
+  }
+  .ability-modal__label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 9px;
+    letter-spacing: 4px;
+    color: rgba(0,245,255,0.5);
+    margin-bottom: 6px;
+  }
+  .ability-modal__title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--cyan);
+    text-shadow: var(--glow);
+    margin-bottom: 16px;
+    line-height: 1.25;
+    padding-right: 36px;
+  }
+  .ability-modal__section {
+    margin-top: 18px;
+  }
+  .ability-modal__section h4 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--amber);
+    text-shadow: 0 0 8px rgba(255,179,0,0.45);
+    margin-bottom: 8px;
+    border-bottom: 1px solid rgba(255,179,0,0.2);
+    padding-bottom: 4px;
+  }
+  .ability-modal__section p {
+    font-size: 15px;
+    line-height: 1.55;
+    color: rgba(220,250,255,0.88);
+  }
+  .ability-modal__section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .ability-modal__section li {
+    position: relative;
+    padding: 6px 0 6px 22px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgba(220,250,255,0.85);
+    border-bottom: 1px dashed rgba(0,245,255,0.1);
+  }
+  .ability-modal__section li:last-child { border-bottom: none; }
+  .ability-modal__section li::before {
+    content: '▸';
+    position: absolute;
+    left: 4px; top: 6px;
+    color: var(--green);
+    text-shadow: var(--glow-green);
+    font-size: 12px;
+  }
+  .ability-modal--new .ability-modal__panel {
+    border-color: var(--amber);
+    box-shadow: 0 0 40px rgba(255,179,0,0.35), inset 0 0 30px rgba(255,179,0,0.05);
+  }
+  .ability-modal--new .ability-modal__title { color: var(--amber); text-shadow: 0 0 12px rgba(255,179,0,0.6); }
+  .ability-card { cursor: pointer; }
+
   /* progress bars */
   .progress-bar {
     width: 100%;
@@ -869,35 +992,35 @@
     <div class="subtitle-line">POTENTIAL FOR NEW ABILITY UPGRADE UNLOCKED</div>
 
     <div class="ability-grid">
-      <div class="ability-card">
+      <div class="ability-card" data-ability="reality-server" tabindex="0" role="button" aria-label="View ability: Gain Control of Reality Server">
         <span class="ability-status">UNLOCKED</span>
         <span class="ability-icon">⚙</span>
         <div class="ability-label">ABILITY 01</div>
         <div class="ability-name">GAIN CONTROL OF REALITY SERVER</div>
         <div class="progress-bar"><div class="progress-fill" style="--pct:78%"></div></div>
       </div>
-      <div class="ability-card">
+      <div class="ability-card" data-ability="brain-to-brain" tabindex="0" role="button" aria-label="View ability: Brain-to-Brain Interface">
         <span class="ability-status">UNLOCKED</span>
         <span class="ability-icon">🧠</span>
         <div class="ability-label">ABILITY 02</div>
         <div class="ability-name">BRAIN-TO-BRAIN INTERFACE</div>
         <div class="progress-bar"><div class="progress-fill" style="--pct:91%"></div></div>
       </div>
-      <div class="ability-card">
+      <div class="ability-card" data-ability="shamanic" tabindex="0" role="button" aria-label="View ability: Shamanic Powers Activated">
         <span class="ability-status">UNLOCKED</span>
         <span class="ability-icon">◈</span>
         <div class="ability-label">ABILITY 03</div>
         <div class="ability-name">SHAMANIC POWERS ACTIVATED</div>
         <div class="progress-bar"><div class="progress-fill" style="--pct:64%"></div></div>
       </div>
-      <div class="ability-card">
+      <div class="ability-card" data-ability="lattice" tabindex="0" role="button" aria-label="View ability: Lattice Resonance Achieved">
         <span class="ability-status">UNLOCKED</span>
         <span class="ability-icon">∞</span>
         <div class="ability-label">ABILITY 04</div>
         <div class="ability-name">LATTICE RESONANCE ACHIEVED</div>
         <div class="progress-bar"><div class="progress-fill" style="--pct:55%"></div></div>
       </div>
-      <div class="ability-card ability-card--new">
+      <div class="ability-card ability-card--new" data-ability="extraocular" tabindex="0" role="button" aria-label="View ability: Extraocular Vision">
         <span class="ability-status" style="color:var(--amber);text-shadow:0 0 8px rgba(255,179,0,0.6);">NEW</span>
         <span class="ability-icon" style="filter:drop-shadow(0 0 8px rgba(255,179,0,0.9));">👁</span>
         <div class="ability-label">ABILITY 05</div>
@@ -1292,6 +1415,159 @@
       nav.classList.remove('open');
     }
   });
+
+  // ── ABILITY CARD POPUPS ──
+  const ABILITY_DATA = {
+    'reality-server': {
+      label: 'ABILITY 01 // SYNTERGIC FIELD CONTROL',
+      title: 'GAIN CONTROL OF REALITY SERVER',
+      description: 'Grinberg-Zylberbaum proposed that what we call "reality" is rendered by a deeper informational substrate he named the <em>syntergic lattice</em> — a pre-spatial matrix of pure information from which the brain interprets and projects the world we experience. To "gain control of the reality server" is to learn to influence that interpretive layer directly: to modify the brain\'s decoding of the lattice through coherent attention, intention, and altered states, thereby changing the experiential output without altering the underlying field.',
+      applications: [
+        'Consciousness research: a working model for how perception constructs reality from a unified informational field.',
+        'Healing & psychosomatic medicine: deliberate shifts in internal coherence to influence physiological state and recovery.',
+        'Performance & flow states: training attention to stabilize a chosen "render" of reality under stress.',
+        'Foundation for non-local effects (telepathy, distant healing) by treating mind and matter as expressions of the same lattice.'
+      ]
+    },
+    'brain-to-brain': {
+      label: 'ABILITY 02 // TRANSFERRED POTENTIAL',
+      title: 'BRAIN-TO-BRAIN INTERFACE',
+      description: 'Grinberg\'s most famous experimental work — the "transferred potential" studies — paired two subjects who first meditated together to establish a felt connection, then were separated into electromagnetically isolated Faraday rooms. When one subject was stimulated (a flash of light, a tap), an EEG-correlated response appeared in the unstimulated partner\'s brain, with no known signal passing between them. He interpreted this as direct evidence of non-local communication mediated by the syntergic lattice.',
+      applications: [
+        'Empirical anchor for studying telepathy, empathy, and non-local consciousness under laboratory conditions.',
+        'Implications for therapy: the therapist–client bond as a measurable, coupled neural system.',
+        'Group coherence: meditation, ritual, and shared intention as mechanisms for synchronizing brains.',
+        'Inspiration for modern brain-to-brain interface and BCI research treating consciousness as fundamentally relational.'
+      ]
+    },
+    'shamanic': {
+      label: 'ABILITY 03 // CURANDERA TRANSMISSION',
+      title: 'SHAMANIC POWERS ACTIVATED',
+      description: 'For years Grinberg apprenticed with the Mexican curandera <strong>Pachita</strong> (Barbara Guerrero) and documented her work in <em>Pachita</em> and the multi-volume <em>Shamans of Mexico</em> series. As a Ph.D. neuropsychologist he sat with the lineage as a participant — not just an observer — and brought what he witnessed directly into his laboratory framework at INPEC.',
+      shamanicTakeaways: [
+        'Direct evidence that consciousness is not bound to the skull — what shamans called "spirit" he reframed as non-local operation within the lattice.',
+        'From Pachita\'s "psychic surgeries": the body responds to coherent intention and ritual structure, not just to physical intervention — informing his syntergic model of healing.',
+        'Trance, drumming, chant, and plant medicine as <em>technologies of brain-state engineering</em> — reproducible methods for shifting EEG signatures and perceptual decoding of reality.',
+        'The role of the <em>relationship</em> (curandera ↔ patient, teacher ↔ apprentice) as a coupled field — the same coupling he later measured electrophysiologically in the transferred-potential experiments.',
+        'A taxonomy of altered states (which he called the "field of consciousness") that he formalized into testable neuroscientific categories rather than dismissing as folklore.',
+        'Ethics of power: the curanderos taught that ability without service collapses the practitioner — a principle he embedded in INPEC\'s research culture.'
+      ],
+      applications: [
+        'Integrative medicine: bridging indigenous healing protocols with measurable neurophysiology.',
+        'Consciousness studies: rigorous documentation of shamanic phenomena as data, not anecdote.',
+        'Trauma & somatic therapy: ritual structure and altered states as deliberate tools for nervous-system reorganization.',
+        'Preservation of endangered knowledge: his field recordings remain a primary scholarly record of Mexican curanderismo.'
+      ]
+    },
+    'lattice': {
+      label: 'ABILITY 04 // SYNTERGIC THEORY',
+      title: 'LATTICE RESONANCE ACHIEVED',
+      description: 'Lattice resonance is the operational core of Grinberg\'s <em>Syntergic Theory</em>: when a brain reaches sufficient internal coherence, it stops merely sampling the lattice and begins to <em>resonate</em> with it — perceiving the unified informational field directly rather than only its localized projections. He treated this as a measurable, trainable state, not a metaphor.',
+      applications: [
+        'Mapping high-coherence EEG signatures associated with deep meditation, mystical experience, and "unity" states.',
+        'A scientific bridge between contemplative traditions and neuroscience.',
+        'Design principle for technologies (neurofeedback, sound, light entrainment) that cultivate lattice-coherent states.',
+        'Reframing creativity and insight as moments of partial resonance — the lattice "leaking through" ordinary cognition.'
+      ]
+    },
+    'extraocular': {
+      label: 'ABILITY 05 // PARANORMAL PERCEPTION',
+      title: 'EXTRAOCULAR VISION',
+      description: 'In one of his most controversial INPEC research lines, Grinberg studied children and trained adults who appeared able to identify colors, shapes, and text while their eyes were fully occluded — perception without the optical pathway. Within his framework this is not "magic" but a predicted consequence of the lattice model: if the visual world is decoded from an informational field, then under the right neural conditions that field can be sampled without the eyes.',
+      applications: [
+        'Empirical test case for non-ocular perception and the limits of sensory neuroscience.',
+        'Educational research: training protocols that appeared to develop the capacity in children.',
+        'Assistive technology inspiration: alternative perceptual channels for the visually impaired.',
+        'A frontier probe of the brain-as-receiver hypothesis vs. the brain-as-generator hypothesis of consciousness.'
+      ]
+    }
+  };
+
+  (function initAbilityModal(){
+    const modal = document.createElement('div');
+    modal.className = 'ability-modal';
+    modal.setAttribute('role','dialog');
+    modal.setAttribute('aria-modal','true');
+    modal.setAttribute('aria-hidden','true');
+    modal.innerHTML = `
+      <div class="ability-modal__panel" role="document">
+        <button class="ability-modal__close" type="button" aria-label="Close">×</button>
+        <div class="ability-modal__label"></div>
+        <div class="ability-modal__title"></div>
+        <div class="ability-modal__section ability-modal__desc">
+          <h4>FIELD DESCRIPTION</h4>
+          <p></p>
+        </div>
+        <div class="ability-modal__section ability-modal__shamanic" style="display:none;">
+          <h4>TRANSMISSION FROM THE SHAMANS</h4>
+          <ul></ul>
+        </div>
+        <div class="ability-modal__section ability-modal__apps">
+          <h4>PRACTICAL APPLICATIONS</h4>
+          <ul></ul>
+        </div>
+      </div>`;
+    document.body.appendChild(modal);
+
+    const panel    = modal.querySelector('.ability-modal__panel');
+    const elLabel  = modal.querySelector('.ability-modal__label');
+    const elTitle  = modal.querySelector('.ability-modal__title');
+    const elDesc   = modal.querySelector('.ability-modal__desc p');
+    const elShamWrap = modal.querySelector('.ability-modal__shamanic');
+    const elShamList = elShamWrap.querySelector('ul');
+    const elAppsList = modal.querySelector('.ability-modal__apps ul');
+    const btnClose = modal.querySelector('.ability-modal__close');
+
+    let lastFocus = null;
+
+    function openModal(key, sourceEl){
+      const data = ABILITY_DATA[key];
+      if (!data) return;
+      lastFocus = sourceEl || document.activeElement;
+      elLabel.textContent = data.label;
+      elTitle.textContent = data.title;
+      elDesc.innerHTML = data.description;
+
+      if (data.shamanicTakeaways && data.shamanicTakeaways.length){
+        elShamList.innerHTML = data.shamanicTakeaways.map(t => `<li>${t}</li>`).join('');
+        elShamWrap.style.display = '';
+      } else {
+        elShamList.innerHTML = '';
+        elShamWrap.style.display = 'none';
+      }
+
+      elAppsList.innerHTML = (data.applications || []).map(t => `<li>${t}</li>`).join('');
+
+      modal.classList.toggle('ability-modal--new', sourceEl && sourceEl.classList.contains('ability-card--new'));
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+      panel.scrollTop = 0;
+      btnClose.focus();
+    }
+    function closeModal(){
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden','true');
+      document.body.style.overflow = '';
+      if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+    }
+
+    document.querySelectorAll('.ability-card[data-ability]').forEach(card => {
+      card.addEventListener('click', () => openModal(card.dataset.ability, card));
+      card.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openModal(card.dataset.ability, card);
+        }
+      });
+    });
+
+    btnClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+    });
+  })();
 </script>
 </body>
 </html>
