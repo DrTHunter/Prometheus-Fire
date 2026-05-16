@@ -736,6 +736,130 @@
   .type-book   { border-color: var(--amber); color: var(--amber); }
   .type-cia    { border-color: var(--red); color: var(--red); }
   .type-doc    { border-color: var(--green); color: var(--green); }
+  .type-external { border-color: #b266ff; color: #b266ff; }
+  .type-counter  { border-color: var(--red); color: var(--red); }
+
+  /* ── ABILITY LITERATURE BLOCKS ── */
+  .ability-lit-block {
+    position: relative;
+    margin-top: 48px;
+    padding: 0 0 18px 18px;
+    border-left: 3px solid var(--cyan);
+    background: linear-gradient(90deg, rgba(0,245,255,0.05), transparent 70%);
+  }
+  .ability-lit-block--01 { border-left-color: #ff9c42; background: linear-gradient(90deg, rgba(255,156,66,0.08), transparent 70%); }
+  .ability-lit-block--02 { border-left-color: var(--green); background: linear-gradient(90deg, rgba(0,255,157,0.08), transparent 70%); }
+  .ability-lit-block--03 { border-left-color: var(--amber); background: linear-gradient(90deg, rgba(255,179,0,0.08), transparent 70%); }
+  .ability-lit-block--04 { border-left-color: var(--cyan);  background: linear-gradient(90deg, rgba(0,245,255,0.08), transparent 70%); }
+  .ability-lit-block--05 { border-left-color: var(--red);   background: linear-gradient(90deg, rgba(255,45,85,0.08), transparent 70%); }
+
+  .ability-lit-header {
+    display: flex; align-items: center; flex-wrap: wrap; gap: 12px;
+    padding: 14px 16px;
+    margin-left: -18px;
+    margin-bottom: 18px;
+    background: rgba(2,10,15,0.7);
+    border: 1px solid var(--border);
+    border-left: 3px solid transparent; /* inherits the block accent visually via spacing */
+  }
+  .ability-lit-tag {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 9px;
+    letter-spacing: 3px;
+    padding: 4px 10px;
+    border: 1px solid currentColor;
+    color: rgba(255,255,255,0.85);
+  }
+  .ability-lit-block--01 .ability-lit-tag { color: #ff9c42; }
+  .ability-lit-block--02 .ability-lit-tag { color: var(--green); }
+  .ability-lit-block--03 .ability-lit-tag { color: var(--amber); }
+  .ability-lit-block--04 .ability-lit-tag { color: var(--cyan); }
+  .ability-lit-block--05 .ability-lit-tag { color: var(--red); }
+
+  .ability-lit-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: rgba(220,250,255,0.95);
+    text-shadow: 0 0 10px rgba(0,245,255,0.4);
+    margin: 0;
+    flex: 1 1 auto;
+  }
+  .ability-lit-conf {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    padding: 4px 10px;
+    border: 1px solid currentColor;
+    white-space: nowrap;
+  }
+  .ability-lit-subhead {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: rgba(0,245,255,0.55);
+    margin: 22px 0 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px dashed rgba(0,245,255,0.15);
+  }
+  .ability-lit-subhead--ext {
+    color: #b266ff;
+    border-bottom-color: rgba(178,102,255,0.25);
+  }
+  .ability-lit-subhead--ext::before { content: '✚ '; }
+  .ability-lit-subhead--counter {
+    color: var(--red);
+    border-bottom-color: rgba(255,45,85,0.25);
+  }
+  .ability-lit-subhead--counter::before { content: '⊘ '; }
+
+  /* card variants for external + counter */
+  .work-card--external {
+    border-style: dashed;
+    border-color: rgba(178,102,255,0.45);
+    background: linear-gradient(180deg, rgba(178,102,255,0.06), rgba(2,10,15,0.4));
+  }
+  .work-card--external:hover {
+    border-color: #b266ff;
+    background: rgba(178,102,255,0.1);
+    box-shadow: 0 0 14px rgba(178,102,255,0.35);
+  }
+  .work-card--external .work-title { color: #d9b3ff; }
+  .work-card--external::after { color: #b266ff; }
+
+  .work-card--counter {
+    border-style: dashed;
+    border-color: rgba(255,45,85,0.45);
+    background: linear-gradient(180deg, rgba(255,45,85,0.06), rgba(2,10,15,0.4));
+  }
+  .work-card--counter:hover {
+    border-color: var(--red);
+    background: rgba(255,45,85,0.1);
+    box-shadow: var(--glow-red);
+  }
+  .work-card--counter .work-title { color: #ffb3c1; }
+  .work-card--counter::after { color: var(--red); }
+
+  .ability-lit-toggle {
+    margin-top: 18px;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--cyan);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    padding: 10px 18px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+  .ability-lit-toggle:hover {
+    background: rgba(0,245,255,0.08);
+    border-color: var(--cyan);
+    box-shadow: var(--glow);
+  }
+  .ability-lit-overflow[hidden] { display: none; }
+  .ability-lit-overflow { animation: fadeIn 0.3s ease; }
+  @keyframes fadeIn { from {opacity:0; transform: translateY(-4px);} to {opacity:1; transform:none;} }
 
   .work-title {
     font-family: 'Rajdhani', sans-serif;
@@ -1257,131 +1381,405 @@
     </div>
 
     <!-- ───────────────────── ABILITY 01 // REALITY SERVER ───────────────────── -->
-    <div class="section-title reveal" style="margin-top:40px;">▸ ABILITY 01 — REALITY SERVER / SYNTERGIC FIELD CONTROL</div>
-    <div class="works-grid reveal">
+    <div class="ability-lit-block ability-lit-block--01 reveal">
+      <header class="ability-lit-header">
+        <span class="ability-lit-tag">ABILITY 01</span>
+        <h3 class="ability-lit-title">REALITY SERVER / SYNTERGIC FIELD CONTROL</h3>
+        <span class="ability-lit-conf tier-hypothesis">HYPOTHESIS · 28%</span>
+      </header>
 
-      <div class="work-card">
-        <div class="work-type"><span class="type-badge type-book">BOOK</span></div>
-        <div class="work-title">El Espacio y la Consciencia: Psicofisiología de la Conciencia III</div>
-        <div class="work-meta">Space and Consciousness, Vol. III · 1981 · Explores spatial dimensions of perception and how the brain renders space from the lattice</div>
-        <span class="work-unavailable">⊘ PLACEHOLDER — LOCATE VIA UNAM LIBRARY</span>
+      <div class="ability-lit-subhead">▸ PRIMARY — GRINBERG SOURCES</div>
+      <div class="works-grid">
+
+        <div class="work-card">
+          <div class="work-type"><span class="type-badge type-book">BOOK</span></div>
+          <div class="work-title">El Espacio y la Consciencia: Psicofisiología de la Conciencia III</div>
+          <div class="work-meta">Space and Consciousness, Vol. III · 1981 · Explores spatial dimensions of perception and how the brain renders space from the lattice</div>
+          <span class="work-unavailable">⊘ PLACEHOLDER — LOCATE VIA UNAM LIBRARY</span>
+        </div>
+
+        <a class="work-card" href="https://spacefed.com/other/dr-jacobo-grinberg-a-pioneer-in-consciousness-studies/" target="_blank" rel="noopener">
+          <div class="work-type"><span class="type-badge type-doc">ANALYSIS</span></div>
+          <div class="work-title">Lattice Theory &amp; Reality Construction — Technical Breakdown</div>
+          <div class="work-meta">International Space Federation · Dr. Inés Urdaneta · Connects Grinberg's reality-rendering model to quantum field theory</div>
+          <span class="work-available">✓ AVAILABLE — SPACEFED.COM</span>
+        </a>
+
+        <a class="work-card" href="https://www.amazon.com/Jacobo-Grinberg-Zylberbaum/e/B001JWUX2S" target="_blank" rel="noopener">
+          <div class="work-type"><span class="type-badge type-book">BOOK</span></div>
+          <div class="work-title">Creación de la Experiencia (The Creation of Experience)</div>
+          <div class="work-meta">Frames perception as an active construction process — the operational manual for accessing and directing the reality render</div>
+          <span class="work-available">✓ AMAZON AUTHOR PAGE</span>
+        </a>
+
       </div>
 
-      <a class="work-card" href="https://spacefed.com/other/dr-jacobo-grinberg-a-pioneer-in-consciousness-studies/" target="_blank" rel="noopener">
-        <div class="work-type"><span class="type-badge type-doc">ANALYSIS</span></div>
-        <div class="work-title">Lattice Theory &amp; Reality Construction — Technical Breakdown</div>
-        <div class="work-meta">International Space Federation · Dr. Inés Urdaneta · Connects Grinberg's reality-rendering model to quantum field theory</div>
-        <span class="work-available">✓ AVAILABLE — SPACEFED.COM</span>
-      </a>
+      <button class="ability-lit-toggle" type="button" aria-expanded="false">▼ EXPAND // EXTERNAL + COUNTER-EVIDENCE</button>
+      <div class="ability-lit-overflow" hidden>
 
-      <a class="work-card" href="https://www.amazon.com/Jacobo-Grinberg-Zylberbaum/e/B001JWUX2S" target="_blank" rel="noopener">
-        <div class="work-type"><span class="type-badge type-book">BOOK</span></div>
-        <div class="work-title">Creación de la Experiencia (The Creation of Experience)</div>
-        <div class="work-meta">Frames perception as an active construction process — the operational manual for accessing and directing the reality render</div>
-        <span class="work-available">✓ AMAZON AUTHOR PAGE</span>
-      </a>
+        <div class="ability-lit-subhead ability-lit-subhead--ext">EXTERNAL SUPPORTING LITERATURE</div>
+        <div class="works-grid">
+          <a class="work-card work-card--external" href="https://noosphere.princeton.edu/" target="_blank" rel="noopener">
+            <div class="work-type"><span class="type-badge type-external">EXTERNAL</span></div>
+            <div class="work-title">Global Consciousness Project (Nelson &amp; Radin)</div>
+            <div class="work-meta">Princeton-affiliated · 20+ years of RNG deviation data correlated with major collective events — empirical probe of the "shared reality field" claim</div>
+            <span class="work-available">✓ AVAILABLE — NOOSPHERE.PRINCETON.EDU</span>
+          </a>
+          <a class="work-card work-card--external" href="https://sites.socsci.uci.edu/~ddhoff/interface.pdf" target="_blank" rel="noopener">
+            <div class="work-type"><span class="type-badge type-external">EXTERNAL</span></div>
+            <div class="work-title">Hoffman — Interface Theory of Perception</div>
+            <div class="work-meta">Donald Hoffman (UC Irvine) · Formal mathematical case that perception is a constructed user-interface, not a window onto objective reality — directly parallel to Grinberg's "render" framing</div>
+            <span class="work-available">✓ AVAILABLE — UCI</span>
+          </a>
+          <a class="work-card work-card--external" href="https://en.wikipedia.org/wiki/Orchestrated_objective_reduction" target="_blank" rel="noopener">
+            <div class="work-type"><span class="type-badge type-external">EXTERNAL</span></div>
+            <div class="work-title">Penrose–Hameroff Orch-OR</div>
+            <div class="work-meta">Quantum theory of consciousness positing a non-local substrate underlying experience · Independent line of inquiry into a "field" beneath the rendered world</div>
+            <span class="work-available">✓ OVERVIEW — WIKIPEDIA</span>
+          </a>
+        </div>
 
+        <div class="ability-lit-subhead ability-lit-subhead--counter">COUNTER-EVIDENCE &amp; CRITIQUES</div>
+        <div class="works-grid">
+          <a class="work-card work-card--counter" href="https://en.wikipedia.org/wiki/Global_Consciousness_Project#Criticism" target="_blank" rel="noopener">
+            <div class="work-type"><span class="type-badge type-counter">CRITIQUE</span></div>
+            <div class="work-title">Scargle et al. — GCP Statistical Critique</div>
+            <div class="work-meta">Multiple-comparisons and post-hoc selection objections to the "shared field" datasets · The strongest reason mainstream science still treats collective-mind claims as unproven</div>
+            <span class="work-available">✓ SUMMARY — WIKIPEDIA</span>
+          </a>
+          <div class="work-card work-card--counter">
+            <div class="work-type"><span class="type-badge type-counter">MAINSTREAM</span></div>
+            <div class="work-title">Predictive Processing / Active Inference (Friston)</div>
+            <div class="work-meta">Mainstream neuroscience explains "reality construction" without invoking a non-local lattice — a fully naturalistic competitor to syntergic field control</div>
+            <span class="work-unavailable">⊘ STANDARD MODEL — NO LATTICE REQUIRED</span>
+          </div>
+        </div>
+
+      </div>
     </div>
 
     <!-- ─────────────────── ABILITY 02 // BRAIN-TO-BRAIN INTERFACE ─────────────────── -->
-    <div class="section-title reveal" style="margin-top:40px;">▸ ABILITY 02 — BRAIN-TO-BRAIN INTERFACE</div>
-    <div class="works-grid reveal">
+    <div class="ability-lit-block ability-lit-block--02 reveal">
+      <header class="ability-lit-header">
+        <span class="ability-lit-tag">ABILITY 02</span>
+        <h3 class="ability-lit-title">BRAIN-TO-BRAIN INTERFACE / TRANSFERRED POTENTIAL</h3>
+        <span class="ability-lit-conf tier-proven">STRONGEST EVIDENCE · 72%</span>
+      </header>
 
-      <a class="work-card" href="https://www.worldscientific.com/doi/abs/10.1142/S0836436894000167" target="_blank" rel="noopener">
-        <div class="work-type"><span class="type-badge type-paper">JOURNAL PAPER</span></div>
-        <div class="work-title">The Einstein-Podolsky-Rosen Paradox in the Brain: The Transferred Potential</div>
-        <div class="work-meta">Physics Essays, Vol. 7 (4), 1994 · His final and most cited work · 114+ academic references · Co-authors: Delaflor, Attie, Goswami</div>
-        <span class="work-available">✓ AVAILABLE — WORLD SCIENTIFIC</span>
-      </a>
+      <div class="ability-lit-subhead">▸ PRIMARY — GRINBERG SOURCES</div>
+      <div class="works-grid">
 
-      <a class="work-card" href="https://psi-encyclopedia.spr.ac.uk/articles/jacobo-grinberg-zylberbaum/" target="_blank" rel="noopener">
-        <div class="work-type"><span class="type-badge type-paper">JOURNAL PAPER</span></div>
-        <div class="work-title">Human Communication and the Electrophysical Activity of the Brain</div>
-        <div class="work-meta">Subtle Energies, Vol. 3 (3), pp. 25–43 · 1992 · Co-authored study</div>
-        <span class="work-available">✓ CITED — PSI ENCYCLOPEDIA NODE</span>
-      </a>
+        <a class="work-card" href="https://www.worldscientific.com/doi/abs/10.1142/S0836436894000167" target="_blank" rel="noopener">
+          <div class="work-type"><span class="type-badge type-paper">JOURNAL PAPER</span></div>
+          <div class="work-title">The Einstein-Podolsky-Rosen Paradox in the Brain: The Transferred Potential</div>
+          <div class="work-meta">Physics Essays, Vol. 7 (4), 1994 · His final and most cited work · 114+ academic references · Co-authors: Delaflor, Attie, Goswami</div>
+          <span class="work-available">✓ AVAILABLE — WORLD SCIENTIFIC</span>
+        </a>
 
-      <a class="work-card" href="https://spacefed.com/other/dr-jacobo-grinberg-a-pioneer-in-consciousness-studies/" target="_blank" rel="noopener">
-        <div class="work-type"><span class="type-badge type-paper">JOURNAL PAPER</span></div>
-        <div class="work-title">Patterns of Interhemispheric Correlation During Human Communication</div>
-        <div class="work-meta">International Journal of Neuroscience, Vol. 36, pp. 41–53 · 1987 · Co-author: J. Ramos</div>
-        <span class="work-available">✓ CITED — ISF ARCHIVE</span>
-      </a>
+        <a class="work-card" href="https://psi-encyclopedia.spr.ac.uk/articles/jacobo-grinberg-zylberbaum/" target="_blank" rel="noopener">
+          <div class="work-type"><span class="type-badge type-paper">JOURNAL PAPER</span></div>
+          <div class="work-title">Human Communication and the Electrophysical Activity of the Brain</div>
+          <div class="work-meta">Subtle Energies, Vol. 3 (3), pp. 25–43 · 1992 · Co-authored study</div>
+          <span class="work-available">✓ CITED — PSI ENCYCLOPEDIA NODE</span>
+        </a>
 
+        <a class="work-card" href="https://spacefed.com/other/dr-jacobo-grinberg-a-pioneer-in-consciousness-studies/" target="_blank" rel="noopener">
+          <div class="work-type"><span class="type-badge type-paper">JOURNAL PAPER</span></div>
+          <div class="work-title">Patterns of Interhemispheric Correlation During Human Communication</div>
+          <div class="work-meta">International Journal of Neuroscience, Vol. 36, pp. 41–53 · 1987 · Co-author: J. Ramos</div>
+          <span class="work-available">✓ CITED — ISF ARCHIVE</span>
+        </a>
+
+      </div>
+
+      <button class="ability-lit-toggle" type="button" aria-expanded="false">▼ EXPAND // EXTERNAL + COUNTER-EVIDENCE</button>
+      <div class="ability-lit-overflow" hidden>
+
+        <div class="ability-lit-subhead ability-lit-subhead--ext">EXTERNAL SUPPORTING LITERATURE</div>
+        <div class="works-grid">
+          <a class="work-card work-card--external" href="https://pubmed.ncbi.nlm.nih.gov/14609565/" target="_blank" rel="noopener">
+            <div class="work-type"><span class="type-badge type-external">REPLICATION</span></div>
+            <div class="work-title">Wackermann et al. (2003) — Correlations Between Brain Electrical Activities of Two Spatially Separated Human Subjects</div>
+            <div class="work-meta">Neuroscience Letters · Independent partial replication of the transferred-potential effect under stricter shielding</div>
+            <span class="work-available">✓ AVAILABLE — PUBMED</span>
+          </a>
+          <a class="work-card work-card--external" href="https://pubmed.ncbi.nlm.nih.gov/15165405/" target="_blank" rel="noopener">
+            <div class="work-type"><span class="type-badge type-external">REPLICATION</span></div>
+            <div class="work-title">Standish et al. (2004) — Evidence of Correlated Functional MRI Signals Between Distant Human Brains</div>
+            <div class="work-meta">Journal of Alternative and Complementary Medicine · fMRI-based replication extending Grinberg's EEG paradigm</div>
+            <span class="work-available">✓ AVAILABLE — PUBMED</span>
+          </a>
+          <a class="work-card work-card--external" href="https://www.sciencedirect.com/science/article/abs/pii/S0167876004001515" target="_blank" rel="noopener">
+            <div class="work-type"><span class="type-badge type-external">REPLICATION</span></div>
+            <div class="work-title">Kittenis, Caryl &amp; Stevens (2004) — Distant Psychophysiological Interaction Effects</div>
+            <div class="work-meta">International Journal of Psychophysiology · Reproduces transferred-potential-style EEG correlations between isolated pairs</div>
+            <span class="work-available">✓ AVAILABLE — ELSEVIER</span>
+          </a>
+          <a class="work-card work-card--external" href="https://noetic.org/publication/conscious-intention/" target="_blank" rel="noopener">
+            <div class="work-type"><span class="type-badge type-external">META-REVIEW</span></div>
+            <div class="work-title">IONS / Radin — Distant Mental Interaction Meta-Analyses</div>
+            <div class="work-meta">Institute of Noetic Sciences · Aggregated effect-size analyses across decades of EEG/EDA non-local interaction studies</div>
+            <span class="work-available">✓ AVAILABLE — NOETIC.ORG</span>
+          </a>
+        </div>
+
+        <div class="ability-lit-subhead ability-lit-subhead--counter">COUNTER-EVIDENCE &amp; CRITIQUES</div>
+        <div class="works-grid">
+          <a class="work-card work-card--counter" href="https://www.researchgate.net/publication/13320121" target="_blank" rel="noopener">
+            <div class="work-type"><span class="type-badge type-counter">CRITIQUE</span></div>
+            <div class="work-title">Hyman — Evaluation of the Program on Anomalous Mental Phenomena</div>
+            <div class="work-meta">Standing methodological critique of EEG/psi correlation paradigms · Argues effect sizes shrink with tighter controls</div>
+            <span class="work-available">✓ AVAILABLE — RESEARCHGATE</span>
+          </a>
+          <a class="work-card work-card--counter" href="https://pubmed.ncbi.nlm.nih.gov/22732054/" target="_blank" rel="noopener">
+            <div class="work-type"><span class="type-badge type-counter">REVIEW</span></div>
+            <div class="work-title">Schmidt et al. — Distant Intentionality Effects: A Meta-Analysis</div>
+            <div class="work-meta">Mixed-to-null overall effect when high-quality studies are isolated · The main reason the field remains classified as "anomalous, not confirmed"</div>
+            <span class="work-available">✓ AVAILABLE — PUBMED</span>
+          </a>
+        </div>
+
+      </div>
     </div>
 
     <!-- ─────────────────── ABILITY 03 // SHAMANIC POWERS ─────────────────── -->
-    <div class="section-title reveal" style="margin-top:40px;">▸ ABILITY 03 — SHAMANIC POWERS</div>
-    <div class="works-grid reveal">
+    <div class="ability-lit-block ability-lit-block--03 reveal">
+      <header class="ability-lit-header">
+        <span class="ability-lit-tag">ABILITY 03</span>
+        <h3 class="ability-lit-title">SHAMANIC POWERS / CURANDERA TRANSMISSION</h3>
+        <span class="ability-lit-conf tier-mixed">MIXED · 55%</span>
+      </header>
 
-      <div class="work-card">
-        <div class="work-type"><span class="type-badge type-book">BOOK</span></div>
-        <div class="work-title">Pachita</div>
-        <div class="work-meta">1990 · First-person documentation of his apprenticeship with the Mexican curandera Barbara Guerrero ("Pachita") — direct source for the shamanic-to-scientific bridge in his INPEC research</div>
-        <span class="work-unavailable">⊘ PLACEHOLDER — LOCATE VIA INPEC FOUNDATION</span>
+      <div class="ability-lit-subhead">▸ PRIMARY — GRINBERG SOURCES</div>
+      <div class="works-grid">
+
+        <div class="work-card">
+          <div class="work-type"><span class="type-badge type-book">BOOK</span></div>
+          <div class="work-title">Pachita</div>
+          <div class="work-meta">1990 · First-person documentation of his apprenticeship with the Mexican curandera Barbara Guerrero ("Pachita") — direct source for the shamanic-to-scientific bridge in his INPEC research</div>
+          <span class="work-unavailable">⊘ PLACEHOLDER — LOCATE VIA INPEC FOUNDATION</span>
+        </div>
+
+        <div class="work-card">
+          <div class="work-type"><span class="type-badge type-book">BOOK SERIES</span></div>
+          <div class="work-title">Los Chamanes de México — Vols. I–XII</div>
+          <div class="work-meta">The Shamans of Mexico, multi-volume ethnographic + neuroscientific series · Field documentation of curanderismo, trance states, and altered-perception protocols</div>
+          <span class="work-unavailable">⊘ PLACEHOLDER — INPEC FOUNDATION ARCHIVE</span>
+        </div>
+
+        <div class="work-card">
+          <div class="work-type"><span class="type-badge type-book">BOOK</span></div>
+          <div class="work-title">Los Chamanes de México Vol. V: El Cerebro y los Chamanes</div>
+          <div class="work-meta">1990 · Documents shamanic healing, field interaction, and EEG correlates of consciousness states — the formal lab translation of what he learned from the lineage</div>
+          <span class="work-unavailable">⊘ PLACEHOLDER — LOCATE VIA INPEC FOUNDATION</span>
+        </div>
+
       </div>
 
-      <div class="work-card">
-        <div class="work-type"><span class="type-badge type-book">BOOK SERIES</span></div>
-        <div class="work-title">Los Chamanes de México — Vols. I–XII</div>
-        <div class="work-meta">The Shamans of Mexico, multi-volume ethnographic + neuroscientific series · Field documentation of curanderismo, trance states, and altered-perception protocols</div>
-        <span class="work-unavailable">⊘ PLACEHOLDER — INPEC FOUNDATION ARCHIVE</span>
-      </div>
+      <button class="ability-lit-toggle" type="button" aria-expanded="false">▼ EXPAND // EXTERNAL + COUNTER-EVIDENCE</button>
+      <div class="ability-lit-overflow" hidden>
 
-      <div class="work-card">
-        <div class="work-type"><span class="type-badge type-book">BOOK</span></div>
-        <div class="work-title">Los Chamanes de México Vol. V: El Cerebro y los Chamanes</div>
-        <div class="work-meta">1990 · Documents shamanic healing, field interaction, and EEG correlates of consciousness states — the formal lab translation of what he learned from the lineage</div>
-        <span class="work-unavailable">⊘ PLACEHOLDER — LOCATE VIA INPEC FOUNDATION</span>
-      </div>
+        <div class="ability-lit-subhead ability-lit-subhead--ext">EXTERNAL SUPPORTING LITERATURE</div>
+        <div class="works-grid">
+          <a class="work-card work-card--external" href="https://www.shamanism.org/" target="_blank" rel="noopener">
+            <div class="work-type"><span class="type-badge type-external">EXTERNAL</span></div>
+            <div class="work-title">Harner — The Way of the Shaman</div>
+            <div class="work-meta">Foundation for Shamanic Studies · Anthropologically rigorous cross-cultural mapping of shamanic technique — parallel framework to Grinberg's Mexican fieldwork</div>
+            <span class="work-available">✓ AVAILABLE — SHAMANISM.ORG</span>
+          </a>
+          <a class="work-card work-card--external" href="https://maps.org/research-archive/ayahuasca/" target="_blank" rel="noopener">
+            <div class="work-type"><span class="type-badge type-external">EXTERNAL</span></div>
+            <div class="work-title">Shanon — Antipodes of the Mind</div>
+            <div class="work-meta">Phenomenological neuroscience of ayahuasca states (Hebrew U. cognitive science) · Independent academic treatment of plant-medicine consciousness</div>
+            <span class="work-available">✓ REFERENCED — MAPS ARCHIVE</span>
+          </a>
+          <a class="work-card work-card--external" href="https://pubmed.ncbi.nlm.nih.gov/11939497/" target="_blank" rel="noopener">
+            <div class="work-type"><span class="type-badge type-external">CLINICAL</span></div>
+            <div class="work-title">Strassman — DMT: The Spirit Molecule (DEA-approved trials)</div>
+            <div class="work-meta">Univ. of New Mexico · First sanctioned human psychedelic trials in 20+ years · Documents reproducible non-ordinary states overlapping shamanic phenomenology</div>
+            <span class="work-available">✓ AVAILABLE — PUBMED</span>
+          </a>
+          <a class="work-card work-card--external" href="https://www.grof-legacy-project.com/" target="_blank" rel="noopener">
+            <div class="work-type"><span class="type-badge type-external">EXTERNAL</span></div>
+            <div class="work-title">Grof — Holotropic States &amp; Transpersonal Psychology</div>
+            <div class="work-meta">Six decades of clinical mapping of non-ordinary states · Provides the Western psychiatric vocabulary Grinberg's shamanic data slots into</div>
+            <span class="work-available">✓ AVAILABLE — GROF LEGACY</span>
+          </a>
+        </div>
 
+        <div class="ability-lit-subhead ability-lit-subhead--counter">COUNTER-EVIDENCE &amp; CRITIQUES</div>
+        <div class="works-grid">
+          <a class="work-card work-card--counter" href="https://web.randi.org/" target="_blank" rel="noopener">
+            <div class="work-type"><span class="type-badge type-counter">EXPOSÉ</span></div>
+            <div class="work-title">Randi — Psychic Surgery Investigations</div>
+            <div class="work-meta">Documented sleight-of-hand exposures of Filipino/Brazilian "psychic surgeons" who used techniques very similar to Pachita's reported operations</div>
+            <span class="work-available">✓ AVAILABLE — JREF</span>
+          </a>
+          <a class="work-card work-card--counter" href="https://csicop.org/" target="_blank" rel="noopener">
+            <div class="work-type"><span class="type-badge type-counter">CRITIQUE</span></div>
+            <div class="work-title">CSICOP / Skeptical Inquirer — Curanderismo Coverage</div>
+            <div class="work-meta">Standing critique that documented benefits of curanderismo can be explained by placebo, ritual catharsis, and patient–healer rapport — no paranormal mechanism required</div>
+            <span class="work-available">✓ AVAILABLE — CSICOP.ORG</span>
+          </a>
+        </div>
+
+      </div>
     </div>
 
     <!-- ─────────────────── ABILITY 04 // LATTICE RESONANCE ─────────────────── -->
-    <div class="section-title reveal" style="margin-top:40px;">▸ ABILITY 04 — LATTICE RESONANCE / SYNTERGIC THEORY</div>
-    <div class="works-grid reveal">
+    <div class="ability-lit-block ability-lit-block--04 reveal">
+      <header class="ability-lit-header">
+        <span class="ability-lit-tag">ABILITY 04</span>
+        <h3 class="ability-lit-title">LATTICE RESONANCE / SYNTERGIC THEORY</h3>
+        <span class="ability-lit-conf tier-hypothesis">HYPOTHESIS · 38%</span>
+      </header>
 
-      <a class="work-card" href="https://www.sciencedirect.com/science/article/pii/0140197181900028" target="_blank" rel="noopener">
-        <div class="work-type"><span class="type-badge type-paper">JOURNAL PAPER</span></div>
-        <div class="work-title">The Transformation of Neuronal Activity into Conscious Experience: The Syntergic Theory</div>
-        <div class="work-meta">Journal of Social and Biological Structures, Vol. 4, pp. 201–210 · 1981 · The seminal lattice paper</div>
-        <span class="work-available">✓ AVAILABLE — ELSEVIER</span>
-      </a>
+      <div class="ability-lit-subhead">▸ PRIMARY — GRINBERG SOURCES</div>
+      <div class="works-grid">
 
-      <a class="work-card" href="https://www.amazon.com/Jacobo-Grinberg-Zylberbaum/e/B001JWUX2S" target="_blank" rel="noopener">
-        <div class="work-type"><span class="type-badge type-book">BOOK</span></div>
-        <div class="work-title">La Teoría Sintérgica (The Syntergic Theory)</div>
-        <div class="work-meta">Full official edition · INPEC Foundation · His complete theoretical framework on the Lattice and consciousness</div>
-        <span class="work-available">✓ AMAZON — SPANISH</span>
-      </a>
+        <a class="work-card" href="https://www.sciencedirect.com/science/article/pii/0140197181900028" target="_blank" rel="noopener">
+          <div class="work-type"><span class="type-badge type-paper">JOURNAL PAPER</span></div>
+          <div class="work-title">The Transformation of Neuronal Activity into Conscious Experience: The Syntergic Theory</div>
+          <div class="work-meta">Journal of Social and Biological Structures, Vol. 4, pp. 201–210 · 1981 · The seminal lattice paper</div>
+          <span class="work-available">✓ AVAILABLE — ELSEVIER</span>
+        </a>
 
-      <a class="work-card" href="https://www.amazon.com/Jacobo-Grinberg-Zylberbaum/e/B001JWUX2S" target="_blank" rel="noopener">
-        <div class="work-type"><span class="type-badge type-book">BOOK</span></div>
-        <div class="work-title">Meditación Autoalusiva (Self-Referential Meditation)</div>
-        <div class="work-meta">Training manual for cultivating the high-coherence brain states he associated with direct lattice resonance</div>
-        <span class="work-available">✓ AMAZON AUTHOR PAGE</span>
-      </a>
+        <a class="work-card" href="https://www.amazon.com/Jacobo-Grinberg-Zylberbaum/e/B001JWUX2S" target="_blank" rel="noopener">
+          <div class="work-type"><span class="type-badge type-book">BOOK</span></div>
+          <div class="work-title">La Teoría Sintérgica (The Syntergic Theory)</div>
+          <div class="work-meta">Full official edition · INPEC Foundation · His complete theoretical framework on the Lattice and consciousness</div>
+          <span class="work-available">✓ AMAZON — SPANISH</span>
+        </a>
 
+        <a class="work-card" href="https://www.amazon.com/Jacobo-Grinberg-Zylberbaum/e/B001JWUX2S" target="_blank" rel="noopener">
+          <div class="work-type"><span class="type-badge type-book">BOOK</span></div>
+          <div class="work-title">Meditación Autoalusiva (Self-Referential Meditation)</div>
+          <div class="work-meta">Training manual for cultivating the high-coherence brain states he associated with direct lattice resonance</div>
+          <span class="work-available">✓ AMAZON AUTHOR PAGE</span>
+        </a>
+
+      </div>
+
+      <button class="ability-lit-toggle" type="button" aria-expanded="false">▼ EXPAND // EXTERNAL + COUNTER-EVIDENCE</button>
+      <div class="ability-lit-overflow" hidden>
+
+        <div class="ability-lit-subhead ability-lit-subhead--ext">EXTERNAL SUPPORTING LITERATURE</div>
+        <div class="works-grid">
+          <a class="work-card work-card--external" href="https://www.pnas.org/doi/10.1073/pnas.0407401101" target="_blank" rel="noopener">
+            <div class="work-type"><span class="type-badge type-external">PEER-REVIEWED</span></div>
+            <div class="work-title">Lutz, Greischar, Davidson et al. — Long-Term Meditators Self-Induce High-Amplitude Gamma Synchrony</div>
+            <div class="work-meta">PNAS (2004) · Hard EEG evidence for high-coherence states in trained meditators — the strongest empirical anchor for "lattice resonance"</div>
+            <span class="work-available">✓ AVAILABLE — PNAS</span>
+          </a>
+          <a class="work-card work-card--external" href="https://en.wikipedia.org/wiki/Implicate_and_explicate_order" target="_blank" rel="noopener">
+            <div class="work-type"><span class="type-badge type-external">THEORETICAL</span></div>
+            <div class="work-title">Bohm — Implicate / Explicate Order</div>
+            <div class="work-meta">Theoretical physicist David Bohm's unified-field model of reality and mind · Direct conceptual sibling of the syntergic lattice</div>
+            <span class="work-available">✓ OVERVIEW — WIKIPEDIA</span>
+          </a>
+          <a class="work-card work-card--external" href="https://ervinlaszlobooks.com/science-and-the-akashic-field/" target="_blank" rel="noopener">
+            <div class="work-type"><span class="type-badge type-external">EXTERNAL</span></div>
+            <div class="work-title">Laszlo — Science and the Akashic Field</div>
+            <div class="work-meta">Independent formulation of an informational substrate underlying consciousness · Cross-references Grinberg-style non-local coupling data</div>
+            <span class="work-available">✓ AVAILABLE — LASZLO</span>
+          </a>
+        </div>
+
+        <div class="ability-lit-subhead ability-lit-subhead--counter">COUNTER-EVIDENCE &amp; CRITIQUES</div>
+        <div class="works-grid">
+          <div class="work-card work-card--counter">
+            <div class="work-type"><span class="type-badge type-counter">MAINSTREAM</span></div>
+            <div class="work-title">Default Mode Network / Predictive Coding Explanations</div>
+            <div class="work-meta">Standard neuroscience accounts for "unity" and "resonance" states as DMN deactivation + altered predictive processing — no field-resonance required</div>
+            <span class="work-unavailable">⊘ STANDARD MODEL EXPLAINS DATA</span>
+          </div>
+          <a class="work-card work-card--counter" href="https://pubmed.ncbi.nlm.nih.gov/28435839/" target="_blank" rel="noopener">
+            <div class="work-type"><span class="type-badge type-counter">CRITIQUE</span></div>
+            <div class="work-title">Van Lommel-style "Quantum Consciousness" Critiques</div>
+            <div class="work-meta">Tegmark and others: brain is too warm/wet for sustained quantum coherence — undercuts the proposed physical mechanism behind lattice resonance</div>
+            <span class="work-available">✓ AVAILABLE — PUBMED</span>
+          </a>
+        </div>
+
+      </div>
     </div>
 
     <!-- ─────────────────── ABILITY 05 // EXTRAOCULAR VISION ─────────────────── -->
-    <div class="section-title reveal" style="margin-top:40px;">▸ ABILITY 05 — EXTRAOCULAR VISION</div>
-    <div class="works-grid reveal">
+    <div class="ability-lit-block ability-lit-block--05 reveal">
+      <header class="ability-lit-header">
+        <span class="ability-lit-tag">ABILITY 05</span>
+        <h3 class="ability-lit-title">EXTRAOCULAR VISION / PARANORMAL PERCEPTION</h3>
+        <span class="ability-lit-conf tier-disputed">DISPUTED · 18%</span>
+      </header>
 
-      <a class="work-card" href="https://psi-encyclopedia.spr.ac.uk/articles/jacobo-grinberg-zylberbaum/" target="_blank" rel="noopener">
-        <div class="work-type"><span class="type-badge type-paper">JOURNAL PAPER</span></div>
-        <div class="work-title">Extraocular Vision: Perception Without the Eyes</div>
-        <div class="work-meta">Psychoenergetics, Vol. 5, pp. 141–158 · 1983 · Blindfolded-child perception experiments at INPEC</div>
-        <span class="work-available">✓ CITED — PSI ENCYCLOPEDIA</span>
-      </a>
+      <div class="ability-lit-subhead">▸ PRIMARY — GRINBERG SOURCES</div>
+      <div class="works-grid">
 
-      <a class="work-card" href="https://psi-encyclopedia.spr.ac.uk/articles/jacobo-grinberg-zylberbaum/" target="_blank" rel="noopener">
-        <div class="work-type"><span class="type-badge type-doc">ENCYCLOPEDIA</span></div>
-        <div class="work-title">Extraocular Perception Studies — Summary &amp; Methodology</div>
-        <div class="work-meta">Society for Psychical Research · Reproduction protocols, training methodology, and peer assessment of the INPEC results</div>
-        <span class="work-available">✓ AVAILABLE — PSI-ENCYCLOPEDIA.SPR.AC.UK</span>
-      </a>
+        <a class="work-card" href="https://psi-encyclopedia.spr.ac.uk/articles/jacobo-grinberg-zylberbaum/" target="_blank" rel="noopener">
+          <div class="work-type"><span class="type-badge type-paper">JOURNAL PAPER</span></div>
+          <div class="work-title">Extraocular Vision: Perception Without the Eyes</div>
+          <div class="work-meta">Psychoenergetics, Vol. 5, pp. 141–158 · 1983 · Blindfolded-child perception experiments at INPEC</div>
+          <span class="work-available">✓ CITED — PSI ENCYCLOPEDIA</span>
+        </a>
 
+        <a class="work-card" href="https://psi-encyclopedia.spr.ac.uk/articles/jacobo-grinberg-zylberbaum/" target="_blank" rel="noopener">
+          <div class="work-type"><span class="type-badge type-doc">ENCYCLOPEDIA</span></div>
+          <div class="work-title">Extraocular Perception Studies — Summary &amp; Methodology</div>
+          <div class="work-meta">Society for Psychical Research · Reproduction protocols, training methodology, and peer assessment of the INPEC results</div>
+          <span class="work-available">✓ AVAILABLE — PSI-ENCYCLOPEDIA.SPR.AC.UK</span>
+        </a>
+
+        <div class="work-card">
+          <div class="work-type"><span class="type-badge type-book">BOOK</span></div>
+          <div class="work-title">INPEC Training Protocol Notes</div>
+          <div class="work-meta">Internal INPEC documentation of the child-training procedures used in the extraocular perception trials</div>
+          <span class="work-unavailable">⊘ PLACEHOLDER — INPEC FOUNDATION ARCHIVE</span>
+        </div>
+
+      </div>
+
+      <button class="ability-lit-toggle" type="button" aria-expanded="false">▼ EXPAND // EXTERNAL + COUNTER-EVIDENCE</button>
+      <div class="ability-lit-overflow" hidden>
+
+        <div class="ability-lit-subhead ability-lit-subhead--ext">EXTERNAL SUPPORTING LITERATURE</div>
+        <div class="works-grid">
+          <a class="work-card work-card--external" href="https://en.wikipedia.org/wiki/Dermo-optical_perception" target="_blank" rel="noopener">
+            <div class="work-type"><span class="type-badge type-external">EXTERNAL</span></div>
+            <div class="work-title">Soviet Dermo-Optical Perception Research (Rosa Kuleshova et al.)</div>
+            <div class="work-meta">1960s Soviet Academy of Sciences claimed reproducible "skin sight" in trained subjects · Same phenomenon, separate research lineage</div>
+            <span class="work-available">✓ OVERVIEW — WIKIPEDIA</span>
+          </a>
+          <a class="work-card work-card--external" href="https://en.wikipedia.org/wiki/Yvonne_Duplessis" target="_blank" rel="noopener">
+            <div class="work-type"><span class="type-badge type-external">EXTERNAL</span></div>
+            <div class="work-title">Duplessis — French Dermo-Optical Studies</div>
+            <div class="work-meta">Sorbonne-affiliated researcher who reported infrared/visible-band non-ocular perception under varying controls · Still contested, never refuted at lab level</div>
+            <span class="work-available">✓ OVERVIEW — WIKIPEDIA</span>
+          </a>
+        </div>
+
+        <div class="ability-lit-subhead ability-lit-subhead--counter">COUNTER-EVIDENCE &amp; CRITIQUES</div>
+        <div class="works-grid">
+          <a class="work-card work-card--counter" href="https://web.randi.org/swift/project-alpha-and-other-tales-of-deception" target="_blank" rel="noopener">
+            <div class="work-type"><span class="type-badge type-counter">EXPOSÉ</span></div>
+            <div class="work-title">Randi — Project Alpha &amp; Blindfold-Test Exposures</div>
+            <div class="work-meta">Demonstrated repeatedly that "blindfolded sight" claims collapse when peeking is mechanically prevented · The single biggest historical blow to extraocular vision claims</div>
+            <span class="work-available">✓ AVAILABLE — JREF</span>
+          </a>
+          <a class="work-card work-card--counter" href="https://en.wikipedia.org/wiki/Natasha_Demkina" target="_blank" rel="noopener">
+            <div class="work-type"><span class="type-badge type-counter">FAILED TEST</span></div>
+            <div class="work-title">CSMMH Test of Natasha Demkina (2004)</div>
+            <div class="work-meta">High-profile controlled test of a modern "X-ray eyes" claimant produced chance-level results · Pattern repeats whenever extraocular claims are tightly blinded</div>
+            <span class="work-available">✓ OVERVIEW — WIKIPEDIA</span>
+          </a>
+          <div class="work-card work-card--counter">
+            <div class="work-type"><span class="type-badge type-counter">METHODOLOGICAL</span></div>
+            <div class="work-title">No Independent Replication of INPEC Protocol</div>
+            <div class="work-meta">In 40+ years no laboratory outside Grinberg's group has reproduced the extraocular result under fraud-controlled blinding</div>
+            <span class="work-unavailable">⊘ ZERO INDEPENDENT REPLICATIONS</span>
+          </div>
+        </div>
+
+      </div>
     </div>
 
     <!-- ───────────────────── GOVERNMENT / DECLASSIFIED ───────────────────── -->
@@ -1738,6 +2136,24 @@
       if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
     });
   })();
+
+  // ── ABILITY LITERATURE OVERFLOW TOGGLES ──
+  document.querySelectorAll('.ability-lit-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const overflow = btn.nextElementSibling;
+      if (!overflow || !overflow.classList.contains('ability-lit-overflow')) return;
+      const isHidden = overflow.hasAttribute('hidden');
+      if (isHidden) {
+        overflow.removeAttribute('hidden');
+        btn.setAttribute('aria-expanded','true');
+        btn.textContent = '▲ COLLAPSE // HIDE ADDITIONAL EVIDENCE';
+      } else {
+        overflow.setAttribute('hidden','');
+        btn.setAttribute('aria-expanded','false');
+        btn.textContent = '▼ EXPAND // EXTERNAL + COUNTER-EVIDENCE';
+      }
+    });
+  });
 </script>
 </body>
 </html>
