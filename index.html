@@ -103,9 +103,9 @@
 
   /* ── HERO SECTION ── */
   .hero {
-    min-height: 100vh;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    padding: 80px 20px 40px;
+    min-height: 100svh;
+    display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+    padding: 72px 16px 48px;
     position: relative;
     overflow: hidden;
   }
@@ -166,20 +166,25 @@
     position: relative;
     z-index: 10;
     text-align: center;
+    width: 100%;
     max-width: 900px;
+    padding-top: 20px;
   }
 
   .alert-tag {
     display: inline-block;
     font-family: 'Orbitron', sans-serif;
     font-size: 10px;
-    letter-spacing: 6px;
+    letter-spacing: 3px;
     color: var(--red);
     text-shadow: var(--glow-red);
     border: 1px solid var(--red);
-    padding: 4px 16px;
-    margin-bottom: 24px;
+    padding: 5px 14px;
+    margin-bottom: 20px;
     animation: flicker 3s ease-in-out infinite;
+    max-width: 100%;
+    word-break: break-word;
+    line-height: 1.5;
   }
   @keyframes flicker {
     0%,95%,100% { opacity:1; }
@@ -190,14 +195,15 @@
 
   .disturbance-title {
     font-family: 'Orbitron', sans-serif;
-    font-size: clamp(22px, 4vw, 46px);
+    font-size: clamp(18px, 5vw, 46px);
     font-weight: 900;
-    line-height: 1.1;
-    letter-spacing: 2px;
+    line-height: 1.15;
+    letter-spacing: clamp(0px, 0.5vw, 2px);
     color: var(--cyan);
     text-shadow: var(--glow);
-    margin-bottom: 8px;
+    margin-bottom: 12px;
     animation: textglitch 6s linear infinite;
+    word-break: break-word;
   }
   @keyframes textglitch {
     0%,94%,100% { text-shadow: var(--glow); transform: none; }
@@ -208,31 +214,42 @@
 
   .subtitle-line {
     font-family: 'Orbitron', sans-serif;
-    font-size: clamp(12px, 2vw, 20px);
+    font-size: clamp(9px, 2.5vw, 18px);
     color: var(--green);
     text-shadow: var(--glow-green);
-    letter-spacing: 6px;
-    margin-bottom: 36px;
+    letter-spacing: clamp(2px, 1vw, 6px);
+    margin-bottom: 28px;
+    word-break: break-word;
   }
 
   /* ── ABILITY CARDS ── */
   .ability-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 16px;
-    margin: 36px 0;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin: 24px 0;
     width: 100%;
     max-width: 900px;
+  }
+
+  @media (min-width: 600px) {
+    .ability-grid { grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .ability-card { padding: 20px 16px; }
+    .ability-icon { font-size: 28px; }
+    .ability-label { font-size: 9px; letter-spacing: 3px; }
+    .ability-name { font-size: 15px; }
+    .ability-status { font-size: 8px; letter-spacing: 2px; }
   }
 
   .ability-card {
     background: var(--panel);
     border: 1px solid var(--border);
-    padding: 20px 16px;
+    padding: 14px 12px;
     position: relative;
     cursor: pointer;
     transition: all 0.3s ease;
     overflow: hidden;
+    min-width: 0;
   }
   .ability-card::before {
     content:'';
@@ -251,30 +268,31 @@
   }
 
   .ability-icon {
-    font-size: 28px;
-    margin-bottom: 10px;
+    font-size: 22px;
+    margin-bottom: 8px;
     display: block;
     filter: drop-shadow(0 0 8px rgba(0,245,255,0.8));
   }
   .ability-label {
     font-family: 'Orbitron', sans-serif;
-    font-size: 9px;
-    letter-spacing: 3px;
+    font-size: 8px;
+    letter-spacing: 2px;
     color: rgba(0,245,255,0.5);
-    margin-bottom: 6px;
+    margin-bottom: 5px;
   }
   .ability-name {
     font-family: 'Rajdhani', sans-serif;
-    font-size: 16px;
+    font-size: 13px;
     font-weight: 600;
     color: var(--cyan);
     text-shadow: var(--glow);
+    line-height: 1.3;
   }
   .ability-status {
     position: absolute;
-    top: 10px; right: 10px;
-    font-size: 8px;
-    letter-spacing: 2px;
+    top: 8px; right: 8px;
+    font-size: 7px;
+    letter-spacing: 1px;
     color: var(--green);
     text-shadow: var(--glow-green);
   }
@@ -657,6 +675,135 @@
   }
   .hud-nav a:hover { color: var(--cyan); text-shadow: var(--glow); }
 
+  /* ── HAMBURGER (mobile only) ── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    z-index: 300;
+  }
+  .hamburger span {
+    display: block;
+    width: 22px; height: 2px;
+    background: var(--cyan);
+    box-shadow: var(--glow);
+    transition: all 0.3s ease;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ── MOBILE DRAWER NAV ── */
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    top: 48px; left: 0; right: 0;
+    background: rgba(2,10,15,0.98);
+    border-bottom: 1px solid var(--border);
+    flex-direction: column;
+    z-index: 190;
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.4s ease;
+  }
+  .mobile-nav.open { max-height: 400px; }
+  .mobile-nav a {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: rgba(0,245,255,0.6);
+    text-decoration: none;
+    padding: 16px 24px;
+    border-bottom: 1px solid rgba(0,245,255,0.08);
+    display: block;
+    transition: all 0.2s;
+  }
+  .mobile-nav a:hover, .mobile-nav a:active {
+    color: var(--cyan);
+    background: rgba(0,245,255,0.05);
+    text-shadow: var(--glow);
+  }
+
+  /* ── MOBILE BREAKPOINTS ── */
+  @media (max-width: 768px) {
+
+    /* Corner brackets smaller on mobile */
+    .corner-tl, .corner-tr, .corner-bl, .corner-br { width: 24px; height: 24px; }
+    .corner-tl { top:8px; left:8px; }
+    .corner-tr { top:8px; right:8px; }
+    .corner-bl { bottom:8px; left:8px; }
+    .corner-br { bottom:8px; right:8px; }
+
+    /* Topbar: show hamburger, hide desktop nav and topbar-left */
+    .topbar { padding: 0 16px; }
+    .topbar-left { display: none; }
+    .hud-nav { display: none; }
+    .hamburger { display: flex; }
+    .mobile-nav { display: flex; }
+    .topbar-right { font-size: 9px; letter-spacing: 1px; }
+
+    /* Hero */
+    .hero { padding: 60px 14px 40px; }
+    .ring-1 { width: 260px; height: 260px; }
+    .ring-2 { width: 360px; height: 360px; }
+    .ring-3 { width: 480px; height: 480px; }
+
+    /* Dividers */
+    .hud-divider { margin: 24px auto; }
+    .hud-divider span { font-size: 7px; letter-spacing: 2px; white-space: normal; text-align: center; }
+
+    /* Bio panel */
+    .bio-panel { padding: 20px 14px; }
+    .bio-panel::after { display: none; }
+    .bio-grid { grid-template-columns: 1fr; gap: 14px; }
+    .panel-header { font-size: 9px; letter-spacing: 2px; }
+
+    /* Theory panel */
+    .theory-panel { padding: 18px 14px; }
+    .theory-text { font-size: 14px; }
+
+    /* Experiment */
+    .experiment-box { padding: 22px 14px; }
+    .step-text { font-size: 13px; }
+
+    /* Alert panel */
+    .alert-panel { padding: 18px 14px; }
+    .alert-text { font-size: 14px; }
+
+    /* CIA badges: wrap nicely */
+    .cia-badge { font-size: 8px; letter-spacing: 1px; padding: 3px 7px; margin: 3px 2px; }
+
+    /* Works grid: single column */
+    .works-grid { grid-template-columns: 1fr; gap: 12px; }
+    .work-card { padding: 16px; }
+    .work-title { font-size: 14px; padding-right: 0; }
+    .work-meta { font-size: 11px; }
+    .work-card::after { display: none; }
+    .section-title { font-size: 10px; letter-spacing: 3px; }
+
+    /* Content wrapper */
+    .content-wrapper { padding: 0 14px 80px; }
+
+    /* Footer */
+    .hud-footer p { font-size: 8px; letter-spacing: 1px; line-height: 1.8; }
+
+    /* Hide coord display on mobile */
+    .coord-display { display: none; }
+
+    /* Ticker */
+    .ticker-bar { height: 24px; }
+    .ticker-label { font-size: 8px; padding: 0 8px; }
+    .ticker-scroll span { font-size: 9px; padding: 0 24px; letter-spacing: 1px; }
+  }
+
+  @media (max-width: 360px) {
+    .ability-grid { grid-template-columns: 1fr; }
+    .alert-tag { font-size: 9px; letter-spacing: 1px; }
+  }
+
 </style>
 </head>
 <body>
@@ -678,7 +825,19 @@
     <a href="#works">ARCHIVES</a>
   </nav>
   <div class="topbar-right"><span class="status-dot"></span>ANOMALY DETECTED</div>
+  <div class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
 </header>
+
+<!-- Mobile drawer nav -->
+<nav class="mobile-nav" id="mobileNav">
+  <a href="#bio" onclick="closeNav()">▸ SUBJECT PROFILE</a>
+  <a href="#theory" onclick="closeNav()">▸ SYNTERGIC THEORY</a>
+  <a href="#experiment" onclick="closeNav()">▸ EXPERIMENT LOG</a>
+  <a href="#disappearance" onclick="closeNav()">▸ INCIDENT REPORT</a>
+  <a href="#works" onclick="closeNav()">▸ ARCHIVES</a>
+</nav>
 
 <!-- Hero -->
 <section class="hero">
@@ -1069,21 +1228,49 @@
   }, { threshold: 0.1 });
   reveals.forEach(r => observer.observe(r));
 
-  // Mouse coordinate display
+  // Mouse coordinate display (desktop only)
   const coords = document.getElementById('coords');
   document.addEventListener('mousemove', e => {
+    if (!coords) return;
     const x = ((e.clientX / window.innerWidth) * 100).toFixed(2);
     const y = ((e.clientY / window.innerHeight) * 100).toFixed(2);
     coords.textContent = `CURSOR: X ${x}% // Y ${y}% // LATTICE ACTIVE`;
   });
+
+  // Touch position display (mobile)
+  document.addEventListener('touchmove', e => {
+    if (!coords || window.innerWidth > 768) return;
+    // coord display is hidden on mobile via CSS, no-op
+  }, { passive: true });
 
   // Topbar clock
   const bar = document.querySelector('.topbar-right');
   setInterval(() => {
     const now = new Date();
     const ts = now.toISOString().replace('T',' ').substring(0,19);
-    bar.innerHTML = `<span class="status-dot"></span>ANOMALY DETECTED // ${ts} UTC`;
+    bar.innerHTML = `<span class="status-dot"></span>ANOMALY // ${ts}`;
   }, 1000);
+
+  // Hamburger nav toggle
+  function toggleNav() {
+    const ham = document.getElementById('hamburger');
+    const nav = document.getElementById('mobileNav');
+    ham.classList.toggle('open');
+    nav.classList.toggle('open');
+  }
+  function closeNav() {
+    document.getElementById('hamburger').classList.remove('open');
+    document.getElementById('mobileNav').classList.remove('open');
+  }
+  // Close nav on outside tap
+  document.addEventListener('click', e => {
+    const ham = document.getElementById('hamburger');
+    const nav = document.getElementById('mobileNav');
+    if (!ham.contains(e.target) && !nav.contains(e.target)) {
+      ham.classList.remove('open');
+      nav.classList.remove('open');
+    }
+  });
 </script>
 </body>
 </html>
