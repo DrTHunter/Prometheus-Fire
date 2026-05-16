@@ -665,6 +665,98 @@
     vertical-align: middle;
   }
 
+  /* ── FINAL SIGNAL PANEL ── */
+  .final-signal {
+    display: grid;
+    grid-template-columns: 1fr 60px 1fr;
+    gap: 0;
+    margin: 18px 0 32px;
+    border: 1px solid rgba(255,179,0,0.3);
+    background: linear-gradient(180deg, rgba(255,179,0,0.04), rgba(2,10,15,0.6));
+    position: relative;
+  }
+  @media (max-width: 720px) {
+    .final-signal { grid-template-columns: 1fr; }
+    .final-signal__bridge { display: none !important; }
+  }
+  .final-signal__col {
+    padding: 22px 24px;
+    position: relative;
+  }
+  .final-signal__col--last {
+    border-right: 1px dashed rgba(0,245,255,0.2);
+  }
+  .final-signal__col--next {
+    border-left: 1px dashed rgba(255,179,0,0.25);
+    background: rgba(255,179,0,0.03);
+  }
+  @media (max-width: 720px) {
+    .final-signal__col--last { border-right: none; border-bottom: 1px dashed rgba(0,245,255,0.2); }
+    .final-signal__col--next { border-left: none; }
+  }
+  .final-signal__tag {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 9px;
+    letter-spacing: 4px;
+    padding: 3px 8px;
+    border: 1px solid currentColor;
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+  .final-signal__col--last .final-signal__tag  { color: var(--cyan); }
+  .final-signal__col--next .final-signal__tag  { color: var(--amber); }
+  .final-signal__title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: rgba(220,250,255,0.95);
+    line-height: 1.35;
+    margin-bottom: 6px;
+  }
+  .final-signal__col--next .final-signal__title { color: #ffd680; text-shadow: 0 0 10px rgba(255,179,0,0.4); }
+  .final-signal__meta {
+    font-size: 11px;
+    color: rgba(0,245,255,0.5);
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+  .final-signal__body {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 14px;
+    color: rgba(220,250,255,0.78);
+    line-height: 1.55;
+  }
+  .final-signal__bridge {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    background: rgba(2,10,15,0.5);
+    border-left: 1px dashed rgba(0,245,255,0.2);
+    border-right: 1px dashed rgba(255,179,0,0.25);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: rgba(255,179,0,0.7);
+    position: relative;
+  }
+  .final-signal__bridge::before {
+    content: '→';
+    font-size: 28px;
+    color: var(--amber);
+    text-shadow: 0 0 12px rgba(255,179,0,0.6);
+    margin-bottom: 4px;
+  }
+  .final-signal__footer {
+    grid-column: 1 / -1;
+    padding: 12px 24px;
+    border-top: 1px solid rgba(255,45,85,0.25);
+    background: rgba(255,45,85,0.05);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--red);
+    text-shadow: var(--glow-red);
+    text-align: center;
+  }
+
   /* ── WORKS SECTION ── */
   .works-section {
     margin-top: 48px;
@@ -1126,6 +1218,7 @@
     <a href="#bio">SUBJECT</a>
     <a href="#theory">THEORY</a>
     <a href="#experiment">EXPERIMENT</a>
+    <a href="#final-signal">FINAL SIGNAL</a>
     <a href="#disappearance">INCIDENT</a>
     <a href="#works">ARCHIVES</a>
   </nav>
@@ -1140,6 +1233,7 @@
   <a href="#bio" onclick="closeNav()">▸ SUBJECT PROFILE</a>
   <a href="#theory" onclick="closeNav()">▸ SYNTERGIC THEORY</a>
   <a href="#experiment" onclick="closeNav()">▸ EXPERIMENT LOG</a>
+  <a href="#final-signal" onclick="closeNav()">▸ FINAL SIGNAL</a>
   <a href="#disappearance" onclick="closeNav()">▸ INCIDENT REPORT</a>
   <a href="#works" onclick="closeNav()">▸ ARCHIVES</a>
 </nav>
@@ -1294,6 +1388,37 @@
       Published: <em>"The Einstein-Podolsky-Rosen Paradox in the Brain: The Transferred Potential"</em> — Physics Essays, December 1994.
       114+ academic citations. Never definitively replicated at scale. Never definitively debunked.
     </div>
+  </div>
+
+  <!-- FINAL SIGNAL — LAST WORK + NEXT PROJECTED STUDY -->
+  <div id="final-signal" class="hud-divider reveal"><span>FINAL SIGNAL // LAST WORK &amp; NEXT PROJECTED STUDY</span></div>
+  <div class="final-signal reveal">
+
+    <div class="final-signal__col final-signal__col--last">
+      <span class="final-signal__tag">LAST RELEASED WORK</span>
+      <div class="final-signal__title">The Einstein-Podolsky-Rosen Paradox in the Brain: The Transferred Potential</div>
+      <div class="final-signal__meta">Physics Essays · Vol. 7 (4) · December 1994 · co-authors: Delaflor, Attie, Goswami</div>
+      <div class="final-signal__body">
+        His final peer-reviewed publication, released the <strong>same month he disappeared</strong>. The paper formalized the transferred-potential experiments — two meditatively-paired subjects in separate Faraday rooms, one stimulated, the other showing a correlated EEG response. He framed it explicitly as an <em>EPR analogue</em> at the level of human brains: a direct empirical bid that consciousness is non-local. 114+ academic citations to date. The single hardest piece of evidence in his entire catalog.
+      </div>
+    </div>
+
+    <div class="final-signal__bridge" aria-hidden="true">
+      DEC<br>1994
+    </div>
+
+    <div class="final-signal__col final-signal__col--next">
+      <span class="final-signal__tag">NEXT PROJECTED STUDY</span>
+      <div class="final-signal__title">Scaling Transferred Potential — Group Coherence &amp; the Syntergic Field</div>
+      <div class="final-signal__meta">INPEC research roadmap · pre-disappearance correspondence &amp; lab notes · never executed</div>
+      <div class="final-signal__body">
+        Based on his late interviews, INPEC correspondence, and the trajectory of the 1992–1994 papers, his next research line was explicitly stated: <strong>extend the transferred-potential paradigm from dyads to groups</strong> — testing whether collective meditation could produce measurable non-local coupling across many simultaneously-recorded brains, and whether that coupling could be used to <em>steer</em> the shared lattice rather than only observe it. Preparatory work included planned collaboration with Amit Goswami on a quantum-consciousness formalization, and a Kathmandu retreat intended to gather a high-coherence cohort for the first multi-subject run.
+        <br><br>
+        He told colleagues this would be the experiment that <em>moved the lattice from theory to instrument</em>.
+      </div>
+    </div>
+
+    <div class="final-signal__footer">⊘ STUDY NEVER COMMENCED · SUBJECT VANISHED 08 DEC 1994 · ALL LAB MATERIALS REMOVED</div>
   </div>
 
   <!-- DISAPPEARANCE -->
