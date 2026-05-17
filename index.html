@@ -884,7 +884,23 @@
     letter-spacing: 2px;
     padding: 4px 10px;
     border: 1px solid currentColor;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    line-height: 1.5;
+    max-width: 100%;
+    text-align: center;
+  }
+  .ability-lit-conf small {
+    display: inline-block;
     white-space: nowrap;
+  }
+  @media (max-width: 640px) {
+    .ability-lit-conf {
+      flex: 1 1 100%;
+      font-size: 8.5px;
+      letter-spacing: 1.5px;
+      text-align: left;
+    }
   }
   .ability-lit-subhead {
     font-family: 'Orbitron', sans-serif;
