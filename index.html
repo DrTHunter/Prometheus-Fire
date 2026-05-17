@@ -1238,6 +1238,7 @@
     <a href="#final-signal">FINAL SIGNAL</a>
     <a href="#disappearance">INCIDENT</a>
     <a href="#works">ARCHIVES</a>
+    <a href="#training" style="color:var(--amber);">TRAINING</a>
   </nav>
   <div class="topbar-right"><span class="status-dot"></span>ANOMALY DETECTED</div>
   <div class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Menu">
@@ -1253,6 +1254,7 @@
   <a href="#final-signal" onclick="closeNav()">▸ FINAL SIGNAL</a>
   <a href="#disappearance" onclick="closeNav()">▸ INCIDENT REPORT</a>
   <a href="#works" onclick="closeNav()">▸ ARCHIVES</a>
+  <a href="#training" onclick="closeNav()" style="color:var(--amber);">▸ TRAINING PROTOCOLS</a>
 </nav>
 
 <!-- Hero -->
@@ -2222,6 +2224,376 @@
       </div>
 
     </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       TRAINING PROTOCOLS — How-to guides for each ability
+       ═══════════════════════════════════════════════════════════════════ -->
+  <section id="training" class="works-section" style="margin-top:60px;">
+    <div class="section-title reveal" style="color:var(--amber);border-color:var(--amber);">▸ TRAINING PROTOCOLS // OPERATOR PIPELINE</div>
+
+    <div class="reveal" style="margin:0 0 28px;padding:14px 18px;border-left:3px solid var(--amber);background:rgba(255,179,0,0.04);font-size:12px;line-height:1.7;color:#ffe9b8;">
+      <strong style="color:var(--amber);">READ FIRST.</strong> These are reconstructions of Grinberg&rsquo;s published and reported protocols. They are presented for <em>historical and research</em> purposes &mdash; this is what the lab actually had subjects do. None of this is medical, psychological, or spiritual advice. Effects are real to the operator regardless of whether the underlying mechanism is what Grinberg said it was. Do not perform any protocol while operating vehicles, near hazards, or if you have a seizure disorder, dissociative condition, or unstable psychiatric history. Stop if you feel distressed.
+    </div>
+
+    <style>
+      .training-card {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        padding: 22px 22px 18px;
+        position: relative;
+        margin-bottom: 18px;
+        transition: border-color .25s ease;
+      }
+      .training-card:hover { border-color: var(--amber); }
+      .training-card__header {
+        display:flex; flex-wrap:wrap; align-items:baseline; gap:10px;
+        padding-bottom:12px; margin-bottom:14px;
+        border-bottom:1px dashed rgba(255,179,0,0.25);
+      }
+      .training-card__num {
+        font-family: 'JetBrains Mono', monospace; font-size:11px;
+        letter-spacing:3px; color:var(--amber); opacity:.7;
+      }
+      .training-card__title {
+        font-family: 'JetBrains Mono', monospace; font-size:15px;
+        letter-spacing:2px; color:var(--cyan); margin:0;
+      }
+      .training-card__tier {
+        margin-left:auto; font-size:9px; letter-spacing:2px;
+        padding:3px 8px; border:1px solid currentColor;
+      }
+      .training-card__tier.t-doc   { color: var(--green); }
+      .training-card__tier.t-hyp   { color: var(--amber); }
+      .training-card__tier.t-spec  { color: var(--red); }
+      .training-card__intro { font-size:12.5px; line-height:1.7; color:#cfe9ff; margin:0 0 14px; }
+      .training-card h4 {
+        font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:3px;
+        color:var(--amber); margin:18px 0 8px; opacity:.85;
+      }
+      .training-card ol, .training-card ul { margin:0 0 8px; padding-left:20px; font-size:12.5px; line-height:1.75; color:#dfeaf2; }
+      .training-card ol li, .training-card ul li { margin-bottom:6px; }
+      .training-card .src-list a {
+        display:block; font-family:'JetBrains Mono',monospace; font-size:11px;
+        color:var(--cyan); text-decoration:none; padding:6px 10px;
+        border-left:2px solid rgba(0,245,255,0.3);
+        margin-bottom:4px; transition: all .2s;
+        word-break: break-all;
+      }
+      .training-card .src-list a:hover {
+        background:rgba(0,245,255,0.08); border-left-color:var(--cyan);
+      }
+      .training-card .src-list .src-meta { color:rgba(220,235,245,0.6); font-size:10px; letter-spacing:1px; }
+      .training-card details { margin-top:10px; }
+      .training-card details summary {
+        cursor:pointer; font-family:'JetBrains Mono',monospace;
+        font-size:11px; letter-spacing:2px; color:var(--amber);
+        padding:8px 10px; background:rgba(255,179,0,0.05);
+        border:1px solid rgba(255,179,0,0.25); list-style:none;
+      }
+      .training-card details summary::before { content:'▸ '; }
+      .training-card details[open] summary::before { content:'▾ '; }
+      .training-card details > div { padding:14px 4px 4px; }
+      .training-warn {
+        margin-top:12px; padding:8px 12px; border-left:2px solid var(--red);
+        background:rgba(255,77,109,0.06); color:#ffd6d6;
+        font-size:11px; line-height:1.6;
+      }
+    </style>
+
+    <!-- ───────────── 01 EXTRAOCULAR VISION (best-documented protocol) ───────────── -->
+    <div class="training-card reveal">
+      <div class="training-card__header">
+        <span class="training-card__num">PROTOCOL 01</span>
+        <h3 class="training-card__title">EXTRAOCULAR VISION / DERMO-OPTIC PERCEPTION</h3>
+        <span class="training-card__tier t-doc">PUBLISHED · 1983</span>
+      </div>
+      <p class="training-card__intro">
+        Identifying colors, shapes, or printed text while fully blindfolded, using skin contact (typically fingertips, forehead, or back of neck). Grinberg published the original protocol in 1983 working with children at the National Autonomous University of Mexico (UNAM). The training works best on subjects under ~14 and degrades with age &mdash; he hypothesized the lattice-coupling is more plastic before pubertal cortical pruning.
+      </p>
+
+      <h4>▸ SOURCE DOCUMENTS</h4>
+      <div class="src-list">
+        <a href="https://www.scribd.com/document/527677456/Grinberg-Zylberbaum-1983-Extraocular-Vision" target="_blank" rel="noopener">
+          GRINBERG-ZYLBERBAUM (1983) — Extraocular Vision · <span class="src-meta">Original peer-reviewed paper with methodology</span>
+        </a>
+        <a href="https://www.scribd.com/document/922056145/The-Extraocular-Vision" target="_blank" rel="noopener">
+          THE EXTRAOCULAR VISION — full book · <span class="src-meta">Extended protocol, case studies, training progression</span>
+        </a>
+        <a href="https://savagenesis.substack.com/p/extraocular-vision" target="_blank" rel="noopener">
+          SAVAGENESIS — Extraocular Vision walkthrough · <span class="src-meta">Modern Substack summary &amp; practical commentary</span>
+        </a>
+      </div>
+
+      <h4>▸ EQUIPMENT</h4>
+      <ul>
+        <li>Opaque blindfold (sleep mask + black electrical tape over any light leak; verify zero light by waving a flashlight across the eyes).</li>
+        <li>Set of solid-color cards (red / blue / green / yellow / black / white) printed on identical paper stock so weight, texture, and edge-feel are uniform &mdash; this controls for tactile leakage.</li>
+        <li>Quiet, evenly-lit room. Lab notebook + timer.</li>
+        <li>A second person (the &ldquo;runner&rdquo;) who shuffles and presents cards. The runner must be silent and avoid breath cues.</li>
+      </ul>
+
+      <h4>▸ PROTOCOL (Grinberg 1983, condensed)</h4>
+      <ol>
+        <li><strong>Baseline blindfold check.</strong> Subject sits relaxed, eyes closed under the blindfold for 2&ndash;3 minutes. Confirm no visual leakage by having the runner move a bright light at varying angles &mdash; subject reports zero light perception.</li>
+        <li><strong>Relaxation induction.</strong> 5&ndash;10 minutes of slow diaphragmatic breathing (4-second inhale, 6-second exhale). Subject is asked to &ldquo;feel attention move outward through the surface of the skin, especially the fingertips and forehead.&rdquo;</li>
+        <li><strong>Calibration pass.</strong> Runner places one card face-up in subject&rsquo;s open palm. Subject is <em>told</em> the color and instructed to attend to any felt-quality: temperature, vibration, density, &ldquo;weight,&ldquo; tingling. Repeat for all colors. Subject builds a private felt-vocabulary (e.g. &ldquo;red = warm-dense, blue = cool-thin&rdquo;).</li>
+        <li><strong>Blind trial block.</strong> Runner shuffles the deck. One card per trial is placed in the subject&rsquo;s palm; subject names the color before lifting it. Record hit/miss. Minimum 20 trials per session, 6 colors = chance level ~16.7%.</li>
+        <li><strong>Progressive constraint.</strong> Once a subject hits &gt;50% reliably across multiple sessions, advance the difficulty: card placed under glass (no direct skin contact); card placed against forehead instead of palm; geometric shapes instead of solid colors; printed letters; finally, sealed opaque envelopes.</li>
+        <li><strong>Session length.</strong> 30&ndash;45 minutes maximum. The faculty fatigues fast. Daily practice, short sessions, beats long marathon sessions.</li>
+      </ol>
+
+      <h4>▸ CONTROLS YOU MUST RUN (otherwise you&rsquo;re just fooling yourself)</h4>
+      <ul>
+        <li><strong>Sensory leakage check.</strong> Run at least one block where the runner is in a separate room and slides cards through a slot, so breath, micro-movements, and warmth cues are eliminated.</li>
+        <li><strong>Identical card stock.</strong> Different inks reflect heat differently; some subjects unconsciously detect thermal differences. Use identical pigment-loading or run a thermal-block control.</li>
+        <li><strong>Double-blind.</strong> Both runner and subject blind to the card identity until reveal (e.g. cards in numbered sealed envelopes, key held by a third party).</li>
+        <li><strong>Statistical bar.</strong> 6-color discrimination, chance = 16.7%. Aim for binomial significance over a block of 50+ trials before claiming a result. 35% with n=50 is exciting; 35% with n=10 is noise.</li>
+      </ul>
+
+      <div class="training-warn">
+        <strong>HONEST READ:</strong> Grinberg&rsquo;s 1983 results were dramatic but never independently replicated under fully sensory-isolated double-blind conditions. Modern attempts (e.g. on adult subjects) typically collapse to chance once double-blind is enforced. The protocol is real, the historical results are real, the mechanism remains open. Treat positive results as <em>interesting</em>, not as <em>proof</em>, until you&rsquo;ve nailed every leakage channel.
+      </div>
+    </div>
+
+    <!-- ───────────── 02 BRAIN-TO-BRAIN / TRANSFERRED POTENTIAL ───────────── -->
+    <div class="training-card reveal">
+      <div class="training-card__header">
+        <span class="training-card__num">PROTOCOL 02</span>
+        <h3 class="training-card__title">BRAIN-TO-BRAIN INTERFACE / TRANSFERRED POTENTIAL</h3>
+        <span class="training-card__tier t-doc">PUBLISHED · 1994</span>
+      </div>
+      <p class="training-card__intro">
+        Two subjects in separate electromagnetically-shielded (Faraday) rooms. One receives intermittent visual stimulation. The other&rsquo;s EEG shows a correlated potential at the same timing &mdash; no known signaling channel between them. This is the headline empirical result, published in <em>Physics Essays</em> 1994, and the work most directly aligned with the Stargate-program mandate.
+      </p>
+
+      <h4>▸ SOURCE DOCUMENTS</h4>
+      <div class="src-list">
+        <a href="https://psi-encyclopedia.spr.ac.uk/articles/jacobo-grinberg-zylberbaum" target="_blank" rel="noopener">
+          PSI ENCYCLOPEDIA — Grinberg entry · <span class="src-meta">Full bibliography, experiment methodology, replication record</span>
+        </a>
+        <a href="https://www.researchgate.net/publication/233597551_The_Einstein-Podolsky-Rosen_Paradox_in_the_Brain_The_transferred_potential" target="_blank" rel="noopener">
+          Grinberg-Zylberbaum et al. (1994) — Physics Essays · <span class="src-meta">&ldquo;The Einstein-Podolsky-Rosen Paradox in the Brain&rdquo;</span>
+        </a>
+      </div>
+
+      <h4>▸ EQUIPMENT (minimum)</h4>
+      <ul>
+        <li>Two electromagnetically-shielded rooms (Faraday cages). Practically: at minimum two rooms separated by 14+ meters, no shared electrical circuit, and a controlled-timing trigger.</li>
+        <li>Two EEG rigs with synchronized clocks (sub-millisecond timing). Minimum 19-channel 10&ndash;20 montage; modern dry-electrode consumer EEGs (Muse, OpenBCI Cyton) work for pilot data but not for publication-grade results.</li>
+        <li>A flash stimulus device (LED panel or strobe) on a controlled timing channel for one subject (the &ldquo;sender&rdquo;).</li>
+        <li>Software to extract evoked potentials and run cross-correlation. EEGLAB (MATLAB) or MNE-Python.</li>
+      </ul>
+
+      <h4>▸ PROTOCOL</h4>
+      <ol>
+        <li><strong>Pair selection.</strong> Recruit pairs with a pre-existing emotional bond (long-term partners, twins, close meditators-in-training). Grinberg consistently found stronger effects in bonded pairs; randomly-paired strangers showed weak-to-null transfer.</li>
+        <li><strong>Co-meditation induction.</strong> Both subjects sit together in the same room for 20 minutes prior to recording. Silent eyes-closed sitting, attention on the other person&rsquo;s presence. This is the &ldquo;coupling&rdquo; phase &mdash; the dependent variable Grinberg attributed the effect to.</li>
+        <li><strong>Separation.</strong> Move each subject to their own shielded room. Fit EEG. Maintain instruction to &ldquo;keep felt-contact&rdquo; with the other person.</li>
+        <li><strong>Stimulus block.</strong> Sender receives ~100 light flashes at randomized inter-stimulus intervals (5&ndash;15 seconds, jittered). Receiver receives no stimulus, eyes closed, instructed to remain in coupling-state.</li>
+        <li><strong>Analysis.</strong> Time-lock the receiver&rsquo;s EEG to the sender&rsquo;s flash timestamps. Average across trials. Compare against time-shuffled control (same EEG, randomly re-aligned timestamps). The published result: a small but statistically reliable evoked potential in the receiver at the same latency as the sender&rsquo;s visual evoked potential.</li>
+        <li><strong>Controls.</strong> Run the same protocol with non-bonded pairs (predicts no effect) and with the sender absent (predicts no effect). Both negative controls are essential.</li>
+      </ol>
+
+      <h4>▸ REPLICATION STATUS</h4>
+      <ul>
+        <li>Partial replications: Wackermann et al. (2003) Neuroscience Letters &mdash; small effect, similar direction. Standish et al. (2004) &mdash; positive in bonded pairs.</li>
+        <li>Failed replications also exist. Effect size is small (Cohen&rsquo;s d ~0.2&ndash;0.4 in best runs), so adequately powered studies require n &gt; 30 pairs.</li>
+        <li>This is the <em>most defensible</em> piece of Grinberg&rsquo;s catalog. If you replicate one thing, replicate this.</li>
+      </ul>
+
+      <div class="training-warn">
+        <strong>NOTE:</strong> Without proper electromagnetic shielding and clock synchronization, you cannot rule out trivial explanations (60Hz hum coupling, accidental cueing). A real run requires either institutional EEG facilities or a serious DIY shielded-room build.
+      </div>
+    </div>
+
+    <!-- ───────────── 03 AUTO-ALLUSIVE / SELF-REFERENTIAL MEDITATION ───────────── -->
+    <div class="training-card reveal">
+      <div class="training-card__header">
+        <span class="training-card__num">PROTOCOL 03</span>
+        <h3 class="training-card__title">AUTO-ALLUSIVE (SELF-REFERENTIAL) MEDITATION</h3>
+        <span class="training-card__tier t-doc">DOCUMENTED · OPERATOR PIPELINE</span>
+      </div>
+      <p class="training-card__intro">
+        Grinberg&rsquo;s signature meditation manual. The technique he used to put subjects into the brain-state that produced the transferred-potential effect, and that he taught publicly in Mexico for two decades. The core move: attention recursively turns onto its own activity, collapsing the subject/object split. This is the &ldquo;operator pipeline&rdquo; &mdash; the prerequisite condition for everything else in his catalog.
+      </p>
+
+      <h4>▸ SOURCE DOCUMENTS</h4>
+      <div class="src-list">
+        <a href="https://archive.org/details/la-teoria-sintergica" target="_blank" rel="noopener">
+          La Teoría Sintérgica (Grinberg) · <span class="src-meta">Original Spanish theory volume with meditation chapters</span>
+        </a>
+        <a href="https://psi-encyclopedia.spr.ac.uk/articles/jacobo-grinberg-zylberbaum" target="_blank" rel="noopener">
+          Psi Encyclopedia — Grinberg entry · <span class="src-meta">English overview of auto-allusive technique and EEG signature</span>
+        </a>
+        <a href="https://www.researchgate.net/scientific-contributions/Grinberg-Zylberbaum-J-2016792964" target="_blank" rel="noopener">
+          ResearchGate publication index · <span class="src-meta">EEG-coherence studies of meditators using this technique</span>
+        </a>
+      </div>
+
+      <h4>▸ THE TECHNIQUE (7-stage protocol, ~45 minutes)</h4>
+      <ol>
+        <li><strong>Posture &amp; settling (5 min).</strong> Seated upright, spine self-supporting, eyes closed or soft-focus. Two minutes of slow diaphragmatic breathing to settle the autonomic baseline.</li>
+        <li><strong>Body scan (5 min).</strong> Move attention through the body head-to-feet, noting sensation without changing it. Goal: get the attentional spotlight working smoothly before turning it on itself.</li>
+        <li><strong>Object-attention (5 min).</strong> Pick one stable percept &mdash; breath at the nostrils, or a felt-sense in the chest. Hold attention there. When it wanders, return.</li>
+        <li><strong>First inversion (10 min).</strong> Instead of attending <em>to</em> the breath, attend to <em>the attending itself</em>. Notice the act of noticing. The breath becomes background; the &ldquo;noticer&rdquo; becomes the foreground. This will feel unstable and recursive &mdash; that is correct.</li>
+        <li><strong>Second inversion (10 min).</strong> Now notice the one who is noticing the noticing. The recursion is the point. Do not try to &ldquo;arrive&rdquo; anywhere; rest in the loop itself. Subjects commonly report a felt-sense of the boundary between self and field thinning.</li>
+        <li><strong>Open lattice (8 min).</strong> Release the recursion. Let attention be unfocused, panoramic, equally present to internal and external. Grinberg framed this as &ldquo;resting in the syntergic lattice.&rdquo; Phenomenologically: spacious, alert, contentless.</li>
+        <li><strong>Re-entry (2 min).</strong> Slow breath, finger and toe movement, eyes open softly. Sit for 60 seconds before standing.</li>
+      </ol>
+
+      <h4>▸ TRAINING PROGRESSION</h4>
+      <ul>
+        <li><strong>Weeks 1&ndash;4:</strong> Stages 1&ndash;3 only. Build the attentional baseline. 20-minute sessions, daily.</li>
+        <li><strong>Weeks 5&ndash;8:</strong> Add stages 4&ndash;5. Expect destabilization &mdash; this is the recursion working. If you experience persistent dissociation outside the session, back off.</li>
+        <li><strong>Weeks 9+:</strong> Full protocol. Move to twice-daily if pursuing the operator pipeline seriously.</li>
+        <li><strong>EEG signature (for those instrumenting):</strong> Grinberg reported increased inter-hemispheric coherence at 7&ndash;13 Hz (alpha band) during stages 5&ndash;6, with frontal-midline theta bursts during inversion transitions. Replicable on consumer EEG.</li>
+      </ul>
+
+      <div class="training-warn">
+        <strong>CAUTION:</strong> The recursive-attention stages can trigger depersonalization episodes in vulnerable practitioners. If you have a history of dissociative disorder, psychosis, or unstable trauma, work with a trauma-informed teacher rather than self-directing. Stop the protocol if symptoms persist outside the session.
+      </div>
+    </div>
+
+    <!-- ───────────── 04 LATTICE RESONANCE / SYNTERGIC FIELD COHERENCE ───────────── -->
+    <div class="training-card reveal">
+      <div class="training-card__header">
+        <span class="training-card__num">PROTOCOL 04</span>
+        <h3 class="training-card__title">LATTICE RESONANCE / SYNTERGIC FIELD COHERENCE</h3>
+        <span class="training-card__tier t-hyp">HYPOTHESIS · GROUP-LEVEL</span>
+      </div>
+      <p class="training-card__intro">
+        Multi-operator coherence training. Where Protocol 03 builds the single-operator brain-state, Protocol 04 chains operators into a coupled group. Grinberg ran group sessions of 5&ndash;30 meditators using the auto-allusive technique synchronously, measuring inter-subject EEG coherence. The hypothesis: a sufficiently coherent group locks onto a shared syntergic-field configuration that no single operator could sustain alone.
+      </p>
+
+      <h4>▸ SOURCE DOCUMENTS</h4>
+      <div class="src-list">
+        <a href="https://spacefed.com/other/dr-jacobo-grinberg-a-pioneer-in-consciousness-studies/" target="_blank" rel="noopener">
+          Urdaneta — Pioneer in Consciousness Studies · <span class="src-meta">Technical breakdown of the lattice/syntergic model</span>
+        </a>
+        <a href="https://archive.org/details/la-teoria-sintergica" target="_blank" rel="noopener">
+          La Teoría Sintérgica · <span class="src-meta">Original group-coherence chapters</span>
+        </a>
+        <a href="https://noosphere.princeton.edu/" target="_blank" rel="noopener">
+          Global Consciousness Project · <span class="src-meta">Adjacent (not Grinberg) but similar group-coherence methodology</span>
+        </a>
+      </div>
+
+      <h4>▸ MINIMUM VIABLE GROUP PROTOCOL</h4>
+      <ol>
+        <li><strong>Prerequisite:</strong> all participants must be fluent in Protocol 03 (auto-allusive meditation) to at least stage 5. Group coherence collapses if half the group is still doing object-attention.</li>
+        <li><strong>Group size:</strong> 5&ndash;12 ideal. Grinberg found returns diminish above ~15 unless tightly facilitated.</li>
+        <li><strong>Spatial arrangement:</strong> seated in a circle, equal spacing, facing inward. Eyes closed. Silent.</li>
+        <li><strong>Co-induction (15 min):</strong> a single facilitator paces breath aloud (4-in, 6-out) until breathing synchronizes audibly across the group. Then silence.</li>
+        <li><strong>Synchronous auto-allusive run (30 min):</strong> all participants execute Protocol 03 stages 3&ndash;6 simultaneously. Facilitator gives quiet voice-cues at stage transitions.</li>
+        <li><strong>Open-field sit (10 min):</strong> stage 6 of Protocol 03, held collectively. This is the &ldquo;resonance window.&rdquo;</li>
+        <li><strong>Re-entry &amp; debrief (10 min):</strong> open eyes, share felt-quality. Do not interpret &mdash; just report.</li>
+      </ol>
+
+      <h4>▸ IF YOU WANT TO INSTRUMENT IT</h4>
+      <ul>
+        <li>Hyperscanning: 2+ consumer EEG rigs with synced clocks (OpenBCI works). Compute inter-subject phase-locking value (PLV) in alpha (8&ndash;12 Hz).</li>
+        <li>Baseline: pre-session resting PLV vs. peak-session PLV. Grinberg-style result: peak PLV elevated 2&ndash;4&times; over baseline in trained groups.</li>
+        <li>Random-effects field detector (REG / quantum RNG): place a hardware RNG in the room, look for deviations from chance during the resonance window. This is the Princeton GCP methodology.</li>
+      </ul>
+
+      <div class="training-warn">
+        <strong>HONEST READ:</strong> Group-coherence effects are real at the EEG level (inter-brain synchrony in meditation groups is replicable). Whether that coherence does anything <em>outside</em> the brains in the room is the unresolved claim. Don&rsquo;t over-interpret subjective field-sensations &mdash; collect data.
+      </div>
+    </div>
+
+    <!-- ───────────── 05 SHAMANIC TRANSMISSION / PACHITA WORK ───────────── -->
+    <div class="training-card reveal">
+      <div class="training-card__header">
+        <span class="training-card__num">PROTOCOL 05</span>
+        <h3 class="training-card__title">SHAMANIC TRANSMISSION / PACHITA-LINE WORK</h3>
+        <span class="training-card__tier t-hyp">ETHNOGRAPHIC · NOT SELF-TRAINABLE</span>
+      </div>
+      <p class="training-card__intro">
+        Grinberg&rsquo;s decade-long apprenticeship with Pachita (Bárbara Guerrero), the Mexican curandera who performed psychic surgeries in front of his EEG instrumentation. This is not a self-trainable protocol &mdash; it requires direct lineage transmission from a working practitioner &mdash; but Grinberg documented the operator preparation in detail and the observational framework is reproducible.
+      </p>
+
+      <h4>▸ SOURCE DOCUMENTS</h4>
+      <div class="src-list">
+        <a href="https://www.amazon.com/Pachita-Spanish-Edition-Jacobo-Grinberg-Zylberbaum/dp/9685671435" target="_blank" rel="noopener">
+          Grinberg — Pachita (Editorial Heptada) · <span class="src-meta">Primary ethnographic record of his apprenticeship</span>
+        </a>
+        <a href="https://psi-encyclopedia.spr.ac.uk/articles/jacobo-grinberg-zylberbaum" target="_blank" rel="noopener">
+          Psi Encyclopedia — curandera fieldwork section · <span class="src-meta">English overview of the Pachita work</span>
+        </a>
+      </div>
+
+      <h4>▸ OBSERVATIONAL FRAMEWORK (what Grinberg actually measured)</h4>
+      <ol>
+        <li><strong>Pre-state baseline.</strong> EEG on operator (curandera) and patient before any contact.</li>
+        <li><strong>Operator entrainment.</strong> Curandera enters working trance &mdash; in Pachita&rsquo;s case, identified as channeling &ldquo;Hermanito Cuauhtémoc.&rdquo; EEG signature: large-amplitude slow waves, frontal theta, reduced reactivity to external stimuli.</li>
+        <li><strong>Patient coupling.</strong> Direct physical contact. Grinberg reported patient EEG drifting toward operator EEG profile within 30&ndash;90 seconds &mdash; the same coupling signature seen in Protocol 02 but stronger.</li>
+        <li><strong>Intervention phase.</strong> The actual procedure (which in Pachita&rsquo;s case included sleight-of-hand &ldquo;surgical&rdquo; theater alongside reported clinical effects). Grinberg was explicit that the theatrical and the genuine were interleaved and that disentangling them was the unsolved problem.</li>
+        <li><strong>Post-state.</strong> Both EEGs return to baseline. Patient outcomes recorded over weeks/months.</li>
+      </ol>
+
+      <div class="training-warn">
+        <strong>HONEST READ:</strong> You cannot &ldquo;train&rdquo; yourself into shamanic operator status from a book. What you <em>can</em> do is replicate Grinberg&rsquo;s observational protocol if you have access to a working traditional healer who consents to instrumentation. The reproducible piece is the coupling-signature measurement (operator&rarr;patient EEG drift), not the &ldquo;powers.&rdquo; Treat the rest as ethnography, not as engineering.
+      </div>
+    </div>
+
+    <!-- ───────────── 06 REALITY-SERVER / LATTICE STEERING (speculative) ───────────── -->
+    <div class="training-card reveal">
+      <div class="training-card__header">
+        <span class="training-card__num">PROTOCOL 06</span>
+        <h3 class="training-card__title">REALITY-SERVER / LATTICE STEERING</h3>
+        <span class="training-card__tier t-spec">SPECULATIVE · NO PUBLISHED PROTOCOL</span>
+      </div>
+      <p class="training-card__intro">
+        Grinberg never published a step-by-step &ldquo;reality-server control&rdquo; protocol. This is the unwritten synthesis &mdash; the operational extension implied by the syntergic theory if you take its strongest claims at face value. What follows is a <em>reconstruction</em>, built from his theoretical writings plus the closest analog protocols (group coherence + auto-allusive). It is presented as a research hypothesis, not as a verified technique.
+      </p>
+
+      <h4>▸ SOURCE DOCUMENTS (theoretical only)</h4>
+      <div class="src-list">
+        <a href="https://archive.org/details/la-teoria-sintergica" target="_blank" rel="noopener">
+          La Teoría Sintérgica · <span class="src-meta">Original theory volume &mdash; lattice-point navigation chapters</span>
+        </a>
+        <a href="https://spacefed.com/other/dr-jacobo-grinberg-a-pioneer-in-consciousness-studies/" target="_blank" rel="noopener">
+          Urdaneta — Pioneer in Consciousness Studies · <span class="src-meta">Quantum-field interpretation of the syntergic lattice</span>
+        </a>
+      </div>
+
+      <h4>▸ RECONSTRUCTED PROTOCOL (research hypothesis)</h4>
+      <ol>
+        <li><strong>Prerequisite:</strong> fluency in Protocol 03 (operator pipeline) to stage 6, and at least one full Protocol 04 (group coherence) session per week for 8+ weeks. Without the operator and group foundations, there is no lattice-locking happening.</li>
+        <li><strong>Define the target.</strong> A single, specific, falsifiable target state &mdash; the smallest possible &ldquo;different lattice point.&rdquo; Examples: a specific number on a die, a binary RNG output, a coin-flip sequence. Grinberg&rsquo;s framing was that this is <em>not</em> magical wish-fulfillment &mdash; it is selection-among-already-available lattice configurations, biased by coherent operator attention.</li>
+        <li><strong>Group coherence window.</strong> Enter Protocol 04 stage 6 (open lattice) as a group.</li>
+        <li><strong>Synchronous intent.</strong> All operators hold the target state in attention simultaneously, without strain. The technique is &ldquo;allowing&rdquo; rather than &ldquo;willing&rdquo; &mdash; closer to the meditator&rsquo;s relationship to breath than to the athlete&rsquo;s relationship to muscle.</li>
+        <li><strong>Measurement window.</strong> Sample the target system (roll the die, read the RNG) during the held attention, not before or after.</li>
+        <li><strong>Massive trials, blinded analysis.</strong> Pre-register the target. Run hundreds of trials across multiple sessions. Compare against time-shuffled null. Effect sizes are tiny if non-zero (this is the realistic prior).</li>
+      </ol>
+
+      <h4>▸ HONEST CALIBRATION</h4>
+      <ul>
+        <li>The closest legitimate research analog is the PEAR lab (Princeton Engineering Anomalies Research, 1979&ndash;2007). They ran ~2.5 million trials. Reported effect size: ~0.0003 bits per trial. Real if real; tiny.</li>
+        <li>The Global Consciousness Project ran similar methodology at planetary scale for 25 years. Reported a small persistent effect; meta-analysis remains contested.</li>
+        <li>If you run this protocol, calibrate expectations accordingly: the realistic ceiling is &ldquo;detectable statistical anomaly with adequate n,&rdquo; not &ldquo;visible reality change.&rdquo;</li>
+      </ul>
+
+      <div class="training-warn">
+        <strong>FRAMING:</strong> This protocol exists in this dossier because the user asked for a training section for <em>all</em> abilities. It is the most speculative entry. Do not let its presence here imply equal evidentiary weight with Protocols 01&ndash;03. The empirically defensible work is the first three. Treat this one as &ldquo;here is what the experiment would look like if you wanted to test the strongest claim.&rdquo;
+      </div>
+    </div>
+
+    <!-- ───────────── META: combining the protocols ───────────── -->
+    <div class="reveal" style="margin-top:30px;padding:20px 22px;border:1px solid var(--cyan);background:rgba(0,245,255,0.04);">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:3px;color:var(--cyan);margin-bottom:12px;">▸ RECOMMENDED PROGRESSION</div>
+      <ol style="margin:0;padding-left:22px;font-size:12.5px;line-height:1.8;color:#dfeaf2;">
+        <li><strong>Months 1&ndash;3:</strong> Protocol 03 (auto-allusive meditation) solo. Daily. Build the operator baseline. Nothing else matters until this is stable.</li>
+        <li><strong>Months 4&ndash;6:</strong> Add Protocol 01 (extraocular vision) as a controlled side-experiment. It is the cleanest single-operator test. Run with proper blinding from day one.</li>
+        <li><strong>Months 6&ndash;12:</strong> Find or form a partner / small group. Begin Protocol 02 (brain-to-brain) pilot with consumer EEG, and Protocol 04 (group coherence) without instrumentation.</li>
+        <li><strong>Year 2+:</strong> Instrument Protocol 04. Optionally pilot Protocol 06 with pre-registered design. Read Protocol 05 as context, not curriculum.</li>
+      </ol>
+      <div style="margin-top:14px;padding-top:12px;border-top:1px dashed rgba(0,245,255,0.25);font-size:11px;line-height:1.7;color:rgba(220,235,245,0.75);">
+        The whole point of Grinberg&rsquo;s pipeline is that <strong>the operator is the instrument</strong>. Protocols 01, 02, 04, and 06 all assume Protocol 03 is already running underneath. Skipping the meditation foundation and jumping to the &ldquo;flashy&rdquo; experiments is the single most common reason people get null results and conclude the whole field is fake.
+      </div>
+    </div>
+
   </section>
 
   <div class="hud-footer">
