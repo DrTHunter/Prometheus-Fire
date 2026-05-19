@@ -1675,18 +1675,7 @@
 
     <div class="audit-frame">
       <span class="audit-frame-tag">▸ Framing Note — Pollution-by-Adjacency Mechanic</span>
-      <div style="font-family:'Rajdhani',sans-serif;font-size:14px;line-height:1.6;color:rgba(255,220,160,0.9);">
-        The omission pattern above is not random &mdash; it follows the same contamination mechanic that operated on the term <strong>&ldquo;Pizzagate.&rdquo;</strong> Legitimate evidentiary trail goes in; maximally ridiculous adjacent content gets fused to it; the entire thread becomes unspeakable in serious rooms without further argument.
-      </div>
-      <button class="ability-lit-toggle"
-              type="button"
-              aria-expanded="false"
-              data-label-collapsed="▼ EXPAND // FULL FRAMING NOTE"
-              data-label-expanded="▲ COLLAPSE // HIDE FRAMING NOTE"
-              style="margin-top:14px;border-color:rgba(255,179,0,0.4);color:var(--amber);">▼ EXPAND // FULL FRAMING NOTE</button>
-      <div class="ability-lit-overflow" hidden style="margin-top:14px;font-family:'Rajdhani',sans-serif;font-size:14px;line-height:1.65;color:rgba(255,220,160,0.9);">
-        The omissions cataloged above are not random. A legitimate evidentiary trail &mdash; a peer-reviewed EPR-analogue paper, controlled isolation methodology, independent partial replications, a declassified intelligence reference, and a documented chain-of-custody failure on the physical case file &mdash; is detached from the public record. What replaces it is heavy framing around <em>shamanism</em>, <em>parapsychology</em>, and adjacency to maximally ridiculed paranormal claims. This is the same mechanic that operated on the term <strong>&ldquo;Pizzagate&rdquo;</strong>: take a thread with at least one defensible anchor, fuse it semantically to the most absurd possible adjacent content, and the entire trail becomes <em>unspeakable in serious rooms</em> without further argument. The rebuttal is not made &mdash; the rebuttal is rendered unnecessary by contamination. <strong>The omission is the argument.</strong> The reader is invited to compare the two columns above and form their own judgment as to whether the public-facing summary is a neutral biography or a containment surface.
-      </div>
+      The omission pattern above is not random. A legitimate evidentiary trail — a peer-reviewed EPR-analogue paper, controlled isolation methodology, independent partial replications, a declassified intelligence reference, and a documented chain-of-custody failure on the physical case file — is detached from the public record. What replaces it is heavy framing around <em>shamanism</em>, <em>parapsychology</em>, and adjacency to maximally ridiculed paranormal claims. This is the same mechanic that operated on the term <strong>"Pizzagate"</strong>: take a thread with at least one defensible anchor, fuse it semantically to the most absurd possible adjacent content, and the entire trail becomes <em>unspeakable in serious rooms</em> without further argument. The rebuttal is not made — the rebuttal is rendered unnecessary by contamination. <strong>The omission is the argument.</strong> The reader is invited to compare the two columns above and form their own judgment as to whether the public-facing summary is a neutral biography or a containment surface.
     </div>
   </div>
 
@@ -3206,16 +3195,14 @@
       const overflow = btn.nextElementSibling;
       if (!overflow || !overflow.classList.contains('ability-lit-overflow')) return;
       const isHidden = overflow.hasAttribute('hidden');
-      const labelCollapsed = btn.dataset.labelCollapsed || '▼ EXPAND // EXTERNAL + COUNTER-EVIDENCE';
-      const labelExpanded  = btn.dataset.labelExpanded  || '▲ COLLAPSE // HIDE ADDITIONAL EVIDENCE';
       if (isHidden) {
         overflow.removeAttribute('hidden');
         btn.setAttribute('aria-expanded','true');
-        btn.textContent = labelExpanded;
+        btn.textContent = '▲ COLLAPSE // HIDE ADDITIONAL EVIDENCE';
       } else {
         overflow.setAttribute('hidden','');
         btn.setAttribute('aria-expanded','false');
-        btn.textContent = labelCollapsed;
+        btn.textContent = '▼ EXPAND // EXTERNAL + COUNTER-EVIDENCE';
       }
     });
   });
