@@ -1762,15 +1762,24 @@
         <h3 class="ability-lit-title">REALITY SERVER / SYNTERGIC FIELD CONTROL</h3>
         <span class="ability-lit-conf tier-hypothesis">HYPOTHESIS · 28% ▲ 34% <small style="opacity:.85;letter-spacing:1px;">(SUPPRESSION +6 · SPECULATIVE)</small></span>
       </header>
-      <div class="ability-lit-suppress reveal" style="margin:10px 0 18px;padding:10px 14px;border:1px solid var(--red);border-left-width:4px;background:rgba(255,0,64,0.06);font-size:11px;line-height:1.55;letter-spacing:1px;color:var(--red);text-transform:uppercase;">
-        ▸ CONFIDENCE BOOST · SMALL UPLIFT ONLY &mdash;
-        <span style="color:#ffd6d6;text-transform:none;letter-spacing:0.4px;">
-          Earlier framings of this site put Reality Server as the primary suppression target. Honest re-read: <strong>that&rsquo;s the speculative one</strong>. The declassified Stargate file cites the transferred-potential work and the operator-training protocol &mdash; not the syntergic field-control synthesis. Stargate&rsquo;s mandate was remote viewing and anomalous-cognition <em>intelligence gathering</em>, not reality engineering. The reality-server claim is a <em>theoretical extension</em> Grinberg had not yet published; it&rsquo;s possible the unwritten next paper was the structural target of his removal, but pinning it on Stargate specifically is the weakest link in the chain. The timing is suggestive; the mandate alignment is not. Small uplift retained (+6) because the timing of his disappearance still admits this reading, but it is no longer the headline.
-          <br><br>
-          <button type="button" data-info="stargate" style="display:inline-block;margin:4px 6px 0 0;padding:6px 12px;font-family:inherit;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--red);background:transparent;border:1px solid var(--red);cursor:pointer;">▸ OPEN · WHAT THE STARGATE FILE ACTUALLY CITES</button>
-          <button type="button" data-info="realityview" style="display:inline-block;margin:4px 0 0;padding:6px 12px;font-family:inherit;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--amber);background:transparent;border:1px solid var(--amber);cursor:pointer;">▸ OPEN · IS REALITY-SERVER CONTROL LEGIT? (HONEST READ)</button>
-        </span>
+      <div class="info-trigger-row reveal" style="margin:10px 0 18px;display:flex;flex-direction:column;gap:8px;">
+        <button type="button" class="info-trigger" data-accent="red" data-info="stargate">
+          <span><span class="chev">▸</span> WHAT THE STARGATE FILE ACTUALLY CITES</span>
+          <span class="hint">CLICK TO EXPAND</span>
+        </button>
+        <button type="button" class="info-trigger" data-accent="amber" data-info="realityview">
+          <span><span class="chev">▸</span> IS REALITY-SERVER CONTROL LEGIT? (HONEST READ)</span>
+          <span class="hint">CLICK TO EXPAND</span>
+        </button>
       </div>
+      <style>
+        .info-trigger { width:100%; display:flex; align-items:center; justify-content:space-between; gap:12px; cursor:pointer; user-select:none; outline:none; padding:14px 22px; font-family:inherit; font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--amber); background:rgba(255,179,0,0.06); border:1px solid var(--amber); border-left-width:5px; text-align:left; }
+        .info-trigger[data-accent="red"] { color:var(--red); background:rgba(255,0,64,0.05); border-color:var(--red); }
+        .info-trigger:hover { background:rgba(255,255,255,0.05); }
+        .info-trigger:focus-visible { box-shadow:inset 0 0 0 1px currentColor; }
+        .info-trigger .chev { display:inline-block; font-size:14px; }
+        .info-trigger .hint { font-size:9px; letter-spacing:2px; opacity:0.55; }
+      </style>
 
       <div class="ability-lit-subhead">▸ PRIMARY — GRINBERG SOURCES</div>
       <div class="works-grid">
