@@ -651,6 +651,82 @@
   }
   .alert-text strong { color: var(--red); font-weight: 700; }
 
+  /* ── WIKIPEDIA AUDIT PANEL ── */
+  .audit-panel {
+    background: rgba(255,179,0,0.04);
+    border: 1px solid rgba(255,179,0,0.3);
+    border-left: 3px solid var(--amber);
+    padding: 28px 32px;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .audit-panel .panel-header { color: var(--amber); text-shadow: 0 0 10px rgba(255,179,0,0.6); border-bottom-color: rgba(255,179,0,0.2); }
+  .audit-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 8px;
+  }
+  @media (max-width: 700px) { .audit-grid { grid-template-columns: 1fr; } }
+  .audit-col {
+    border: 1px solid var(--border);
+    background: var(--panel);
+    padding: 18px 20px;
+    position: relative;
+  }
+  .audit-col--included { border-left: 3px solid var(--cyan); }
+  .audit-col--omitted { border-left: 3px solid var(--red); background: rgba(255,45,85,0.04); border-color: rgba(255,45,85,0.3); }
+  .audit-col-label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(0,245,255,0.15);
+  }
+  .audit-col--included .audit-col-label { color: var(--cyan); text-shadow: var(--glow); }
+  .audit-col--omitted .audit-col-label { color: var(--red); text-shadow: var(--glow-red); border-bottom-color: rgba(255,45,85,0.2); }
+  .audit-item {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    padding: 8px 0 8px 18px;
+    position: relative;
+    color: rgba(0,245,255,0.8);
+    border-bottom: 1px dashed rgba(0,245,255,0.08);
+  }
+  .audit-item:last-child { border-bottom: none; }
+  .audit-item::before {
+    content: '▸';
+    position: absolute; left: 0; top: 8px;
+    font-size: 11px;
+    color: rgba(0,245,255,0.4);
+  }
+  .audit-col--omitted .audit-item { color: rgba(255,180,180,0.85); border-bottom-color: rgba(255,45,85,0.1); }
+  .audit-col--omitted .audit-item::before { content: '⊘'; color: var(--red); text-shadow: var(--glow-red); }
+  .audit-frame {
+    margin-top: 22px;
+    padding: 18px 22px;
+    border: 1px solid var(--amber);
+    border-left-width: 5px;
+    background: rgba(255,179,0,0.05);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 14px;
+    line-height: 1.65;
+    color: rgba(255,220,160,0.9);
+  }
+  .audit-frame strong { color: var(--amber); text-shadow: 0 0 8px rgba(255,179,0,0.5); }
+  .audit-frame em { color: rgba(0,245,255,0.85); font-style: italic; }
+  .audit-frame .audit-frame-tag {
+    display: block;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--amber);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
   /* ── CIA TAG ── */
   .cia-badge {
     display: inline-block;
@@ -1237,6 +1313,7 @@
     <a href="#experiment">EXPERIMENT</a>
     <a href="#final-signal">FINAL SIGNAL</a>
     <a href="#disappearance">INCIDENT</a>
+    <a href="#wiki-audit" style="color:var(--amber);">AUDIT</a>
     <a href="#works">ARCHIVES</a>
     <a href="#primary-source" style="color:var(--green);">VOICE</a>
     <a href="#training" style="color:var(--amber);">TRAINING</a>
@@ -1254,6 +1331,7 @@
   <a href="#experiment" onclick="closeNav()">▸ EXPERIMENT LOG</a>
   <a href="#final-signal" onclick="closeNav()">▸ FINAL SIGNAL</a>
   <a href="#disappearance" onclick="closeNav()">▸ INCIDENT REPORT</a>
+  <a href="#wiki-audit" onclick="closeNav()" style="color:var(--amber);">▸ WIKIPEDIA AUDIT</a>
   <a href="#works" onclick="closeNav()">▸ ARCHIVES</a>
   <a href="#primary-source" onclick="closeNav()" style="color:var(--green);">▸ GRINBERG / IN HIS OWN WORDS</a>
   <a href="#training" onclick="closeNav()" style="color:var(--amber);">▸ TRAINING PROTOCOLS</a>
@@ -1558,6 +1636,46 @@
       <div style="margin-bottom:10px;"><strong style="color:var(--amber);">② REALITY SERVER / SYNTERGIC FIELD CONTROL — secondary driver.</strong> Strategic-tier application: if even a fraction of the lattice-influence model is real, it implies a coordinated-intention lever on collective trajectory. That is not a science problem, it is a national-security problem. Sufficient on its own to justify quiet acquisition.</div>
       <div><strong style="color:var(--cyan);">③ LATTICE RESONANCE / SYNTERGIC THEORY — enabling framework.</strong> The theoretical chassis that makes 01 and 02 coherent as a program rather than as isolated effects. Less likely to be the trigger on its own, but it is what made the rest legible to the people who read the file.</div>
       <div style="margin-top:12px;font-size:11px;letter-spacing:1px;color:var(--red);text-transform:uppercase;">∴ The transferred-potential result is the proximate cause. The syntergic framework is what made the result worth removing rather than ignoring.</div>
+    </div>
+  </div>
+
+  <!-- WIKIPEDIA AUDIT -->
+  <div id="wiki-audit" class="hud-divider reveal"><span>RECORD CORRECTION // WIKIPEDIA AUDIT</span></div>
+  <div class="reveal" style="font-size:11px;letter-spacing:1.5px;color:var(--amber);text-transform:uppercase;margin:-6px 0 18px;">
+    ▸ Source under review: <em>en.wikipedia.org/wiki/Jacobo_Grinberg</em> · Method: structured comparison against the sourced material catalogued elsewhere on this page · No editorial overlay applied to the omission column
+  </div>
+  <div class="audit-panel reveal">
+    <div class="panel-header">▸ PUBLIC RECORD vs ARCHIVAL RECORD — DELTA ANALYSIS</div>
+
+    <div class="audit-grid">
+
+      <div class="audit-col audit-col--included">
+        <div class="audit-col-label">◰ WIKIPEDIA INCLUDES</div>
+        <div class="audit-item">Biographical frame: Mexico City birth, UNAM affiliation, NYU doctorate, INPEC founding.</div>
+        <div class="audit-item">Identification as a researcher of consciousness, telepathy, and shamanism.</div>
+        <div class="audit-item">Affiliation with figures such as Pachita and other Mexican curanderos.</div>
+        <div class="audit-item">The fact of his 8 December 1994 disappearance and the simultaneous disappearance of his second wife Teresa Mendoza.</div>
+        <div class="audit-item">Heavy editorial weight on the "fringe science" / "parapsychology" framing.</div>
+        <div class="audit-item">Adjacent association with maximally ridiculed paranormal claims and pop-cultural figures, positioned proximate to the biography.</div>
+      </div>
+
+      <div class="audit-col audit-col--omitted">
+        <div class="audit-col-label">⊘ WIKIPEDIA OMITS</div>
+        <div class="audit-item"><strong>Physics Essays, Vol. 7(4), December 1994</strong> — "The Einstein-Podolsky-Rosen Paradox in the Brain: The Transferred Potential" — his final peer-reviewed paper. 114+ academic citations.</div>
+        <div class="audit-item">Methodology of the transferred-potential experiment: paired meditators, <strong>electromagnetically isolated Faraday chambers 14.5 m apart</strong>, 100 random light flashes to Subject A, EEG correlation in Subject B with no possible signal path.</div>
+        <div class="audit-item">The partial replications and follow-up work by <strong>Wackermann (2003), Standish (2004), and Kittenis (2004)</strong> — independent EEG-coupling studies in the same paradigm.</div>
+        <div class="audit-item">The <strong>CIA Stargate program documents declassified August 2023</strong> that reference Grinberg's studies by name. Stargate terminated 1995 — one year after his disappearance.</div>
+        <div class="audit-item"><strong>Comandante Clemente Padilla</strong> — the assigned investigator — was removed from the case under pressure from Mexico's Attorney General's Office. A second investigator contradicted his findings. Padilla took retirement rather than comply.</div>
+        <div class="audit-item">Grinberg's brother delivered the full archive to the police chief to restart the investigation. <strong>Three days later the file vanished from the police chief's office.</strong></div>
+        <div class="audit-item">All research materials, computers, files, and writings were absent from the residence at the time investigators arrived.</div>
+        <div class="audit-item">President Ernesto Zedillo's personal request for information on the case file prior to the investigation being called off.</div>
+      </div>
+
+    </div>
+
+    <div class="audit-frame">
+      <span class="audit-frame-tag">▸ Framing Note — Pollution-by-Adjacency Mechanic</span>
+      The omission pattern above is not random. A legitimate evidentiary trail — a peer-reviewed EPR-analogue paper, controlled isolation methodology, independent partial replications, a declassified intelligence reference, and a documented chain-of-custody failure on the physical case file — is detached from the public record. What replaces it is heavy framing around <em>shamanism</em>, <em>parapsychology</em>, and adjacency to maximally ridiculed paranormal claims. This is the same mechanic that operated on the term <strong>"Pizzagate"</strong>: take a thread with at least one defensible anchor, fuse it semantically to the most absurd possible adjacent content, and the entire trail becomes <em>unspeakable in serious rooms</em> without further argument. The rebuttal is not made — the rebuttal is rendered unnecessary by contamination. <strong>The omission is the argument.</strong> The reader is invited to compare the two columns above and form their own judgment as to whether the public-facing summary is a neutral biography or a containment surface.
     </div>
   </div>
 
