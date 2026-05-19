@@ -1666,10 +1666,21 @@
   <!-- WIKIPEDIA AUDIT -->
   <div id="wiki-audit" class="hud-divider reveal"><span>RECORD CORRECTION // WIKIPEDIA AUDIT</span></div>
   <div class="reveal" style="font-size:11px;letter-spacing:1.5px;color:var(--amber);text-transform:uppercase;margin:-6px 0 18px;">
-    ▸ Source under review: <em>en.wikipedia.org/wiki/Jacobo_Grinberg</em> · Method: structured comparison against the sourced material catalogued elsewhere on this page · No editorial overlay applied to the omission column
+    ▸ Public knowledge analysis &mdash; Pollution-by-adjacency mechanic
   </div>
-  <div class="audit-panel reveal">
-    <div class="panel-header">▸ PUBLIC RECORD vs ARCHIVAL RECORD — DELTA ANALYSIS</div>
+  <style>
+    details.audit-panel > summary.panel-header { list-style:none; cursor:pointer; display:flex; align-items:center; justify-content:space-between; gap:12px; user-select:none; outline:none; }
+    details.audit-panel > summary.panel-header::-webkit-details-marker { display:none; }
+    details.audit-panel > summary.panel-header::marker { content:""; }
+    details.audit-panel > summary.panel-header .chev { transition:transform 0.2s ease; display:inline-block; }
+    details.audit-panel[open] > summary.panel-header .chev { transform:rotate(90deg); }
+    details.audit-panel > summary.panel-header .hint { font-size:9px; letter-spacing:2px; opacity:0.55; }
+    details.audit-panel:not([open]) > summary.panel-header { border-bottom-color:transparent !important; }
+    details.audit-panel:not([open]) { padding-bottom:0; }
+    details.audit-panel > summary.panel-header:hover { background:rgba(255,255,255,0.03); }
+  </style>
+  <details class="audit-panel reveal">
+    <summary class="panel-header"><span><span class="chev">▸</span> PUBLIC RECORD vs ARCHIVAL RECORD &mdash; DELTA ANALYSIS</span><span class="hint">CLICK TO EXPAND</span></summary>
 
     <div class="audit-grid">
 
@@ -1704,7 +1715,7 @@
         <div class="work-meta">A legitimate evidentiary trail fused to maximally ridiculous adjacent content &mdash; the &ldquo;Pizzagate&rdquo; mechanic. The rebuttal is not made; it is rendered unnecessary by contamination. The omission is the argument.</div>
       </div>
     </div>
-  </div>
+  </details>
 
   <!-- WORKS -->
   <section id="works" class="works-section">
