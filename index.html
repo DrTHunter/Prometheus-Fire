@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
 <title>INPEC // LATTICE PROTOCOL // GRINBERG NODE</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap');
@@ -3138,6 +3141,18 @@
 </div>
 
 <script>
+  // Access gate (session-scoped)
+  const SITE_ACCESS_KEY = 'prometheus_fire_access_v1';
+  const SITE_ACCESS_PASSWORD = 'KHEPRI://BLACKSUN::13-LATTICE';
+  if (sessionStorage.getItem(SITE_ACCESS_KEY) !== '1') {
+    const entered = window.prompt('AUTH REQUIRED // ENTER ACCESS PHRASE');
+    if (entered !== SITE_ACCESS_PASSWORD) {
+      document.documentElement.innerHTML = '<head><title>ACCESS DENIED</title></head><body style="margin:0;background:#020a0f;color:#ff2d55;font-family:monospace;display:flex;align-items:center;justify-content:center;min-height:100vh;letter-spacing:2px;">ACCESS DENIED // INVALID PHRASE</body>';
+      throw new Error('Access denied');
+    }
+    sessionStorage.setItem(SITE_ACCESS_KEY, '1');
+  }
+
   // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver(entries => {
