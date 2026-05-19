@@ -1760,26 +1760,25 @@
       <header class="ability-lit-header">
         <span class="ability-lit-tag">ABILITY 06</span>
         <h3 class="ability-lit-title">REALITY SERVER / SYNTERGIC FIELD CONTROL</h3>
-        <span class="ability-lit-conf tier-hypothesis">HYPOTHESIS</span>
+        <details class="ability-lit-conf-wrap tier-hypothesis">
+          <summary class="ability-lit-conf tier-hypothesis">HYPOTHESIS · 28%</summary>
+          <div class="ability-lit-conf-body">The lattice model and transferred-potential results are peer-reviewed. <em>Actively steering</em> which lattice point you decode next is Grinberg&rsquo;s unwritten operational synthesis &mdash; the projected next study he never got to run. Hypothesis tier reflects that gap: real framework, unproven control loop.</div>
+        </details>
       </header>
-      <details class="hyp-blurb reveal" style="margin:8px 0 14px;">
-        <summary>▸ HYPOTHESIS &mdash; why this stays speculative<span class="hyp-blurb-hint">CLICK TO EXPAND</span></summary>
-        <div class="hyp-blurb-body">The lattice model and transferred-potential results are peer-reviewed. <em>Actively steering</em> which lattice point you decode next is Grinberg&rsquo;s unwritten operational synthesis &mdash; the projected next study he never got to run. Hypothesis tier reflects that gap: real framework, unproven control loop.</div>
-      </details>
       <style>
-        .hyp-blurb > summary { list-style:none; cursor:pointer; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 14px; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--amber); background:rgba(255,179,0,0.05); border:1px solid var(--amber); border-left-width:4px; user-select:none; outline:none; }
-        .hyp-blurb > summary::-webkit-details-marker { display:none; }
-        .hyp-blurb > summary::marker { content:""; }
-        .hyp-blurb > summary:hover { background:rgba(255,255,255,0.04); }
-        .hyp-blurb .hyp-blurb-hint { font-size:9px; letter-spacing:2px; opacity:0.55; }
-        .hyp-blurb[open] > summary { border-bottom-width:0; }
-        .hyp-blurb-body { padding:12px 14px; border:1px solid var(--amber); border-top:0; border-left-width:4px; background:rgba(255,179,0,0.03); font-size:12.5px; line-height:1.6; color:#dfeaf2; }
-        .hyp-blurb[data-accent="green"] > summary { color:var(--green); background:rgba(0,255,157,0.05); border-color:var(--green); }
-        .hyp-blurb[data-accent="green"] .hyp-blurb-body { border-color:var(--green); background:rgba(0,255,157,0.03); }
-        .hyp-blurb[data-accent="cyan"] > summary { color:var(--cyan); background:rgba(0,245,255,0.05); border-color:var(--cyan); }
-        .hyp-blurb[data-accent="cyan"] .hyp-blurb-body { border-color:var(--cyan); background:rgba(0,245,255,0.03); }
-        .hyp-blurb[data-accent="red"] > summary { color:var(--red); background:rgba(255,0,64,0.05); border-color:var(--red); }
-        .hyp-blurb[data-accent="red"] .hyp-blurb-body { border-color:var(--red); background:rgba(255,0,64,0.03); }
+        .ability-lit-conf-wrap { margin-left:auto; }
+        .ability-lit-conf-wrap > summary { list-style:none; cursor:pointer; user-select:none; outline:none; display:inline-flex; align-items:center; gap:10px; font-family:'Orbitron', sans-serif; font-size:9px; letter-spacing:2px; padding:4px 10px; border:1px solid currentColor; text-transform:uppercase; }
+        .ability-lit-conf-wrap > summary::-webkit-details-marker { display:none; }
+        .ability-lit-conf-wrap > summary::marker { content:""; }
+        .ability-lit-conf-wrap > summary::after { content:"▾"; opacity:0.7; font-size:10px; }
+        .ability-lit-conf-wrap[open] > summary::after { content:"▴"; }
+        .ability-lit-conf-wrap > summary:hover { background:rgba(255,255,255,0.04); }
+        .ability-lit-conf-wrap[open] { flex:1 0 100%; }
+        .ability-lit-conf-body { margin-top:10px; padding:12px 14px; border:1px solid currentColor; border-left-width:4px; font-size:12.5px; line-height:1.6; color:#dfeaf2; background:rgba(255,255,255,0.025); }
+        .ability-lit-conf-wrap.tier-proven > .ability-lit-conf-body { border-color:var(--green); }
+        .ability-lit-conf-wrap.tier-hypothesis > .ability-lit-conf-body,
+        .ability-lit-conf-wrap.tier-mixed > .ability-lit-conf-body { border-color:var(--amber); }
+        .ability-lit-conf-wrap.tier-disputed > .ability-lit-conf-body { border-color:var(--red); }
       </style>
       <div class="info-trigger-row reveal" style="margin:10px 0 18px;display:flex;flex-direction:column;gap:8px;">
         <button type="button" class="info-trigger" data-accent="red" data-info="stargate">
@@ -1889,13 +1888,11 @@
       <header class="ability-lit-header">
         <span class="ability-lit-tag">ABILITY 03</span>
         <h3 class="ability-lit-title">BRAIN-TO-BRAIN INTERFACE / TRANSFERRED POTENTIAL</h3>
-        <span class="ability-lit-conf tier-proven">STRONGEST EVIDENCE</span>
+        <details class="ability-lit-conf-wrap tier-proven">
+          <summary class="ability-lit-conf tier-proven">STRONGEST EVIDENCE · 72%</summary>
+          <div class="ability-lit-conf-body">Three independent labs (Wackermann 2003, Standish 2004, Kittenis 2004) replicated the EEG/fMRI coupling under stricter shielding. Non-electromagnetic information transfer between isolated brains is the exact capability Stargate-era programs targeted &mdash; and it&rsquo;s the only line in the catalog where the suppression read does the least extrapolation.</div>
+        </details>
       </header>
-
-      <details class="hyp-blurb reveal" data-accent="green" style="margin:8px 0 14px;">
-        <summary>▸ STRONGEST EVIDENCE &mdash; why this is the headline<span class="hyp-blurb-hint">CLICK TO EXPAND</span></summary>
-        <div class="hyp-blurb-body">Three independent labs (Wackermann 2003, Standish 2004, Kittenis 2004) replicated the EEG/fMRI coupling under stricter shielding. Non-electromagnetic information transfer between isolated brains is the exact capability Stargate-era programs targeted &mdash; and it&rsquo;s the only line in the catalog where the suppression read does the least extrapolation.</div>
-      </details>
 
       <div class="ability-lit-subhead">▸ PRIMARY — GRINBERG SOURCES</div>
       <div class="works-grid">
@@ -1978,13 +1975,11 @@
       <header class="ability-lit-header">
         <span class="ability-lit-tag">ABILITY 04</span>
         <h3 class="ability-lit-title">SHAMANIC POWERS / CURANDERA TRANSMISSION</h3>
-        <span class="ability-lit-conf tier-mixed">MIXED</span>
+        <details class="ability-lit-conf-wrap tier-mixed">
+          <summary class="ability-lit-conf tier-mixed">MIXED · 55%</summary>
+          <div class="ability-lit-conf-body">Eyewitness accounts of Pachita&rsquo;s curandera work plus Grinberg&rsquo;s own ethnography are credible but uninstrumented. Placebo, ritual catharsis, and patient&ndash;healer rapport remain viable competing accounts. Real cultural phenomenon; unproven paranormal mechanism.</div>
+        </details>
       </header>
-
-      <details class="hyp-blurb reveal" data-accent="cyan" style="margin:8px 0 14px;">
-        <summary>▸ MIXED &mdash; why the tier sits here<span class="hyp-blurb-hint">CLICK TO EXPAND</span></summary>
-        <div class="hyp-blurb-body">Eyewitness accounts of Pachita&rsquo;s curandera work plus Grinberg&rsquo;s own ethnography are credible but uninstrumented. Placebo, ritual catharsis, and patient&ndash;healer rapport remain viable competing accounts. Real cultural phenomenon; unproven paranormal mechanism.</div>
-      </details>
 
       <div class="ability-lit-subhead">▸ PRIMARY — GRINBERG SOURCES</div>
       <div class="works-grid">
@@ -2111,13 +2106,11 @@
       <header class="ability-lit-header">
         <span class="ability-lit-tag">ABILITY 02</span>
         <h3 class="ability-lit-title">LATTICE RESONANCE / SYNTERGIC THEORY</h3>
-        <span class="ability-lit-conf tier-hypothesis">HYPOTHESIS</span>
+        <details class="ability-lit-conf-wrap tier-hypothesis">
+          <summary class="ability-lit-conf tier-hypothesis">HYPOTHESIS · 38%</summary>
+          <div class="ability-lit-conf-body">Syntergic Theory is a published unifying model but has not yet produced a falsifiable prediction independent of the transferred-potential data it was built to explain. Strong scaffolding, weak independent test.</div>
+        </details>
       </header>
-
-      <details class="hyp-blurb reveal" data-accent="amber" style="margin:8px 0 14px;">
-        <summary>▸ HYPOTHESIS &mdash; why this stays a framework<span class="hyp-blurb-hint">CLICK TO EXPAND</span></summary>
-        <div class="hyp-blurb-body">Syntergic Theory is a published unifying model but has not yet produced a falsifiable prediction independent of the transferred-potential data it was built to explain. Strong scaffolding, weak independent test.</div>
-      </details>
 
       <div class="ability-lit-subhead">▸ PRIMARY — GRINBERG SOURCES</div>
       <div class="works-grid">
@@ -2201,13 +2194,11 @@
       <header class="ability-lit-header">
         <span class="ability-lit-tag">ABILITY 05</span>
         <h3 class="ability-lit-title">EXTRAOCULAR VISION / PARANORMAL PERCEPTION</h3>
-        <span class="ability-lit-conf tier-disputed">DISPUTED</span>
+        <details class="ability-lit-conf-wrap tier-disputed">
+          <summary class="ability-lit-conf tier-disputed">DISPUTED · 18%</summary>
+          <div class="ability-lit-conf-body">The 1968 NPI study showed Linares performing above chance, but multiple later attempts under tighter controls failed to replicate. Best read: a real-but-fragile signal contaminated by classical sensory leakage in most reports.</div>
+        </details>
       </header>
-
-      <details class="hyp-blurb reveal" data-accent="red" style="margin:8px 0 14px;">
-        <summary>▸ DISPUTED &mdash; why the tier sits low<span class="hyp-blurb-hint">CLICK TO EXPAND</span></summary>
-        <div class="hyp-blurb-body">The 1968 NPI study showed Linares performing above chance, but multiple later attempts under tighter controls failed to replicate. Best read: a real-but-fragile signal contaminated by classical sensory leakage in most reports.</div>
-      </details>
 
       <div class="ability-lit-subhead">▸ PRIMARY — GRINBERG SOURCES</div>
       <div class="works-grid">
@@ -2284,13 +2275,11 @@
       <header class="ability-lit-header">
         <span class="ability-lit-tag">ABILITY 01</span>
         <h3 class="ability-lit-title">SELF-REFERENTIAL MEDITATION / AUTO-ALLUSIVE PROTOCOL</h3>
-        <span class="ability-lit-conf tier-proven">DOCUMENTED</span>
+        <details class="ability-lit-conf-wrap tier-proven">
+          <summary class="ability-lit-conf tier-proven">DOCUMENTED · 65%</summary>
+          <div class="ability-lit-conf-body">Auto-allusive meditation has a published manual, EEG-validated coherence signatures, and decades of operator-training documentation. The training pipeline is the most replicable element of the entire Grinberg catalog.</div>
+        </details>
       </header>
-
-      <details class="hyp-blurb reveal" data-accent="green" style="margin:8px 0 14px;">
-        <summary>▸ DOCUMENTED &mdash; why this stays solid<span class="hyp-blurb-hint">CLICK TO EXPAND</span></summary>
-        <div class="hyp-blurb-body">Auto-allusive meditation has a published manual, EEG-validated coherence signatures, and decades of operator-training documentation. The training pipeline is the most replicable element of the entire Grinberg catalog.</div>
-      </details>
 
       <div class="ability-lit-subhead">▸ PRIMARY — GRINBERG SOURCES</div>
       <div class="works-grid">
