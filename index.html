@@ -1025,6 +1025,42 @@
   .work-card--counter .work-title { color: #ffb3c1; }
   .work-card--counter::after { color: var(--red); }
 
+  .work-card--priority {
+    border-color: var(--amber);
+    border-left: 4px solid var(--amber);
+    background:
+      linear-gradient(180deg, rgba(255,179,0,0.14), rgba(2,10,15,0.45));
+    box-shadow:
+      0 0 0 1px rgba(255,179,0,0.25) inset,
+      0 0 18px rgba(255,179,0,0.22);
+    animation: priorityPulse 2.8s ease-in-out infinite;
+  }
+  .work-card--priority:hover {
+    border-color: var(--amber);
+    background: linear-gradient(180deg, rgba(255,179,0,0.2), rgba(2,10,15,0.55));
+    box-shadow:
+      0 0 0 1px rgba(255,179,0,0.4) inset,
+      0 0 22px rgba(255,179,0,0.35);
+  }
+  .work-card--priority .work-title {
+    color: #ffe9b8;
+    text-shadow: 0 0 10px rgba(255,179,0,0.35);
+  }
+  .work-card--priority::after { color: var(--amber); opacity: 0.85; }
+  .works-grid--priority-first .work-card--priority { order: -1; }
+
+  .type-priority {
+    border-color: var(--amber);
+    color: var(--amber);
+    background: rgba(255,179,0,0.12);
+    font-weight: 700;
+  }
+
+  @keyframes priorityPulse {
+    0%, 100% { box-shadow: 0 0 0 1px rgba(255,179,0,0.25) inset, 0 0 14px rgba(255,179,0,0.18); }
+    50% { box-shadow: 0 0 0 1px rgba(255,179,0,0.42) inset, 0 0 24px rgba(255,179,0,0.34); }
+  }
+
   .ability-lit-toggle {
     margin-top: 18px;
     background: transparent;
@@ -1804,7 +1840,7 @@
       </header>
 
       <div class="ability-lit-subhead">▸ PRIMARY — GRINBERG SOURCES</div>
-      <div class="works-grid">
+      <div class="works-grid works-grid--priority-first">
 
         <a class="work-card" href="https://www.amazon.com/Jacobo-Grinberg-Zylberbaum/e/B001JWUX2S" target="_blank" rel="noopener">
           <div class="work-type"><span class="type-badge type-book">BOOK</span></div>
@@ -2321,11 +2357,11 @@
           <span class="work-unavailable">⊘ PLACEHOLDER — LOCATE VIA UNAM LIBRARY</span>
         </div>
 
-        <a class="work-card" href="https://spacefed.com/other/dr-jacobo-grinberg-a-pioneer-in-consciousness-studies/" target="_blank" rel="noopener">
-          <div class="work-type"><span class="type-badge type-doc">ANALYSIS</span></div>
+        <a class="work-card work-card--priority" href="https://spacefed.com/other/dr-jacobo-grinberg-a-pioneer-in-consciousness-studies/" target="_blank" rel="noopener">
+          <div class="work-type"><span class="type-badge type-doc">ANALYSIS</span><span class="type-badge type-priority">PRIORITY NODE</span></div>
           <div class="work-title">Lattice Theory &amp; Reality Construction — Technical Breakdown</div>
           <div class="work-meta">International Space Federation · Dr. Inés Urdaneta · Connects Grinberg's reality-rendering model to quantum field theory</div>
-          <span class="work-available">✓ AVAILABLE — SPACEFED.COM</span>
+          <span class="work-available" style="color:#ffe9b8;">✓ AVAILABLE — SPACEFED.COM // HIGH-SIGNAL CONTEXT</span>
         </a>
 
         <a class="work-card" href="https://www.amazon.com/Jacobo-Grinberg-Zylberbaum/e/B001JWUX2S" target="_blank" rel="noopener">
@@ -2632,7 +2668,7 @@
     <div class="section-title reveal" style="color:var(--amber);border-color:var(--amber);">▸ TRAINING PROTOCOLS // OPERATOR PIPELINE</div>
 
     <div class="reveal" style="margin:0 0 28px;padding:14px 18px;border-left:3px solid var(--amber);background:rgba(255,179,0,0.04);font-size:12px;line-height:1.7;color:#ffe9b8;">
-      <strong style="color:var(--amber);">READ FIRST.</strong> These are reconstructions of Grinberg&rsquo;s published and reported protocols. They are presented for <em>historical and research</em> purposes &mdash; this is what the lab actually had subjects do. None of this is medical, psychological, or spiritual advice. Effects are real to the operator regardless of whether the underlying mechanism is what Grinberg said it was. Do not perform any protocol while operating vehicles, near hazards, or if you have a seizure disorder, dissociative condition, or unstable psychiatric history. Stop if you feel distressed.
+      <strong style="color:var(--amber);">READ FIRST.</strong> These are reconstructions of Grinberg&rsquo;s published and reported protocols. They are presented for <em>historical and research</em> purposes &mdash; this is what the lab actually had subjects do. None of this is medical, psychological, or spiritual advice. Effects are real to the operator regardless of whether the underlying mechanism is what Grinberg said it was. Make sure to touch grass often, and keep grounded to the world we are allowed to live in.
     </div>
 
     <style>
