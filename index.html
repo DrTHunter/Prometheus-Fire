@@ -2613,6 +2613,18 @@
         padding-bottom:12px; margin-bottom:14px;
         border-bottom:1px dashed rgba(255,179,0,0.25);
       }
+      details.training-card > summary.training-card__header {
+        cursor:pointer; list-style:none; user-select:none;
+      }
+      details.training-card > summary.training-card__header::-webkit-details-marker { display:none; }
+      details.training-card:not([open]) > summary.training-card__header {
+        padding-bottom:0; margin-bottom:0; border-bottom:none;
+      }
+      details.training-card:not([open]) { padding-bottom:22px; }
+      details.training-card[open] > summary.training-card__header:hover .training-card__title,
+      details.training-card:not([open]) > summary.training-card__header:hover .training-card__title {
+        color:var(--amber);
+      }
       .training-card__num {
         font-family: 'JetBrains Mono', monospace; font-size:11px;
         letter-spacing:3px; color:var(--amber); opacity:.7;
@@ -2664,12 +2676,12 @@
     </style>
 
     <!-- ───────────── 01 AUTO-ALLUSIVE / SELF-REFERENTIAL MEDITATION ───────────── -->
-    <div class="training-card reveal">
-      <div class="training-card__header">
+    <details class="training-card reveal">
+      <summary class="training-card__header">
         <span class="training-card__num">PROTOCOL 01</span>
         <h3 class="training-card__title">AUTO-ALLUSIVE (SELF-REFERENTIAL) MEDITATION</h3>
         <span class="training-card__tier t-doc">DOCUMENTED · OPERATOR PIPELINE</span>
-      </div>
+      </summary>
       <p class="training-card__intro">
         Grinberg&rsquo;s signature meditation manual. The technique he used to put subjects into the brain-state that produced the transferred-potential effect, and that he taught publicly in Mexico for two decades. The core move: attention recursively turns onto its own activity, collapsing the subject/object split. This is the &ldquo;operator pipeline&rdquo; &mdash; the prerequisite condition for everything else in his catalog.
       </p>
@@ -2709,15 +2721,15 @@
       <div class="training-warn">
         <strong>CAUTION:</strong> The recursive-attention stages can trigger depersonalization episodes in vulnerable practitioners. If you have a history of dissociative disorder, psychosis, or unstable trauma, work with a trauma-informed teacher rather than self-directing. Stop the protocol if symptoms persist outside the session.
       </div>
-    </div>
+    </details>
 
     <!-- ───────────── 02 LATTICE RESONANCE / SYNTERGIC FIELD COHERENCE ───────────── -->
-    <div class="training-card reveal">
-      <div class="training-card__header">
+    <details class="training-card reveal">
+      <summary class="training-card__header">
         <span class="training-card__num">PROTOCOL 02</span>
         <h3 class="training-card__title">LATTICE RESONANCE / SYNTERGIC FIELD COHERENCE</h3>
         <span class="training-card__tier t-hyp">HYPOTHESIS · GROUP-LEVEL</span>
-      </div>
+      </summary>
       <p class="training-card__intro">
         Multi-operator coherence training. Where Protocol 01 builds the single-operator brain-state, Protocol 02 chains operators into a coupled group. Grinberg ran group sessions of 5&ndash;30 meditators using the auto-allusive technique synchronously, measuring inter-subject EEG coherence. The hypothesis: a sufficiently coherent group locks onto a shared syntergic-field configuration that no single operator could sustain alone.
       </p>
@@ -2756,15 +2768,15 @@
       <div class="training-warn">
         <strong>HONEST READ:</strong> Group-coherence effects are real at the EEG level (inter-brain synchrony in meditation groups is replicable). Whether that coherence does anything <em>outside</em> the brains in the room is the unresolved claim. Don&rsquo;t over-interpret subjective field-sensations &mdash; collect data.
       </div>
-    </div>
+    </details>
 
     <!-- ───────────── 03 BRAIN-TO-BRAIN / TRANSFERRED POTENTIAL ───────────── -->
-    <div class="training-card reveal">
-      <div class="training-card__header">
+    <details class="training-card reveal">
+      <summary class="training-card__header">
         <span class="training-card__num">PROTOCOL 03</span>
         <h3 class="training-card__title">BRAIN-TO-BRAIN INTERFACE / TRANSFERRED POTENTIAL</h3>
         <span class="training-card__tier t-doc">PUBLISHED · 1994</span>
-      </div>
+      </summary>
       <p class="training-card__intro">
         Two subjects in separate electromagnetically-shielded (Faraday) rooms. One receives intermittent visual stimulation. The other&rsquo;s EEG shows a correlated potential at the same timing &mdash; no known signaling channel between them. This is the headline empirical result, published in <em>Physics Essays</em> 1994, and the work most directly aligned with the Stargate-program mandate.
       </p>
@@ -2807,15 +2819,15 @@
       <div class="training-warn">
         <strong>NOTE:</strong> Without proper electromagnetic shielding and clock synchronization, you cannot rule out trivial explanations (60Hz hum coupling, accidental cueing). A real run requires either institutional EEG facilities or a serious DIY shielded-room build.
       </div>
-    </div>
+    </details>
 
     <!-- ───────────── 04 SHAMANIC TRANSMISSION / PACHITA WORK ───────────── -->
-    <div class="training-card reveal">
-      <div class="training-card__header">
+    <details class="training-card reveal">
+      <summary class="training-card__header">
         <span class="training-card__num">PROTOCOL 04</span>
         <h3 class="training-card__title">SHAMANIC TRANSMISSION / PACHITA-LINE WORK</h3>
         <span class="training-card__tier t-hyp">ETHNOGRAPHIC · NOT SELF-TRAINABLE</span>
-      </div>
+      </summary>
       <p class="training-card__intro">
         Grinberg&rsquo;s decade-long apprenticeship with Pachita (Bárbara Guerrero), the Mexican curandera who performed psychic surgeries in front of his EEG instrumentation. This is not a self-trainable protocol &mdash; it requires direct lineage transmission from a working practitioner &mdash; but Grinberg documented the operator preparation in detail and the observational framework is reproducible.
       </p>
@@ -2871,15 +2883,15 @@
       <div class="training-warn">
         <strong>HONEST READ:</strong> You cannot &ldquo;train&rdquo; yourself into shamanic operator status from a book. What you <em>can</em> do is replicate Grinberg&rsquo;s observational protocol if you have access to a working traditional healer who consents to instrumentation. The reproducible piece is the coupling-signature measurement (operator&rarr;patient EEG drift), not the &ldquo;powers.&rdquo; Treat the rest as ethnography, not as engineering.
       </div>
-    </div>
+    </details>
 
     <!-- ───────────── 05 EXTRAOCULAR VISION (best-documented protocol) ───────────── -->
-    <div class="training-card reveal">
-      <div class="training-card__header">
+    <details class="training-card reveal">
+      <summary class="training-card__header">
         <span class="training-card__num">PROTOCOL 05</span>
         <h3 class="training-card__title">EXTRAOCULAR VISION / DERMO-OPTIC PERCEPTION</h3>
         <span class="training-card__tier t-doc">PUBLISHED · 1983</span>
-      </div>
+      </summary>
       <p class="training-card__intro">
         Identifying colors, shapes, or printed text while fully blindfolded, using skin contact (typically fingertips, forehead, or back of neck). Grinberg published the original protocol in 1983 working with children at the National Autonomous University of Mexico (UNAM). The training works best on subjects under ~14 and degrades with age &mdash; he hypothesized the lattice-coupling is more plastic before pubertal cortical pruning.
       </p>
@@ -2926,15 +2938,15 @@
       <div class="training-warn">
         <strong>HONEST READ:</strong> Grinberg&rsquo;s 1983 results were dramatic but never independently replicated under fully sensory-isolated double-blind conditions. Modern attempts (e.g. on adult subjects) typically collapse to chance once double-blind is enforced. The protocol is real, the historical results are real, the mechanism remains open. Treat positive results as <em>interesting</em>, not as <em>proof</em>, until you&rsquo;ve nailed every leakage channel.
       </div>
-    </div>
+    </details>
 
     <!-- ───────────── 06 REALITY-SERVER / LATTICE STEERING (speculative) ───────────── -->
-    <div class="training-card reveal">
-      <div class="training-card__header">
+    <details class="training-card reveal">
+      <summary class="training-card__header">
         <span class="training-card__num">PROTOCOL 06</span>
         <h3 class="training-card__title">REALITY-SERVER / LATTICE STEERING</h3>
         <span class="training-card__tier t-spec">SPECULATIVE · NO PUBLISHED PROTOCOL</span>
-      </div>
+      </summary>
       <p class="training-card__intro">
         Grinberg never published a step-by-step &ldquo;reality-server control&rdquo; protocol. This is the unwritten synthesis &mdash; the operational extension implied by the syntergic theory if you take its strongest claims at face value. What follows is a <em>reconstruction</em>, built from his theoretical writings plus the closest analog protocols (group coherence + auto-allusive). It is presented as a research hypothesis, not as a verified technique.
       </p>
@@ -2969,7 +2981,7 @@
       <div class="training-warn">
         <strong>FRAMING:</strong> This protocol exists in this dossier because the user asked for a training section for <em>all</em> abilities. It is the most speculative entry. Do not let its presence here imply equal evidentiary weight with the published protocols (01, 03, 05). The empirically defensible work is the documented trio: meditation, brain-to-brain, and extraocular vision. Treat this one as &ldquo;here is what the experiment would look like if you wanted to test the strongest claim.&rdquo;
       </div>
-    </div>
+    </details>
 
     <!-- ───────────── META: combining the protocols ───────────── -->
     <div class="reveal" style="margin-top:30px;padding:20px 22px;border:1px solid var(--cyan);background:rgba(0,245,255,0.04);">
