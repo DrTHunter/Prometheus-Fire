@@ -3227,20 +3227,41 @@
 
     <style>
       /* Break the Stargate case-files panel out of the 980px content-wrapper
-         so its dossier-style content has room to breathe. Scoped to this one
-         <details> only via the .sg-wide hook. */
+         AND widen its inner dossier content so the grids/sections fill the
+         space instead of looking skinny. Scoped to this one <details> only
+         via the .sg-wide hook. */
       .stargate-node details.sg-wide {
         width: min(96vw, 1400px);
         max-width: none;
-        margin-left: calc(50% - min(48vw, 700px));
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-left: 0;
         margin-right: 0;
+        padding-left: 36px;
+        padding-right: 36px;
       }
       .stargate-node details.sg-wide > summary { padding-right: 24px; }
+      /* Ensure inner dossier content uses the new width — remove any inherited
+         narrow constraints, push the value column wider, give the body more
+         horizontal breathing room. */
+      .stargate-node details.sg-wide .sg-section,
+      .stargate-node details.sg-wide .sg-body,
+      .stargate-node details.sg-wide .sg-nav,
+      .stargate-node details.sg-wide .sg-alert { width: 100%; max-width: none; }
+      .stargate-node details.sg-wide .sg-body { padding: 24px 28px; }
+      .stargate-node details.sg-wide .sg-grid { grid-template-columns: 200px 1fr; }
+      .stargate-node details.sg-wide .sg-section-header { padding: 12px 24px; }
       @media (max-width: 768px) {
         .stargate-node details.sg-wide {
           width: 100%;
-          margin-left: 0;
+          left: 0;
+          transform: none;
+          padding-left: 16px;
+          padding-right: 16px;
         }
+        .stargate-node details.sg-wide .sg-grid { grid-template-columns: 110px 1fr; }
+        .stargate-node details.sg-wide .sg-body { padding: 16px 12px; }
       }
     </style>
 
