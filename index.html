@@ -3225,7 +3225,26 @@
     <div id="stargate" class="hud-divider reveal"><span>STARGATE NODE // VIEWER CASE FILES <span class="sg-blink">◉</span></span></div>
     <div class="sg-subhead reveal">CLASSIFICATION: <span>DECLASSIFIED 1995</span> · CIA READING ROOM ACCESSIBLE · SWANN // PRICE // McMONEAGLE · CRV METHODOLOGY APPENDED</div>
 
-    <details class="audit-panel reveal" style="margin-top:14px;">
+    <style>
+      /* Break the Stargate case-files panel out of the 980px content-wrapper
+         so its dossier-style content has room to breathe. Scoped to this one
+         <details> only via the .sg-wide hook. */
+      .stargate-node details.sg-wide {
+        width: min(96vw, 1400px);
+        max-width: none;
+        margin-left: calc(50% - min(48vw, 700px));
+        margin-right: 0;
+      }
+      .stargate-node details.sg-wide > summary { padding-right: 24px; }
+      @media (max-width: 768px) {
+        .stargate-node details.sg-wide {
+          width: 100%;
+          margin-left: 0;
+        }
+      }
+    </style>
+
+    <details class="audit-panel reveal sg-wide" style="margin-top:14px;">
       <summary class="panel-header"><span><span class="chev">▸</span> EXPAND STARGATE CASE FILES &mdash; SWANN &middot; PRICE &middot; McMONEAGLE &middot; CRV</span><span class="hint">CLICK TO EXPAND</span></summary>
 
     <!-- NAV -->
