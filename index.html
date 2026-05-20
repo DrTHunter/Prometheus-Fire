@@ -3236,8 +3236,79 @@
     <div id="stargate" class="hud-divider reveal"><span>STARGATE NODE // VIEWER CASE FILES <span class="sg-blink">◉</span></span></div>
     <div class="sg-subhead reveal">CLASSIFICATION: <span>DECLASSIFIED 1995</span> · CIA READING ROOM ACCESSIBLE · SWANN // PRICE // McMONEAGLE · CRV METHODOLOGY APPENDED</div>
 
-    <details class="audit-panel reveal" style="margin-top:14px;">
-      <summary class="panel-header"><span><span class="chev">▸</span> EXPAND STARGATE CASE FILES &mdash; SWANN &middot; PRICE &middot; McMONEAGLE &middot; CRV</span><span class="hint">CLICK TO EXPAND</span></summary>
+    <style>
+      /* Dedicated container for the Stargate case-files reveal — distinct
+         from the amber audit-panel pattern. Cyan dossier feel, full-width
+         header bar, content insets just enough to breathe. */
+      .stargate-node details.stargate-expand {
+        margin: 14px 0 0;
+        border: 1px solid var(--sg-border-bright);
+        border-left: 3px solid var(--sg-cyan);
+        background: linear-gradient(180deg, rgba(0,245,255,0.045), rgba(0,245,255,0.015));
+        position: relative;
+      }
+      .stargate-node details.stargate-expand > summary {
+        list-style: none;
+        cursor: pointer;
+        padding: 16px 22px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+        font-family: var(--sg-sans);
+        font-size: 13px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--sg-text-bright);
+        user-select: none;
+        outline: none;
+        transition: background 0.2s ease;
+      }
+      .stargate-node details.stargate-expand > summary::-webkit-details-marker { display: none; }
+      .stargate-node details.stargate-expand > summary::marker { content: ""; }
+      .stargate-node details.stargate-expand > summary:hover { background: rgba(0,245,255,0.06); }
+      .stargate-node details.stargate-expand[open] > summary {
+        border-bottom: 1px solid var(--sg-border-bright);
+        background: rgba(0,245,255,0.05);
+      }
+      .stargate-node details.stargate-expand .sg-x-chev {
+        display: inline-block;
+        color: var(--sg-cyan);
+        font-family: var(--sg-mono);
+        margin-right: 12px;
+        transition: transform 0.2s ease;
+      }
+      .stargate-node details.stargate-expand[open] .sg-x-chev { transform: rotate(90deg); }
+      .stargate-node details.stargate-expand .sg-x-title { flex: 1 1 auto; min-width: 0; }
+      .stargate-node details.stargate-expand .sg-x-status {
+        font-family: var(--sg-mono);
+        font-size: 10px;
+        letter-spacing: 0.2em;
+        color: var(--sg-cyan-dim);
+        white-space: nowrap;
+      }
+      .stargate-node details.stargate-expand[open] .sg-x-status::before { content: "▾ NODE OPEN"; color: var(--sg-cyan); }
+      .stargate-node details.stargate-expand:not([open]) .sg-x-status::before { content: "▸ CLICK TO EXPAND"; }
+      /* Inset the dossier content so it breathes without doubling the
+         border-stack feel of the original audit-panel. */
+      .stargate-node details.stargate-expand[open] > *:not(summary) {
+        margin-left: 14px;
+        margin-right: 14px;
+      }
+      .stargate-node details.stargate-expand[open] > *:nth-child(2) { margin-top: 18px; }
+      .stargate-node details.stargate-expand[open] > *:last-child:not(summary) { margin-bottom: 14px; }
+      @media (max-width: 640px) {
+        .stargate-node details.stargate-expand > summary { padding: 12px 14px; font-size: 11px; letter-spacing: 0.12em; }
+        .stargate-node details.stargate-expand[open] > *:not(summary) { margin-left: 6px; margin-right: 6px; }
+      }
+    </style>
+
+    <details class="stargate-expand reveal">
+      <summary>
+        <span class="sg-x-title"><span class="sg-x-chev">▸</span>EXPAND STARGATE CASE FILES &mdash; SWANN &middot; PRICE &middot; McMONEAGLE &middot; CRV</span>
+        <span class="sg-x-status"></span>
+      </summary>
 
     <!-- NAV -->
     <div class="sg-nav reveal">
