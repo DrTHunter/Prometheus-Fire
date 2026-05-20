@@ -1515,6 +1515,22 @@
       the individual ego dissolves, consciousness merges with the Lattice, and <span class="theory-highlight">intentional reality-shaping becomes possible</span>.
       This was not metaphor. He attempted to measure it.
     </p>
+
+    <div class="works-grid" style="margin-top:18px;">
+      <a class="work-card" href="http://www.gci.org.uk/Documents/DavidBohm-WholenessAndTheImplicateOrder.pdf" target="_blank" rel="noopener">
+        <div class="work-type"><span class="type-badge type-doc">FOUNDATIONAL TEXT</span></div>
+        <div class="work-title">David Bohm — Wholeness and the Implicate Order (PDF)</div>
+        <div class="work-meta">Core theoretical source for the implicate-order model that parallels the Lattice framework presented here</div>
+        <span class="work-available">✓ AVAILABLE — GCI.ORG.UK</span>
+      </a>
+
+      <a class="work-card" href="https://spacefed.com/other/dr-jacobo-grinberg-a-pioneer-in-consciousness-studies/" target="_blank" rel="noopener">
+        <div class="work-type"><span class="type-badge type-doc">ANALYSIS</span></div>
+        <div class="work-title">Dr. Jacobo Grinberg: A Pioneer in Consciousness Studies</div>
+        <div class="work-meta">International Space Federation · Technical breakdown of Lattice theory and its relationship to quantum-field models</div>
+        <span class="work-available">✓ AVAILABLE — SPACEFED.COM</span>
+      </a>
+    </div>
   </div>
 
   <!-- EXPERIMENT -->
@@ -2472,6 +2488,13 @@
     <div class="section-title reveal" style="margin-top:40px;">▸ SECONDARY ANALYSIS &amp; DOCUMENTARY NODES</div>
     <div class="works-grid reveal">
 
+      <a class="work-card" href="http://www.gci.org.uk/Documents/DavidBohm-WholenessAndTheImplicateOrder.pdf" target="_blank" rel="noopener">
+        <div class="work-type"><span class="type-badge type-doc">FOUNDATIONAL TEXT</span></div>
+        <div class="work-title">David Bohm — Wholeness and the Implicate Order</div>
+        <div class="work-meta">Primary source on implicate-order theory frequently used as a conceptual parallel to syntergic lattice framing</div>
+        <span class="work-available">✓ AVAILABLE — GCI.ORG.UK (PDF)</span>
+      </a>
+
       <a class="work-card" href="https://psi-encyclopedia.spr.ac.uk/articles/jacobo-grinberg-zylberbaum/" target="_blank" rel="noopener">
         <div class="work-type"><span class="type-badge type-doc">ENCYCLOPEDIA</span></div>
         <div class="work-title">Jacobo Grinberg-Zylberbaum — Psi Encyclopedia (SPR)</div>
@@ -2501,6 +2524,541 @@
       </div>
 
     </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       STARGATE NODE — Viewer case files (Swann · Price · McMoneagle) + CRV
+       Self-contained, scoped under .stargate-node so it cannot collide with
+       existing site styles.
+       ═══════════════════════════════════════════════════════════════════ -->
+  <section id="stargate-node" class="stargate-node">
+
+    <style>
+      .stargate-node {
+        --sg-bg: #020a0f;
+        --sg-bg2: #040f16;
+        --sg-bg3: #071520;
+        --sg-border: #0d2535;
+        --sg-border-bright: #1a4060;
+        --sg-cyan: #00c8e0;
+        --sg-cyan-dim: #007a8a;
+        --sg-green: #00e060;
+        --sg-green-dim: #007a30;
+        --sg-amber: #e0a000;
+        --sg-amber-dim: #7a5000;
+        --sg-red: #e04040;
+        --sg-text: #b0ccd8;
+        --sg-text-dim: #506878;
+        --sg-text-bright: #e0f0f8;
+        --sg-mono: 'Share Tech Mono', 'Courier New', monospace;
+        --sg-sans: 'Orbitron', 'Arial Narrow', Arial, sans-serif;
+        display: block;
+        margin: 60px 0 0;
+        font-family: var(--sg-mono);
+        font-size: 13px;
+        line-height: 1.6;
+        color: var(--sg-text);
+      }
+      .stargate-node * { box-sizing: border-box; }
+
+      .stargate-node .sg-header {
+        border-top: 1px solid var(--sg-border-bright);
+        border-bottom: 1px solid var(--sg-border-bright);
+        padding: 24px 24px 20px;
+        position: relative;
+        background: repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(0,200,224,0.015) 1px, rgba(0,200,224,0.015) 2px);
+      }
+      .stargate-node .sg-header::before {
+        content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+        background: linear-gradient(90deg, transparent, var(--sg-cyan), var(--sg-cyan-dim), transparent);
+      }
+      .stargate-node .sg-breadcrumb { font-size: 10px; color: var(--sg-text-dim); letter-spacing: 0.15em; margin-bottom: 12px; }
+      .stargate-node .sg-breadcrumb span { color: var(--sg-cyan-dim); }
+      .stargate-node .sg-title { font-size: 22px; letter-spacing: 0.12em; color: var(--sg-cyan); text-shadow: 0 0 20px rgba(0,200,224,0.4); margin-bottom: 6px; font-family: var(--sg-sans); font-weight: normal; }
+      .stargate-node .sg-subtitle { font-size: 11px; color: var(--sg-text-dim); letter-spacing: 0.1em; }
+      .stargate-node .sg-blink { animation: sg-blink 1.2s step-end infinite; }
+      @keyframes sg-blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+      .stargate-node .sg-nav { padding: 10px 24px; border-bottom: 1px solid var(--sg-border); font-size: 10px; letter-spacing: 0.12em; color: var(--sg-cyan-dim); display: flex; gap: 20px; flex-wrap: wrap; background: var(--sg-bg2); }
+      .stargate-node .sg-nav a { color: var(--sg-cyan-dim); text-decoration: none; transition: color 0.15s; }
+      .stargate-node .sg-nav a:hover { color: var(--sg-cyan); }
+
+      .stargate-node .sg-alert { margin: 24px 24px; border: 1px solid var(--sg-amber-dim); background: rgba(224,160,0,0.04); padding: 12px 16px; font-size: 11px; letter-spacing: 0.08em; color: var(--sg-amber); }
+      .stargate-node .sg-alert::before { content: '⚠ PRIORITY SIGNAL // '; opacity: 0.6; }
+
+      .stargate-node .sg-section { margin: 0 24px 40px; border: 1px solid var(--sg-border); background: var(--sg-bg2); position: relative; }
+      .stargate-node .sg-section-header { background: var(--sg-bg3); border-bottom: 1px solid var(--sg-border); padding: 10px 16px; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+      .stargate-node .sg-label { font-size: 9px; letter-spacing: 0.2em; color: var(--sg-cyan-dim); }
+      .stargate-node .sg-stitle { font-size: 14px; letter-spacing: 0.1em; color: var(--sg-text-bright); font-family: var(--sg-sans); }
+      .stargate-node .sg-badge { margin-left: auto; font-size: 9px; letter-spacing: 0.15em; padding: 2px 8px; border: 1px solid; }
+      .stargate-node .sg-badge.sg-high { color: var(--sg-green); border-color: var(--sg-green-dim); background: rgba(0,224,96,0.05); }
+      .stargate-node .sg-badge.sg-med  { color: var(--sg-amber); border-color: var(--sg-amber-dim); background: rgba(224,160,0,0.05); }
+      .stargate-node .sg-badge.sg-low  { color: var(--sg-text-dim); border-color: var(--sg-border); }
+      .stargate-node .sg-body { padding: 20px 16px; }
+
+      .stargate-node .sg-grid { display: grid; grid-template-columns: 160px 1fr; gap: 0; margin-bottom: 16px; border: 1px solid var(--sg-border); }
+      .stargate-node .sg-key { font-size: 10px; letter-spacing: 0.1em; color: var(--sg-text-dim); padding: 6px 10px; border-bottom: 1px solid var(--sg-border); border-right: 1px solid var(--sg-border); background: rgba(7,21,32,0.6); }
+      .stargate-node .sg-val { font-size: 12px; color: var(--sg-text); padding: 6px 10px; border-bottom: 1px solid var(--sg-border); }
+      .stargate-node .sg-val.sg-hl { color: var(--sg-cyan); }
+      .stargate-node .sg-val.sg-warn { color: var(--sg-amber); }
+
+      .stargate-node .sg-tl { position: relative; padding-left: 28px; margin: 16px 0; }
+      .stargate-node .sg-tl::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 1px; background: linear-gradient(180deg, var(--sg-cyan-dim), transparent); }
+      .stargate-node .sg-tl-item { position: relative; margin-bottom: 16px; padding: 10px 12px; border: 1px solid var(--sg-border); background: var(--sg-bg3); }
+      .stargate-node .sg-tl-item::before { content: '◉'; position: absolute; left: -22px; top: 10px; font-size: 9px; color: var(--sg-cyan); }
+      .stargate-node .sg-tl-step { font-size: 9px; letter-spacing: 0.2em; color: var(--sg-cyan-dim); margin-bottom: 4px; }
+      .stargate-node .sg-tl-desc { font-size: 12px; color: var(--sg-text); line-height: 1.5; }
+      .stargate-node .sg-tl-result { margin-top: 8px; font-size: 11px; color: var(--sg-green); padding: 6px 8px; border-left: 2px solid var(--sg-green-dim); background: rgba(0,224,96,0.04); }
+      .stargate-node .sg-tl-caveat { margin-top: 6px; font-size: 10px; color: var(--sg-amber); padding: 4px 8px; border-left: 2px solid var(--sg-amber-dim); background: rgba(224,160,0,0.04); }
+
+      .stargate-node .sg-quote { margin: 16px 0; padding: 12px 16px; border-left: 2px solid var(--sg-cyan-dim); background: rgba(0,200,224,0.03); font-size: 12px; font-style: italic; color: var(--sg-text-bright); line-height: 1.6; }
+      .stargate-node .sg-quote-source { margin-top: 6px; font-style: normal; font-size: 10px; letter-spacing: 0.1em; color: var(--sg-cyan-dim); }
+
+      .stargate-node .sg-crv { border: 1px solid var(--sg-border); margin-bottom: 10px; background: var(--sg-bg3); }
+      .stargate-node .sg-crv-h { display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-bottom: 1px solid var(--sg-border); background: rgba(0,48,64,0.4); }
+      .stargate-node .sg-crv-num { font-size: 18px; color: var(--sg-cyan); font-family: var(--sg-sans); min-width: 28px; opacity: 0.7; }
+      .stargate-node .sg-crv-name { font-size: 12px; letter-spacing: 0.1em; color: var(--sg-text-bright); font-family: var(--sg-sans); }
+      .stargate-node .sg-crv-tag { margin-left: auto; font-size: 9px; letter-spacing: 0.15em; color: var(--sg-cyan-dim); }
+      .stargate-node .sg-crv-b { padding: 12px 14px; font-size: 12px; color: var(--sg-text); line-height: 1.55; }
+      .stargate-node .sg-crv-b strong { color: var(--sg-text-bright); }
+
+      .stargate-node .sg-links { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+      .stargate-node .sg-link { display: flex; align-items: flex-start; gap: 10px; padding: 8px 10px; border: 1px solid var(--sg-border); background: var(--sg-bg3); text-decoration: none; transition: border-color 0.15s, background 0.15s; }
+      .stargate-node .sg-link:hover { border-color: var(--sg-cyan-dim); background: rgba(0,200,224,0.04); }
+      .stargate-node .sg-link-tag { font-size: 8px; letter-spacing: 0.15em; color: var(--sg-cyan-dim); min-width: 70px; padding-top: 1px; }
+      .stargate-node .sg-link-text { font-size: 11px; color: var(--sg-text); line-height: 1.4; }
+      .stargate-node .sg-link:hover .sg-link-text { color: var(--sg-cyan); }
+
+      .stargate-node .sg-prob { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+      .stargate-node .sg-prob-l { font-size: 10px; letter-spacing: 0.08em; color: var(--sg-text-dim); min-width: 120px; }
+      .stargate-node .sg-prob-bar { flex: 1; height: 6px; background: var(--sg-border); position: relative; }
+      .stargate-node .sg-prob-fill { height: 100%; background: var(--sg-cyan); opacity: 0.6; }
+      .stargate-node .sg-prob-pct { font-size: 10px; color: var(--sg-cyan-dim); min-width: 40px; text-align: right; }
+
+      .stargate-node .sg-ticker { border-top: 1px solid var(--sg-border-bright); padding: 8px 0; overflow: hidden; position: relative; margin-top: 40px; background: var(--sg-bg3); }
+      .stargate-node .sg-ticker-inner { display: inline-block; white-space: nowrap; animation: sg-ticker 60s linear infinite; font-size: 10px; letter-spacing: 0.12em; color: var(--sg-cyan-dim); }
+      @keyframes sg-ticker { from { transform: translateX(100vw); } to { transform: translateX(-100%); } }
+
+      .stargate-node hr.sg-hr { border: none; border-top: 1px solid var(--sg-border); margin: 20px 0; }
+      .stargate-node .sg-sep { text-align: center; font-size: 9px; letter-spacing: 0.25em; color: var(--sg-text-dim); margin: 32px 24px 0; padding-bottom: 4px; border-bottom: 1px solid var(--sg-border); }
+
+      .stargate-node .sg-chips { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+      .stargate-node .sg-chip { font-size: 9px; letter-spacing: 0.12em; padding: 3px 8px; border: 1px solid; }
+      .stargate-node .sg-chip.sg-chip-active { color: var(--sg-green); border-color: var(--sg-green-dim); background: rgba(0,224,96,0.05); }
+      .stargate-node .sg-chip.sg-chip-warn   { color: var(--sg-amber); border-color: var(--sg-amber-dim); background: rgba(224,160,0,0.05); }
+      .stargate-node .sg-chip.sg-chip-dead   { color: var(--sg-text-dim); border-color: var(--sg-border); }
+
+      @media (max-width: 640px) {
+        .stargate-node .sg-header, .stargate-node .sg-nav, .stargate-node .sg-section, .stargate-node .sg-alert, .stargate-node .sg-sep { margin-left: 12px; margin-right: 12px; }
+        .stargate-node .sg-body, .stargate-node .sg-header { padding-left: 12px; padding-right: 12px; }
+        .stargate-node .sg-grid { grid-template-columns: 110px 1fr; }
+        .stargate-node .sg-nav { padding-left: 12px; }
+      }
+    </style>
+
+    <!-- HEADER -->
+    <div class="sg-header reveal">
+      <div class="sg-breadcrumb">LATTICE PROTOCOL // INPEC ARCHIVE // <span>STARGATE NODE</span> // VIEWER DOSSIER</div>
+      <div class="sg-title">STARGATE // VIEWER CASE FILES <span class="sg-blink">◉</span></div>
+      <div class="sg-subtitle">CLASSIFICATION: DECLASSIFIED 1995 · CIA READING ROOM ACCESSIBLE · VIEWERS: SWANN // PRICE // McMONEAGLE · CRV METHODOLOGY: APPENDED</div>
+    </div>
+
+    <!-- NAV -->
+    <div class="sg-nav reveal">
+      <a href="#sg-swann">▸ INGO SWANN</a>
+      <a href="#sg-price">▸ PAT PRICE</a>
+      <a href="#sg-mcmoneagle">▸ McMONEAGLE</a>
+      <a href="#sg-crv">▸ CRV METHODOLOGY</a>
+      <a href="#sg-archives">▸ ARCHIVE ACCESS</a>
+    </div>
+
+    <!-- ALERT -->
+    <div class="sg-alert reveal">
+      THREE VIEWERS PRODUCED THE MOST OPERATIONALLY SIGNIFICANT DATA IN THE 23-YEAR PROGRAM.
+      SWANN BUILT THE METHOD. PRICE PROVED IT. McMONEAGLE WEAPONIZED IT.
+    </div>
+
+    <!-- INGO SWANN -->
+    <div class="sg-sep reveal" id="sg-swann">VIEWER RECORD 01 // INGO SWANN</div>
+    <div class="sg-section reveal">
+      <div class="sg-section-header">
+        <span class="sg-label">SUBJECT</span>
+        <span class="sg-stitle">INGO DOUGLASS SWANN — CREATOR OF THE CRV FRAMEWORK</span>
+        <span class="sg-badge sg-high">ARCHITECT</span>
+      </div>
+      <div class="sg-body">
+
+        <div class="sg-grid">
+          <div class="sg-key">DESIGNATION</div>
+          <div class="sg-val">Psychic · Artist · Author · Program Co-Architect</div>
+          <div class="sg-key">BIRTH</div>
+          <div class="sg-val">September 14, 1933 — Telluride, Colorado</div>
+          <div class="sg-key">DEATH</div>
+          <div class="sg-val sg-warn">January 31, 2013</div>
+          <div class="sg-key">PROGRAM ENTRY</div>
+          <div class="sg-val">1972 — SCANATE, CIA / Stanford Research Institute</div>
+          <div class="sg-key">ACCURACY CLAIM</div>
+          <div class="sg-val sg-hl">~95% (self-reported) · Trained students: 85% / 85% of sessions</div>
+          <div class="sg-key">STATUS</div>
+          <div class="sg-val">LEGACY NODE — CRV methodology survives in active training programs worldwide</div>
+        </div>
+
+        <div class="sg-chips">
+          <span class="sg-chip sg-chip-active">PROTOCOL ARCHITECT</span>
+          <span class="sg-chip sg-chip-active">JUPITER PROBE</span>
+          <span class="sg-chip sg-chip-active">SCANATE ORIGINATOR</span>
+          <span class="sg-chip sg-chip-dead">DECEASED 2013</span>
+        </div>
+
+        <hr class="sg-hr">
+
+        <div class="sg-label" style="margin-bottom:10px;">▸ CASE STUDY 01 // JUPITER REMOTE VIEWING PROBE — APRIL 27, 1973</div>
+
+        <div class="sg-quote">
+          "Something like mountains ... very tall things ... a ring of some kind ... crystals in the atmosphere. Storms. The winds blow the clouds around. Enormous."
+          <div class="sg-quote-source">— SWANN SESSION TRANSCRIPT, APRIL 27, 1973 · SRI MENLO PARK</div>
+        </div>
+
+        <div class="sg-tl">
+          <div class="sg-tl-item">
+            <div class="sg-tl-step">CONDITION SET</div>
+            <div class="sg-tl-desc">Swann proposed the experiment himself. Researchers Harold Puthoff and Russell Targ initially resisted — results from a planetary target would be unverifiable at the time. Swann was given no coordinates, no images, no prior information. The target was simply: <em>Jupiter</em>. He requested 30 minutes of silence before beginning. His remote viewing session of the planet took roughly three and a half minutes once initiated.</div>
+          </div>
+          <div class="sg-tl-item">
+            <div class="sg-tl-step">SESSION DATA</div>
+            <div class="sg-tl-desc">Swann reported: a hydrogen-rich, poisonous atmosphere; ammonia, methane, and possibly deuterium composition; enormous cyclonic storm systems; crystals in the upper atmosphere he compared to bands of cloud; something projecting above the cloud layers like mountains or very tall structures; and — critically — <strong>a thin flat ring around the planet</strong>, which he initially doubted, wondering if he had accidentally viewed Saturn instead.</div>
+          </div>
+          <div class="sg-tl-item">
+            <div class="sg-tl-step">VERIFICATION — 1979</div>
+            <div class="sg-tl-desc">NASA's Voyager 1 flyby of Jupiter in March 1979 — six years after the session — confirmed the ring. It was described in the mission report as "the most surprising" finding: "a thin, flat ring around the great planet." The storm systems, atmospheric banding, crystal-like cloud layers, and moon Io's volcanic activity matched the session notes.</div>
+            <div class="sg-tl-result">▸ RING CONFIRMED. Storm systems confirmed. Atmospheric composition directionally correct. SRI compiled a formal comparison report — raw session data (4 pages) against 300 pages of confirmatory scientific literature.</div>
+            <div class="sg-tl-caveat">⚠ CAVEAT: Some atmospheric descriptions were ambiguous or consistent with prior published estimates. The ring was unknown to science but its discovery may have later influenced how the session was interpreted. Critics note selection bias in hit/miss accounting.</div>
+          </div>
+          <div class="sg-tl-item">
+            <div class="sg-tl-step">OPERATIONAL CONSEQUENCE</div>
+            <div class="sg-tl-desc">The Jupiter session was the data point that converted CIA funding from exploratory to operational. A Congressional investigation was opened — not to terminate the program, but because the accuracy of the session raised concerns about potential national security breach. No breach was found. Government funding continued for another 15 years.</div>
+          </div>
+        </div>
+
+        <div class="sg-label" style="margin-bottom:6px;">▸ SIGNAL ACCURACY — JUPITER SESSION</div>
+        <div class="sg-prob"><span class="sg-prob-l">Ring detection</span><div class="sg-prob-bar"><div class="sg-prob-fill" style="width:88%"></div></div><span class="sg-prob-pct">HIGH</span></div>
+        <div class="sg-prob"><span class="sg-prob-l">Storm systems</span><div class="sg-prob-bar"><div class="sg-prob-fill" style="width:80%"></div></div><span class="sg-prob-pct">HIGH</span></div>
+        <div class="sg-prob"><span class="sg-prob-l">Atmospheric comp.</span><div class="sg-prob-bar"><div class="sg-prob-fill" style="width:55%"></div></div><span class="sg-prob-pct">MED</span></div>
+        <div class="sg-prob"><span class="sg-prob-l">Crystal / ice bands</span><div class="sg-prob-bar"><div class="sg-prob-fill" style="width:60%"></div></div><span class="sg-prob-pct">MED</span></div>
+
+      </div>
+    </div>
+
+    <!-- PAT PRICE -->
+    <div class="sg-sep reveal" id="sg-price">VIEWER RECORD 02 // PAT PRICE</div>
+    <div class="sg-section reveal">
+      <div class="sg-section-header">
+        <span class="sg-label">SUBJECT</span>
+        <span class="sg-stitle">PAT PRICE — FIRST OPERATIONAL DEPLOYMENT</span>
+        <span class="sg-badge sg-high">OPERATIONAL</span>
+      </div>
+      <div class="sg-body">
+
+        <div class="sg-grid">
+          <div class="sg-key">DESIGNATION</div>
+          <div class="sg-val">Former Police Commissioner, Burbank CA · Natural viewer, untrained</div>
+          <div class="sg-key">PROGRAM ENTRY</div>
+          <div class="sg-val">1973 — Stanford Research Institute</div>
+          <div class="sg-key">DEATH</div>
+          <div class="sg-val sg-warn">1975 — Las Vegas · Officially: heart attack (age 51) · Conspiracy theories: active</div>
+          <div class="sg-key">OPERATIONAL ROLE</div>
+          <div class="sg-val sg-hl">CIA's first operational remote viewer — Coordinate Remote Viewing (CRV predecessor)</div>
+          <div class="sg-key">NOTABLE</div>
+          <div class="sg-val">Used psychic abilities informally to apprehend criminals while serving as police commissioner</div>
+        </div>
+
+        <div class="sg-chips">
+          <span class="sg-chip sg-chip-active">FIRST OPERATIONAL RV</span>
+          <span class="sg-chip sg-chip-active">SEMIPALATINSK HIT</span>
+          <span class="sg-chip sg-chip-warn">CONGRESSIONAL INVESTIGATION TRIGGERED</span>
+          <span class="sg-chip sg-chip-dead">DECEASED 1975</span>
+        </div>
+
+        <hr class="sg-hr">
+
+        <div class="sg-label" style="margin-bottom:10px;">▸ CASE STUDY 02 // SEMIPALATINSK NUCLEAR FACILITY — JULY 9–12, 1974</div>
+
+        <div class="sg-quote">
+          "I am lying on my back on the roof of a two or three-storied brick building. There is a large gantry crane nearby ... the wheels are taller than a man. Tracks, 50 feet apart. 150 feet tall. It runs over an underground building."
+          <div class="sg-quote-source">— PRICE SESSION TRANSCRIPT, JULY 10, 1974 · SRI · DECLASSIFIED CIA CREST ARCHIVE</div>
+        </div>
+
+        <div class="sg-tl">
+          <div class="sg-tl-item">
+            <div class="sg-tl-step">TARGET ASSIGNMENT</div>
+            <div class="sg-tl-desc">CIA's very first operational remote viewing assignment. Price was given only geographic coordinates — 50°09′59″N, 78°22′22″E — and told the site was an R&amp;D test facility approximately 60 miles west-southwest of Semipalatinsk. No maps. No images. No indication the target was a nuclear site. The CIA representative determined in advance: if Price described either the known multi-story crane or the oil-derrick-like structures, the program would continue.</div>
+          </div>
+          <div class="sg-tl-item">
+            <div class="sg-tl-step">SESSION — DAY 1–2</div>
+            <div class="sg-tl-desc">Price located a river, then the facility. He described and <strong>sketched</strong> the gantry crane in engineering-drawing quality: rail-mounted, 150 feet tall, wheels taller than a man, tracks 50 feet apart, running over an underground structure. The CIA evaluating officer wrote: "It seems inconceivable to imagine how he could draw such a likeness to the actual crane at [Semipalatinsk] unless he actually saw it through remote viewing, or was informed of what to draw by someone knowledgeable of the site."</div>
+            <div class="sg-tl-result">▸ CRANE SKETCH MATCH CONFIRMED. CIA satellite photography (declassified 1995 via FOIA) shows both cranes sharing identical 8-wheel configuration. Russell Targ: "the accuracy of Price's drawing is the sort of thing that I as a physicist would never have believed, if I had not seen it for myself."</div>
+          </div>
+          <div class="sg-tl-item">
+            <div class="sg-tl-step">SESSION — DAY 3–4</div>
+            <div class="sg-tl-desc">Price described massive 60-foot diameter metal spheres being assembled from thick curved steel panels — "like sections of an orange peel" — with workers struggling to weld them because the metal was warping. He suggested they needed a lower-temperature welding material. This detail was not in any known US intelligence file at the time.</div>
+            <div class="sg-tl-result">▸ SPHERES CONFIRMED — 1977. An Aviation Week article revealed the 58-foot diameter spheres at Semipalatinsk designed to capture energy from nuclear-driven pulse generators. Price had described these two years before he died, and three years before their public disclosure.</div>
+            <div class="sg-tl-caveat">⚠ CAVEAT: The Los Alamos analyst D. Stillman's 1975 independent review found limited overall intelligence value in the full session data. The crane and sphere hits are the durable signals; much else was imprecise or wrong. The Aviation Week article itself was later contested as Cold War propaganda. The spheres' existence was eventually confirmed by Soviet disclosure — the precise mechanism remains debated.</div>
+          </div>
+          <div class="sg-tl-item">
+            <div class="sg-tl-step">CONGRESSIONAL AFTERMATH</div>
+            <div class="sg-tl-desc">The session results triggered a formal Congressional investigation to determine if there had been a national security breach — the data was considered too accurate to have been produced by psychic means alone. No breach was ever found. The program received continued government funding for fifteen additional years as a direct result.</div>
+          </div>
+        </div>
+
+        <div class="sg-label" style="margin-bottom:6px;">▸ SIGNAL ACCURACY — SEMIPALATINSK SESSION</div>
+        <div class="sg-prob"><span class="sg-prob-l">Crane description</span><div class="sg-prob-bar"><div class="sg-prob-fill" style="width:90%"></div></div><span class="sg-prob-pct">CONFIRMED</span></div>
+        <div class="sg-prob"><span class="sg-prob-l">Steel spheres</span><div class="sg-prob-bar"><div class="sg-prob-fill" style="width:82%"></div></div><span class="sg-prob-pct">CONFIRMED</span></div>
+        <div class="sg-prob"><span class="sg-prob-l">Welding detail</span><div class="sg-prob-bar"><div class="sg-prob-fill" style="width:65%"></div></div><span class="sg-prob-pct">PROBABLE</span></div>
+        <div class="sg-prob"><span class="sg-prob-l">Overall session</span><div class="sg-prob-bar"><div class="sg-prob-fill" style="width:40%"></div></div><span class="sg-prob-pct">MIXED</span></div>
+
+      </div>
+    </div>
+
+    <!-- McMONEAGLE -->
+    <div class="sg-sep reveal" id="sg-mcmoneagle">VIEWER RECORD 03 // JOSEPH McMONEAGLE</div>
+    <div class="sg-section reveal">
+      <div class="sg-section-header">
+        <span class="sg-label">SUBJECT</span>
+        <span class="sg-stitle">JOSEPH McMONEAGLE — REMOTE VIEWER 001</span>
+        <span class="sg-badge sg-high">VIEWER 001</span>
+      </div>
+      <div class="sg-body">
+
+        <div class="sg-grid">
+          <div class="sg-key">DESIGNATION</div>
+          <div class="sg-val">U.S. Army CWO · Remote Viewer 001 · Stargate founding member</div>
+          <div class="sg-key">PROGRAM SPAN</div>
+          <div class="sg-val">1978–1984 (active viewer) · Ongoing independent practice post-retirement</div>
+          <div class="sg-key">MISSION COUNT</div>
+          <div class="sg-val sg-hl">450+ missions (1978–1984) · 1,500+ intelligence tasks total</div>
+          <div class="sg-key">DECORATION</div>
+          <div class="sg-val">Legion of Merit — "unique intelligence project revolutionizing the intelligence community"</div>
+          <div class="sg-key">TARGETS</div>
+          <div class="sg-val">150 targets unavailable from other intelligence sources — per Legion of Merit citation</div>
+        </div>
+
+        <div class="sg-chips">
+          <span class="sg-chip sg-chip-active">VIEWER 001</span>
+          <span class="sg-chip sg-chip-active">TYPHOON SUBMARINE</span>
+          <span class="sg-chip sg-chip-active">LEGION OF MERIT</span>
+          <span class="sg-chip sg-chip-active">ACTIVE POST-MILITARY</span>
+        </div>
+
+        <hr class="sg-hr">
+
+        <div class="sg-label" style="margin-bottom:10px;">▸ CASE STUDY 03 // TYPHOON-CLASS SUBMARINE — SEPTEMBER 1979</div>
+
+        <div class="sg-quote">
+          "I'm seeing a large warehouse structure, something like a covered dry dock — but it's inland, pulled back from the water. Inside there is ... a submarine. But not like anything I've seen. Much larger. The missile tubes are angled — canted. Double hull structure. This cannot fit through the facility doors."
+          <div class="sg-quote-source">— McMONEAGLE SESSION RECONSTRUCTION · SEPT 7, 1979 · FORT MEADE / SRI · CIA CREST ARCHIVE</div>
+        </div>
+
+        <div class="sg-tl">
+          <div class="sg-tl-item">
+            <div class="sg-tl-step">TARGET ASSIGNMENT</div>
+            <div class="sg-tl-desc">The NSA requested remote viewing assistance for Soviet submarine construction projects in September 1979. McMoneagle was given geographic coordinates pointing to Shipyard 402 near the White Sea, USSR. He conducted six remote viewing sessions against the target over two days. The facility's contents were unknown to US intelligence — the building was inland, far from any water, making the notion of a submarine inside it seem logistically absurd.</div>
+          </div>
+          <div class="sg-tl-item">
+            <div class="sg-tl-step">SESSION DATA</div>
+            <div class="sg-tl-desc">McMoneagle described: a massive covered building approximately 100 yards from water; a submarine inside far larger than any known Soviet class; a distinctive <strong>double-hull structure</strong>; missile launch tubes that were <strong>canted (angled rather than vertical)</strong> — a design that would allow firing while the vessel was in motion rather than stationary; and in a later session, a projected forward deployment date of approximately 100 days and water entering the building as it neared launch.</div>
+            <div class="sg-tl-result">▸ TYPHOON CLASS CONFIRMED. The vessel was the Typhoon-class SSBN — the largest submarine ever built. Its defining features matched McMoneagle's descriptions: double-hull construction, 20 canted missile tubes, and massive displacement. It was first observed by satellite approximately 120 days after the session (versus the predicted 100 days). The Office of Naval Intelligence took the report seriously; CIA analyst Robert Gates dismissed it. Gates was wrong.</div>
+            <div class="sg-tl-caveat">⚠ CAVEAT: Evidence suggests some accumulation of Typhoon-class intelligence existed within US agencies prior to the session — the target was not a total unknown. The session may have been a training exercise against a semi-known target rather than a fully blind operational task. McMoneagle's own account differs from some declassified documents on this point. Tube count (18–20 predicted vs. 20 confirmed) and timing (100 vs. 120 days) show directional accuracy but not precision.</div>
+          </div>
+          <div class="sg-tl-item">
+            <div class="sg-tl-step">INSTITUTIONAL RESPONSE</div>
+            <div class="sg-tl-desc">McMoneagle's Typhoon findings were "roundly ridiculed" by intelligence officers who could not accept that a submarine would be built in an inland structure. The rejection was institutional, not analytical — the data was dismissed before verification. Once satellite imagery confirmed the vessel's existence and characteristics, the program's operational credibility was substantially elevated.</div>
+          </div>
+          <div class="sg-tl-item">
+            <div class="sg-tl-step">ADDITIONAL DOCUMENTED TARGETS</div>
+            <div class="sg-tl-desc">McMoneagle's record across the program included: sketching the location of US Army General James Dozier during his Red Brigade kidnapping in Italy (1981), with sufficient precision that rescue teams narrowed their search area; predicting Skylab's re-entry trajectory and impact zone eleven months before the event; and contributing to the location of a downed Soviet bomber carrying nuclear materials after conventional reconnaissance failed. President Carter publicly acknowledged the program's success in the bomber recovery case.</div>
+          </div>
+        </div>
+
+        <div class="sg-label" style="margin-bottom:6px;">▸ SIGNAL ACCURACY — TYPHOON SESSION</div>
+        <div class="sg-prob"><span class="sg-prob-l">Vessel existence</span><div class="sg-prob-bar"><div class="sg-prob-fill" style="width:95%"></div></div><span class="sg-prob-pct">CONFIRMED</span></div>
+        <div class="sg-prob"><span class="sg-prob-l">Canted tubes</span><div class="sg-prob-bar"><div class="sg-prob-fill" style="width:88%"></div></div><span class="sg-prob-pct">CONFIRMED</span></div>
+        <div class="sg-prob"><span class="sg-prob-l">Double hull</span><div class="sg-prob-bar"><div class="sg-prob-fill" style="width:85%"></div></div><span class="sg-prob-pct">CONFIRMED</span></div>
+        <div class="sg-prob"><span class="sg-prob-l">Deployment timing</span><div class="sg-prob-bar"><div class="sg-prob-fill" style="width:72%"></div></div><span class="sg-prob-pct">CLOSE</span></div>
+        <div class="sg-prob"><span class="sg-prob-l">Tube count</span><div class="sg-prob-bar"><div class="sg-prob-fill" style="width:62%"></div></div><span class="sg-prob-pct">NEAR</span></div>
+
+      </div>
+    </div>
+
+    <!-- CRV METHODOLOGY -->
+    <div class="sg-sep reveal" id="sg-crv">OPERATIONAL FRAMEWORK // CRV METHODOLOGY</div>
+    <div class="sg-section reveal">
+      <div class="sg-section-header">
+        <span class="sg-label">PROTOCOL</span>
+        <span class="sg-stitle">CONTROLLED REMOTE VIEWING — 6-STAGE FRAMEWORK</span>
+        <span class="sg-badge sg-med">DECLASSIFIED 1995</span>
+      </div>
+      <div class="sg-body">
+
+        <div class="sg-grid">
+          <div class="sg-key">ORIGIN</div>
+          <div class="sg-val">Developed 1979–1983 · Ingo Swann + Dr. Harold E. Puthoff · SRI International</div>
+          <div class="sg-key">CONTRACT</div>
+          <div class="sg-val">U.S. Army · DIA · CIA · Classified until 1995</div>
+          <div class="sg-key">DESIGN GOAL</div>
+          <div class="sg-val sg-hl">Make remote viewing teachable, repeatable, and separable from "psychic" framing</div>
+          <div class="sg-key">FIRST TRAINEE</div>
+          <div class="sg-val">Tom McNear — only person to complete all 6 stages directly under Swann (1981–1985)</div>
+          <div class="sg-key">DEPLOYED</div>
+          <div class="sg-val">1983 — U.S. Army first group trained at SRI · Project Center Lane</div>
+          <div class="sg-key">PHILOSOPHY</div>
+          <div class="sg-val">Cognitive perceptual skill, not mystical. Signal from subconscious. No trance required.</div>
+        </div>
+
+        <div class="sg-quote">
+          "CRV is based on the notion that one does not train someone to be psychic, but rather teaches a person to expand the parameters of his or her perceptions."
+          <div class="sg-quote-source">— INGO SWANN · IRVA (International Remote Viewing Association) DOCUMENTATION</div>
+        </div>
+
+        <hr class="sg-hr">
+        <div class="sg-label" style="margin-bottom:12px;">▸ THE 6 STAGES — OPERATIONAL PROGRESSION</div>
+
+        <div class="sg-crv">
+          <div class="sg-crv-h"><span class="sg-crv-num">01</span><span class="sg-crv-name">INITIAL CONTACT — GESTALT IMPRESSION</span><span class="sg-crv-tag">FIRST SIGNAL</span></div>
+          <div class="sg-crv-b">The viewer is given only a target reference — historically, geographic coordinates on a slip of paper. No other information. The viewer writes the coordinates, then notes an immediate, spontaneous <strong>ideogram</strong>: a reflexive mark or shape that the hand produces in response to the signal line. The viewer then decodes a basic gestalt of the target — is it land, water, man-made structure, natural, life form? Stage 1 is a 15–30 second process. Its purpose is to make initial contact with the target before analytical overlay (AOL) contaminates the signal. <em>No thinking. First impression only.</em></div>
+        </div>
+        <div class="sg-crv">
+          <div class="sg-crv-h"><span class="sg-crv-num">02</span><span class="sg-crv-name">SENSORY DATA — DIMENSIONALS</span><span class="sg-crv-tag">SENSORY CHANNEL</span></div>
+          <div class="sg-crv-b">The viewer begins building a sensory profile of the target. Two channels are accessed: <strong>Aesthetics</strong> (colors, textures, temperatures, sounds, smells, tastes) and <strong>Dimensionals</strong> (spatial properties: tall/short, wide/narrow, angular/curved, open/enclosed). These are written in columns, not prose — the structure prevents narrative construction. The goal is to accumulate raw perceptual data without the mind assembling it into a recognizable scene. If the viewer starts recognizing a "building" or "ocean," that is Analytical Overlay (AOL) — it is noted separately and bracketed. The signal, not the interpretation, is what Stage 2 captures.</div>
+        </div>
+        <div class="sg-crv">
+          <div class="sg-crv-h"><span class="sg-crv-num">03</span><span class="sg-crv-name">SKETCHING — GESTALT RENDERING</span><span class="sg-crv-tag">SPATIAL OUTPUT</span></div>
+          <div class="sg-crv-b">The viewer produces a sketch — not from imagination, but from the accumulated Stage 2 dimensionals. The hand draws what the dimensional data implies spatially, without the viewer consciously deciding what the target looks like. Sketches in Stage 3 consistently outperform verbal descriptions in matching confirmed target photographs — the spatial/motor channel appears to access the signal line more directly than language. Pat Price's crane sketch and McMoneagle's submarine sketches are canonical examples of Stage 3 output that matched satellite imagery. Labels are added post-sketch to explain what was sensed, not what was imagined.</div>
+        </div>
+        <div class="sg-crv">
+          <div class="sg-crv-h"><span class="sg-crv-num">04</span><span class="sg-crv-name">ADVANCED PERCEPTUALS — FUNCTIONAL AND EMOTIONAL DATA</span><span class="sg-crv-tag">DEEP SIGNAL</span></div>
+          <div class="sg-crv-b">Stage 4 moves beyond physical description into <strong>function and emotional atmosphere</strong>. The viewer accesses what the target is <em>for</em> and what it <em>feels like</em> to be there. This stage uses a structured matrix format — columns for physical data, dimensional data, emotional impact, and intangible qualities. It is in Stage 4 that viewers begin to access operational intelligence value beyond raw location data: purpose, activity, psychological climate, danger, urgency. The stage requires that all AOL be clearly labeled to prevent contamination of the raw data stream. Stage 4 is the first stage where intelligence customers frequently find actionable content.</div>
+        </div>
+        <div class="sg-crv">
+          <div class="sg-crv-h"><span class="sg-crv-num">05</span><span class="sg-crv-name">PHONETICS AND SYMBOLIC DATA</span><span class="sg-crv-tag">LINGUISTIC CHANNEL</span></div>
+          <div class="sg-crv-b">An emergent and partially contested stage. Some viewers spontaneously produce <strong>phonetic fragments</strong> — partial sounds or syllables that may correspond to names, labels, or language at the target site. These are recorded as raw phonetics, not interpreted names. Stage 5 was documented in the original Swann/Puthoff 1983 briefing as a spontaneous phenomenon; it was never fully codified into a formal training protocol. Pat Price's use of phonetics to identify the CIA officer Ken Kress by name — correctly — is the program's most dramatic claimed example of Stage 5 data. Swann referred to a potential Stage 7 involving more developed phonetic/linguistic channel work, but it was never formally completed.</div>
+        </div>
+        <div class="sg-crv">
+          <div class="sg-crv-h"><span class="sg-crv-num">06</span><span class="sg-crv-name">THREE-DIMENSIONAL MODELING</span><span class="sg-crv-tag">TERMINAL STAGE</span></div>
+          <div class="sg-crv-b">Stage 6 synthesizes all prior data into a <strong>three-dimensional model or clay reconstruction</strong> of the target. The viewer physically builds or diagrams the spatial structure from accumulated sketches and dimensional data. This stage was designed for architectural, structural, or geographical targets where spatial accuracy was operationally critical. Stage 6 produces the most verifiable output and the most rigorous test of whether prior stages accessed genuine signal versus imagination. It is uncontroversially the terminal stage of the original Swann/Puthoff methodology — Stage 7 and beyond remain in the domain of documented-but-uncodified phenomenon.</div>
+        </div>
+
+        <hr class="sg-hr">
+        <div class="sg-label" style="margin-bottom:10px;">▸ CORE DESIGN PRINCIPLES — WHAT CRV IS BUILT TO PREVENT</div>
+
+        <div class="sg-tl">
+          <div class="sg-tl-item">
+            <div class="sg-tl-step">ANALYTICAL OVERLAY (AOL)</div>
+            <div class="sg-tl-desc">The single greatest threat to signal integrity. The conscious mind pattern-matches incoming data to known categories too quickly — once it identifies "it's a building," imagination fills in details the signal did not provide. Every CRV stage is designed to delay and quarantine AOL rather than eliminate it. AOL is labeled, noted, set aside — not suppressed.</div>
+          </div>
+          <div class="sg-tl-item">
+            <div class="sg-tl-step">FRONT-LOADING</div>
+            <div class="sg-tl-desc">Any prior knowledge of the target contaminates the session. CRV uses a fully blind protocol: the viewer knows nothing about the target beyond a random reference number. The monitor (session coordinator) may also be blind to prevent unconscious cueing. This was the core methodological difference between CRV and earlier psychic research that failed replication.</div>
+          </div>
+          <div class="sg-tl-item">
+            <div class="sg-tl-step">STAGE COMPRESSION</div>
+            <div class="sg-tl-desc">Rushing to the "interesting" stages without properly working Stage 1–2 produces sessions full of imagination and confirmation bias. The staged progression is non-negotiable — each stage builds the signal strength before the next level of data is accessed. This is why untrained viewers produce chance-level results on blind targets.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ARCHIVE ACCESS -->
+    <div class="sg-sep reveal" id="sg-archives">ARCHIVE ACCESS // RELEVANT LINKS</div>
+    <div class="sg-section reveal">
+      <div class="sg-section-header">
+        <span class="sg-label">NODES</span>
+        <span class="sg-stitle">DECLASSIFIED DOCUMENTS AND PRIMARY SOURCE ACCESS</span>
+        <span class="sg-badge sg-low">OPEN SOURCE</span>
+      </div>
+      <div class="sg-body">
+
+        <div class="sg-label" style="margin-bottom:8px;">▸ CIA DECLASSIFIED — PRIMARY</div>
+        <div class="sg-links">
+          <a class="sg-link" href="https://www.cia.gov/readingroom/collection/stargate" target="_blank" rel="noopener">
+            <span class="sg-link-tag">CIA CREST</span>
+            <span class="sg-link-text">Project STARGATE Full Collection — CIA Reading Room<br>23-year classified archive, declassified 1995. Full document set including session transcripts, evaluations, and program history.</span>
+          </a>
+          <a class="sg-link" href="https://www.cia.gov/readingroom/search#q=stargate&collection=stargate" target="_blank" rel="noopener">
+            <span class="sg-link-tag">CIA SEARCH</span>
+            <span class="sg-link-text">CIA STARGATE Search Portal — Full Text Search<br>Search all declassified Stargate documents by keyword. Includes Price, Swann, McMoneagle session records.</span>
+          </a>
+          <a class="sg-link" href="https://www.cia.gov/readingroom/search#q=grinberg&collection=stargate" target="_blank" rel="noopener">
+            <span class="sg-link-tag">CIA NODE</span>
+            <span class="sg-link-text">CIA STARGATE — Grinberg References (Declassified August 2023)<br>Search node linking Stargate program files to Jacobo Grinberg-Zylberbaum's consciousness research.</span>
+          </a>
+        </div>
+
+        <hr class="sg-hr">
+        <div class="sg-label" style="margin-bottom:8px;">▸ CRV MANUALS — ORIGINAL DECLASSIFIED DOCUMENTS</div>
+        <div class="sg-links">
+          <a class="sg-link" href="https://www.remoteviewed.com/crv_docs_full.pdf" target="_blank" rel="noopener">
+            <span class="sg-link-tag">PDF · FULL</span>
+            <span class="sg-link-text">Complete CRV Document Archive — Remoteviewed.com<br>Puthoff/Swann SRI briefing (1981–83), Tom McNear training notes (1985), Stages 1–3, 4, 5–6 overviews. The original training materials.</span>
+          </a>
+          <a class="sg-link" href="https://www.remoteviewed.com/crv-manuals/" target="_blank" rel="noopener">
+            <span class="sg-link-tag">INDEX</span>
+            <span class="sg-link-text">CRV Manual Index — Remoteviewed.com<br>Indexed listing of all declassified CRV training documents including the prototype methodology, DIA manual, and open-source guide.</span>
+          </a>
+          <a class="sg-link" href="https://rviewer.com/controlled-remote-viewing/" target="_blank" rel="noopener">
+            <span class="sg-link-tag">RVIS</span>
+            <span class="sg-link-text">Controlled Remote Viewing — RVIS (Paul H. Smith)<br>The most complete public exposition of the original Swann/Puthoff 6-stage methodology. Paul Smith was the DIA's CRV theory instructor and lead author of the original military training manual.</span>
+          </a>
+          <a class="sg-link" href="https://www.irva.org/remote-viewing/methodology" target="_blank" rel="noopener">
+            <span class="sg-link-tag">IRVA</span>
+            <span class="sg-link-text">Remote Viewing Methodologies — International Remote Viewing Association<br>Overview of CRV, ERV, TRV, and SRV variants. Explains methodological differences and lineage from the original Swann/Puthoff framework.</span>
+          </a>
+        </div>
+
+        <hr class="sg-hr">
+        <div class="sg-label" style="margin-bottom:8px;">▸ SESSION RECORDS — SWANN · PRICE · McMONEAGLE</div>
+        <div class="sg-links">
+          <a class="sg-link" href="https://www.remoteviewed.com/remote-viewing-jupiter-1973/" target="_blank" rel="noopener">
+            <span class="sg-link-tag">SESSION</span>
+            <span class="sg-link-text">Swann Jupiter Remote Viewing — 1973 Full Record<br>Swann's original session notes, the SRI report, and confirmatory scientific data. Includes the formal comparison document compiled against NASA Voyager findings.</span>
+          </a>
+          <a class="sg-link" href="https://ersby.blogspot.com/2017/03/pat-prices-remote-viewing-of-urdf-3.html" target="_blank" rel="noopener">
+            <span class="sg-link-tag">ANALYSIS</span>
+            <span class="sg-link-text">Pat Price / URDF-3 Semipalatinsk — Detailed Archival Analysis<br>The most rigorous public analysis of the 1974 CIA session using declassified documents. Separates confirmed hits from contested claims. Uses Stillman's 1975 Los Alamos review as primary source.</span>
+          </a>
+          <a class="sg-link" href="https://ersby.blogspot.com/2017/11/joe-mcmoneagle-and-typhoon-submarine.html" target="_blank" rel="noopener">
+            <span class="sg-link-tag">ANALYSIS</span>
+            <span class="sg-link-text">McMoneagle / Typhoon Submarine — Archival Session Analysis<br>Full six-session breakdown using CIA CREST transcripts. Cross-references McMoneagle's own account against declassified documents. Documents the institutional dismissal and subsequent confirmation.</span>
+          </a>
+          <a class="sg-link" href="https://irp.fas.org/program/collect/stargate.htm" target="_blank" rel="noopener">
+            <span class="sg-link-tag">PROGRAM</span>
+            <span class="sg-link-text">STAR GATE Program Overview — Federation of American Scientists<br>Comprehensive program history including SCANATE origins, SRI research phase, Fort Meade operational deployment, and 1995 AIR evaluation. Maintained by Steven Aftergood.</span>
+          </a>
+        </div>
+
+        <hr class="sg-hr">
+        <div class="sg-label" style="margin-bottom:8px;">▸ CRITICAL READING — CONTEXT AND SKEPTICAL ANALYSIS</div>
+        <div class="sg-links">
+          <a class="sg-link" href="https://edgescience.org/wp-content/uploads/2023/04/edgescience-42.pdf" target="_blank" rel="noopener">
+            <span class="sg-link-tag">PDF</span>
+            <span class="sg-link-text">EdgeScience #42 — Semipalatinsk Re-Analysis<br>Independent scholarly re-examination of the Pat Price Semipalatinsk session. Uses the Stillman declassified report as primary source. Most balanced assessment of what was and was not confirmed.</span>
+          </a>
+          <a class="sg-link" href="https://skepticalaboutskeptics.org/examining-skeptics/guy-lyon-playfair/the-stargate-conspiracy/" target="_blank" rel="noopener">
+            <span class="sg-link-tag">REVIEW</span>
+            <span class="sg-link-text">The Stargate Conspiracy — McMoneagle Evaluation<br>Review of McMoneagle's memoir The Stargate Chronicles. Examines the AIR panel's failure to interview active participants, including McMoneagle's direct evidence that reviewers lacked required security clearances.</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TICKER -->
+    <div class="sg-ticker reveal">
+      <div class="sg-ticker-inner">
+        SWANN JUPITER SESSION APRIL 1973 — RING CONFIRMED VOYAGER 1979 — PRICE SEMIPALATINSK JULY 1974 — CRANE CONFIRMED CIA SATELLITE — SPHERES CONFIRMED AVIATION WEEK 1977 — McMONEAGLE TYPHOON 1979 — DOUBLE HULL CONFIRMED — CANTED TUBES CONFIRMED — LEGION OF MERIT AWARDED — CRV STAGES 1–6 DECLASSIFIED 1995 — CIA CREST ARCHIVE ACCESSIBLE — STARGATE TERMINATED 1995 — GRINBERG REFERENCED IN DECLASSIFIED FILES AUGUST 2023 — STARGATE TERMINATED ONE YEAR AFTER GRINBERG DISAPPEARED — LATTICE PROTOCOL // INPEC ARCHIVE // NODE ACTIVE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SWANN JUPITER SESSION APRIL 1973 — RING CONFIRMED VOYAGER 1979 — PRICE SEMIPALATINSK JULY 1974 — CRANE CONFIRMED CIA SATELLITE — SPHERES CONFIRMED AVIATION WEEK 1977 — McMONEAGLE TYPHOON 1979 — DOUBLE HULL CONFIRMED — CANTED TUBES CONFIRMED — LEGION OF MERIT AWARDED — CRV STAGES 1–6 DECLASSIFIED 1995 — CIA CREST ARCHIVE ACCESSIBLE — STARGATE TERMINATED 1995 — LATTICE PROTOCOL // INPEC ARCHIVE // NODE ACTIVE
+      </div>
+    </div>
+
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════════════
