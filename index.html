@@ -2535,25 +2535,27 @@
 
     <style>
       .stargate-node {
-        --sg-bg: #020a0f;
-        --sg-bg2: #040f16;
-        --sg-bg3: #071520;
-        --sg-border: #0d2535;
-        --sg-border-bright: #1a4060;
-        --sg-cyan: #00c8e0;
-        --sg-cyan-dim: #007a8a;
-        --sg-green: #00e060;
-        --sg-green-dim: #007a30;
-        --sg-amber: #e0a000;
-        --sg-amber-dim: #7a5000;
-        --sg-red: #e04040;
-        --sg-text: #b0ccd8;
-        --sg-text-dim: #506878;
-        --sg-text-bright: #e0f0f8;
+        /* Inherit site palette — keep dossier readability via opacity, not desaturation */
+        --sg-bg2: rgba(0,245,255,0.025);
+        --sg-bg3: rgba(0,245,255,0.05);
+        --sg-border: rgba(0,245,255,0.18);
+        --sg-border-bright: rgba(0,245,255,0.45);
+        --sg-cyan: var(--cyan);
+        --sg-cyan-dim: rgba(0,245,255,0.55);
+        --sg-green: var(--green);
+        --sg-green-dim: rgba(0,255,157,0.45);
+        --sg-amber: var(--amber);
+        --sg-amber-dim: rgba(255,179,0,0.45);
+        --sg-red: var(--red);
+        --sg-text: rgba(0,245,255,0.78);
+        --sg-text-dim: rgba(0,245,255,0.45);
+        --sg-text-bright: #e6fbff;
         --sg-mono: 'Share Tech Mono', 'Courier New', monospace;
         --sg-sans: 'Orbitron', 'Arial Narrow', Arial, sans-serif;
         display: block;
-        margin: 60px 0 0;
+        max-width: 980px;
+        margin: 60px auto 0;
+        padding: 0 12px;
         font-family: var(--sg-mono);
         font-size: 13px;
         line-height: 1.6;
@@ -2561,32 +2563,19 @@
       }
       .stargate-node * { box-sizing: border-box; }
 
-      .stargate-node .sg-header {
-        border-top: 1px solid var(--sg-border-bright);
-        border-bottom: 1px solid var(--sg-border-bright);
-        padding: 24px 24px 20px;
-        position: relative;
-        background: repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(0,200,224,0.015) 1px, rgba(0,200,224,0.015) 2px);
-      }
-      .stargate-node .sg-header::before {
-        content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-        background: linear-gradient(90deg, transparent, var(--sg-cyan), var(--sg-cyan-dim), transparent);
-      }
-      .stargate-node .sg-breadcrumb { font-size: 10px; color: var(--sg-text-dim); letter-spacing: 0.15em; margin-bottom: 12px; }
-      .stargate-node .sg-breadcrumb span { color: var(--sg-cyan-dim); }
-      .stargate-node .sg-title { font-size: 22px; letter-spacing: 0.12em; color: var(--sg-cyan); text-shadow: 0 0 20px rgba(0,200,224,0.4); margin-bottom: 6px; font-family: var(--sg-sans); font-weight: normal; }
-      .stargate-node .sg-subtitle { font-size: 11px; color: var(--sg-text-dim); letter-spacing: 0.1em; }
+      .stargate-node .sg-subhead { font-size: 11px; color: var(--sg-text-dim); letter-spacing: 0.1em; text-align: center; margin: -4px 0 16px; }
+      .stargate-node .sg-subhead span { color: var(--sg-cyan); }
       .stargate-node .sg-blink { animation: sg-blink 1.2s step-end infinite; }
       @keyframes sg-blink { 0%,100%{opacity:1} 50%{opacity:0} }
 
-      .stargate-node .sg-nav { padding: 10px 24px; border-bottom: 1px solid var(--sg-border); font-size: 10px; letter-spacing: 0.12em; color: var(--sg-cyan-dim); display: flex; gap: 20px; flex-wrap: wrap; background: var(--sg-bg2); }
+      .stargate-node .sg-nav { padding: 10px 16px; border: 1px solid var(--sg-border); font-size: 10px; letter-spacing: 0.12em; color: var(--sg-cyan-dim); display: flex; gap: 20px; flex-wrap: wrap; background: var(--sg-bg2); margin-bottom: 24px; }
       .stargate-node .sg-nav a { color: var(--sg-cyan-dim); text-decoration: none; transition: color 0.15s; }
       .stargate-node .sg-nav a:hover { color: var(--sg-cyan); }
 
-      .stargate-node .sg-alert { margin: 24px 24px; border: 1px solid var(--sg-amber-dim); background: rgba(224,160,0,0.04); padding: 12px 16px; font-size: 11px; letter-spacing: 0.08em; color: var(--sg-amber); }
-      .stargate-node .sg-alert::before { content: '⚠ PRIORITY SIGNAL // '; opacity: 0.6; }
+      .stargate-node .sg-alert { margin: 0 0 24px; border: 1px solid var(--sg-amber-dim); background: rgba(255,179,0,0.04); padding: 12px 16px; font-size: 11px; letter-spacing: 0.08em; color: var(--sg-amber); }
+      .stargate-node .sg-alert::before { content: '⚠ PRIORITY SIGNAL // '; opacity: 0.7; }
 
-      .stargate-node .sg-section { margin: 0 24px 40px; border: 1px solid var(--sg-border); background: var(--sg-bg2); position: relative; }
+      .stargate-node .sg-section { margin: 0 0 40px; border: 1px solid var(--sg-border); background: var(--sg-bg2); position: relative; }
       .stargate-node .sg-section-header { background: var(--sg-bg3); border-bottom: 1px solid var(--sg-border); padding: 10px 16px; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
       .stargate-node .sg-label { font-size: 9px; letter-spacing: 0.2em; color: var(--sg-cyan-dim); }
       .stargate-node .sg-stitle { font-size: 14px; letter-spacing: 0.1em; color: var(--sg-text-bright); font-family: var(--sg-sans); }
@@ -2640,7 +2629,7 @@
       @keyframes sg-ticker { from { transform: translateX(100vw); } to { transform: translateX(-100%); } }
 
       .stargate-node hr.sg-hr { border: none; border-top: 1px solid var(--sg-border); margin: 20px 0; }
-      .stargate-node .sg-sep { text-align: center; font-size: 9px; letter-spacing: 0.25em; color: var(--sg-text-dim); margin: 32px 24px 0; padding-bottom: 4px; border-bottom: 1px solid var(--sg-border); }
+      .stargate-node .sg-sep { text-align: center; font-size: 9px; letter-spacing: 0.25em; color: var(--sg-text-dim); margin: 32px 0 0; padding-bottom: 4px; border-bottom: 1px solid var(--sg-border); }
 
       .stargate-node .sg-chips { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
       .stargate-node .sg-chip { font-size: 9px; letter-spacing: 0.12em; padding: 3px 8px; border: 1px solid; }
@@ -2649,19 +2638,15 @@
       .stargate-node .sg-chip.sg-chip-dead   { color: var(--sg-text-dim); border-color: var(--sg-border); }
 
       @media (max-width: 640px) {
-        .stargate-node .sg-header, .stargate-node .sg-nav, .stargate-node .sg-section, .stargate-node .sg-alert, .stargate-node .sg-sep { margin-left: 12px; margin-right: 12px; }
-        .stargate-node .sg-body, .stargate-node .sg-header { padding-left: 12px; padding-right: 12px; }
+        .stargate-node { padding: 0 8px; }
+        .stargate-node .sg-body { padding-left: 12px; padding-right: 12px; }
         .stargate-node .sg-grid { grid-template-columns: 110px 1fr; }
-        .stargate-node .sg-nav { padding-left: 12px; }
       }
     </style>
 
-    <!-- HEADER -->
-    <div class="sg-header reveal">
-      <div class="sg-breadcrumb">LATTICE PROTOCOL // INPEC ARCHIVE // <span>STARGATE NODE</span> // VIEWER DOSSIER</div>
-      <div class="sg-title">STARGATE // VIEWER CASE FILES <span class="sg-blink">◉</span></div>
-      <div class="sg-subtitle">CLASSIFICATION: DECLASSIFIED 1995 · CIA READING ROOM ACCESSIBLE · VIEWERS: SWANN // PRICE // McMONEAGLE · CRV METHODOLOGY: APPENDED</div>
-    </div>
+    <!-- HEADER — uses site's signature hud-divider banner -->
+    <div id="stargate" class="hud-divider reveal"><span>STARGATE NODE // VIEWER CASE FILES <span class="sg-blink">◉</span></span></div>
+    <div class="sg-subhead reveal">CLASSIFICATION: <span>DECLASSIFIED 1995</span> · CIA READING ROOM ACCESSIBLE · SWANN // PRICE // McMONEAGLE · CRV METHODOLOGY APPENDED</div>
 
     <!-- NAV -->
     <div class="sg-nav reveal">
