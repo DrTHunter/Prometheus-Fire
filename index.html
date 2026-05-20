@@ -3140,9 +3140,10 @@
         --sg-mono: 'Share Tech Mono', 'Courier New', monospace;
         --sg-sans: 'Orbitron', 'Arial Narrow', Arial, sans-serif;
         display: block;
-        max-width: 980px;
+        width: min(96vw, 1320px);
+        max-width: none;
         margin: 60px auto 0;
-        padding: 0 12px;
+        padding: 0 24px;
         font-family: var(--sg-mono);
         font-size: 13px;
         line-height: 1.6;
@@ -3163,16 +3164,16 @@
       .stargate-node .sg-alert::before { content: '⚠ PRIORITY SIGNAL // '; opacity: 0.7; }
 
       .stargate-node .sg-section { margin: 0 0 40px; border: 1px solid var(--sg-border); background: var(--sg-bg2); position: relative; }
-      .stargate-node .sg-section-header { background: var(--sg-bg3); border-bottom: 1px solid var(--sg-border); padding: 10px 16px; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+      .stargate-node .sg-section-header { background: var(--sg-bg3); border-bottom: 1px solid var(--sg-border); padding: 12px 22px; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
       .stargate-node .sg-label { font-size: 9px; letter-spacing: 0.2em; color: var(--sg-cyan-dim); }
       .stargate-node .sg-stitle { font-size: 14px; letter-spacing: 0.1em; color: var(--sg-text-bright); font-family: var(--sg-sans); }
       .stargate-node .sg-badge { margin-left: auto; font-size: 9px; letter-spacing: 0.15em; padding: 2px 8px; border: 1px solid; }
       .stargate-node .sg-badge.sg-high { color: var(--sg-green); border-color: var(--sg-green-dim); background: rgba(0,224,96,0.05); }
       .stargate-node .sg-badge.sg-med  { color: var(--sg-amber); border-color: var(--sg-amber-dim); background: rgba(224,160,0,0.05); }
       .stargate-node .sg-badge.sg-low  { color: var(--sg-text-dim); border-color: var(--sg-border); }
-      .stargate-node .sg-body { padding: 20px 16px; }
+      .stargate-node .sg-body { padding: 24px 22px; }
 
-      .stargate-node .sg-grid { display: grid; grid-template-columns: 160px 1fr; gap: 0; margin-bottom: 16px; border: 1px solid var(--sg-border); }
+      .stargate-node .sg-grid { display: grid; grid-template-columns: 200px 1fr; gap: 0; margin-bottom: 16px; border: 1px solid var(--sg-border); }
       .stargate-node .sg-key { font-size: 10px; letter-spacing: 0.1em; color: var(--sg-text-dim); padding: 6px 10px; border-bottom: 1px solid var(--sg-border); border-right: 1px solid var(--sg-border); background: rgba(7,21,32,0.6); }
       .stargate-node .sg-val { font-size: 12px; color: var(--sg-text); padding: 6px 10px; border-bottom: 1px solid var(--sg-border); }
       .stargate-node .sg-val.sg-hl { color: var(--sg-cyan); }
